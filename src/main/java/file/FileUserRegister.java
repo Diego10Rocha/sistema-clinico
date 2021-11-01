@@ -19,9 +19,9 @@ public class FileUserRegister {
 
 	private Gson gson = new Gson();
 
-	private String PATH_CADASTROS_PACIENTE = "Arquivos/cadastrosPaciente.json";
-	private String PATH_CADASTROS_MEDICO = "Arquivos/cadastrosMedico.json";
-	private String PATH_CADASTROS_RECPCIONISTA = "Arquivos/cadastrosRecepcionista.json";
+	private final String PATH_CADASTROS_PACIENTE = "Arquivos/cadastrosPaciente.json";
+	private final String PATH_CADASTROS_MEDICO = "Arquivos/cadastrosMedico.json";
+	private final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/cadastrosRecepcionista.json";
 
 	public FileUserRegister() {
 
@@ -98,7 +98,7 @@ public class FileUserRegister {
 		return instanceTypeObj;
 	}
 
-	private List<Object> readFile(String path) {
+	public List<Object> readFile(String path) {
 
 		List<Object> cadastrosFromJson = new ArrayList<>();
 
