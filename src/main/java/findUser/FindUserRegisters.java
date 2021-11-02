@@ -1,59 +1,107 @@
 package findUser;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import interfaces.IFindUser;
+import com.google.gson.Gson;
+
 import model.Usuario;
 
-public class FindUserRegisters implements IFindUser {
+public class FindUserRegisters<T extends Usuario> {
 
-	private FindUserPacientes findUserPacientes = new FindUserPacientes();
-	private FindUserMedicos findUserMedicos = new FindUserMedicos();
-	private FindUserRecpcionista findUserRecepcionista = new FindUserRecpcionista();
+	private final Class<T[]> type;
+	private String path;
+	private Gson gson;
 
-	@Override
-	public Object findUser(String keyWord) {
-
-		Object userFoundOnPacientes = findUserPacientes.findUser(keyWord);
-		Object userFoundOnMedicos = findUserMedicos.findUser(keyWord);
-		Object userFoundOnRecepcionista = findUserRecepcionista.findUser(keyWord);
-
-		if (userFoundOnPacientes != null)
-			
-			return userFoundOnPacientes;
-
-		else if (userFoundOnMedicos != null)
-			
-			return userFoundOnMedicos;
-
-		else
-			return userFoundOnRecepcionista;
-
-	}
-
-	@Override
-	public Object findUser(String keyWord1, String keyWord2) {
+	public FindUserRegisters(Class<T[]> type, String path) {
 		
-		Object userFoundOnPacientes = findUserPacientes.findUser(keyWord1, keyWord2);
-		Object userFoundOnMedicos = findUserMedicos.findUser(keyWord1, keyWord2);
-		Object userFoundOnRecepcionista = findUserRecepcionista.findUser(keyWord1, keyWord2);
-
-		if (userFoundOnPacientes != null)
-			
-			return userFoundOnPacientes;
-
-		else if (userFoundOnMedicos != null)
-			
-			return userFoundOnMedicos;
-
-		else
-			return userFoundOnRecepcionista;
+		this.type = type;
+		this.path = path;
+		this.gson = new Gson();
 	}
 
-	@Override
-	public <T extends Usuario> List<T> readFile(Class<T[]> type) {
-		// TODO Auto-generated method stub
-		return null;
+	public T findUser(String keyWord) {
+
+		T userFound = null;
+
+		String cpfUserCadastrado;
+
+		List<T> cadastros = readFile();
+
+		for (T userCadastrado : cadastros) {
+
+			cpfUserCadastrado = userCadastrado.getCPF();
+
+			if (cpfUserCadastrado.equals(keyWord)) {
+
+				userFound = userCadastrado;
+			}
+
+		}
+
+		return userFound;
+
 	}
+
+	public T findUser(String keyWord1, String keyWord2) {
+
+		T userFound = null;
+
+		String cpfUserCadastrado;
+		String senhaUserCadastrado;
+
+		List<T> cadastros = readFile();
+
+		for (T userCadastrado : cadastros) {
+
+			cpfUserCadastrado = userCadastrado.getCPF();
+			senhaUserCadastrado = userCadastrado.getSenha();
+
+			if (cpfUserCadastrado.equals(keyWord1) && senhaUserCadastrado.equals(keyWord2)) {
+
+				userFound = userCadastrado;
+			}
+
+		}
+
+		return userFound;
+	}
+
+	public List<T> readFile() {
+
+		List<T> listCadastrosFromJson = new ArrayList<>();
+
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+
+			T[] arrayCadastrosFromJson = gson.fromJson(br, type);
+
+			listCadastrosFromJson = Arrays.asList(arrayCadastrosFromJson);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		return listCadastrosFromJson;
+
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public Class<T[]> getType() {
+		return type;
+	}
+	
+	
 
 }
