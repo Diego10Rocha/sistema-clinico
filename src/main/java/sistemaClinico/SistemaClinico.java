@@ -25,13 +25,14 @@ public class SistemaClinico {
 		list.forEach(ob ->{System.out.println(ob.toString());});
 		*/
 		System.out.println("Pacientes: \n");
-		Paciente p = new Paciente("Bonitão", "123", "036.263.263-98", "2021/03/20");
-		PacienteDAO.insertPatient(p);
+		Paciente pNew = new Paciente("Lindão", "999", "019.263.263-98", "2000/03/21");
+		
+		
 		List<Paciente> pacientes = PacienteDAO.getPatients();
 		pacientes.forEach(paciente -> {
 			System.out.println(paciente.getNome());
 		});
-		
+		/*
 		System.out.println("\nMedicos: \n");
 		
 		Medico m = new Medico("Bonitão", "123", "036.263.263-98", "34133513252", new Especialidade("Ginecologista", true));
@@ -57,6 +58,6 @@ public class SistemaClinico {
 		List<Especialidade> especialidades = EspecialidadeDAO.getSpecialties();
 		especialidades.forEach(especialidade -> {
 			System.out.println(especialidade.getNome());
-		});
+		});*/
 	}
 }

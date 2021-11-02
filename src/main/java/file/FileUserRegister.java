@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -14,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import instanceType.InstanceType;
 import model.Medico;
 import model.Paciente;
+import model.Usuario;
 
 public class FileUserRegister {
 
@@ -28,8 +30,9 @@ public class FileUserRegister {
 	}
 
 	public boolean writer(Object obj) {
-
+		
 		String pathToWriter = getPath(obj);
+		
 		String json;
 
 		List<Object> cadastros = readFile(pathToWriter);
@@ -39,6 +42,25 @@ public class FileUserRegister {
 		try (FileWriter writer = new FileWriter(pathToWriter)) {
 
 			json = gson.toJson(cadastros);
+
+			writer.write(json);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		return true;
+
+	}
+
+	public boolean reWriter(Object obj, String path) {
+
+		String json;
+
+		try (FileWriter writer = new FileWriter(path)) {
+
+			json = gson.toJson(obj);
 
 			writer.write(json);
 
@@ -116,5 +138,23 @@ public class FileUserRegister {
 
 		return cadastrosFromJson;
 	}
+
+	public <T extends Usuario> List<T> readFile(String path, Class<T[]> type) {
+
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+
+			T[] arrayCadastrosFromJson = gson.fromJson(br, type);
+
+			return new ArrayList<T>(Arrays.asList(arrayCadastrosFromJson));
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	
 
 }

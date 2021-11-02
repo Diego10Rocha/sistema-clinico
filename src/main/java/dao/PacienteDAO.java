@@ -1,160 +1,102 @@
 package dao;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
+import file.FileUserRegister;
 import model.Paciente;
 
 public class PacienteDAO {
-
-	private final static String PATH_CADASTROS_PACIENTE = "Arquivos/cadastrosPaciente.json";
-	private static Gson gson = new Gson();
 	
-	public static List<Paciente> getPatients(){
-		
-		List<Paciente> patients = new ArrayList<>();
+	private static final String PATH_CADASTROS_PACIENTE = "Arquivos/cadastrosPaciente.json";
+	private static FileUserRegister fileUserRegister = new FileUserRegister();
 
-		try {
-			File arquivo = new File( PATH_CADASTROS_PACIENTE );
-			if(!arquivo.exists())
-				return patients;
-			
-			BufferedReader br = new BufferedReader(new FileReader(PATH_CADASTROS_PACIENTE));
-			
-			Type typeList = new TypeToken<ArrayList<Paciente>>() {
-			}.getType();
+	public static List<Paciente> getPatients() {
 
-			patients = gson.fromJson(br, typeList);
-			br.close();
-		} catch (IOException e) {
+		List<Paciente> patients = fileUserRegister.readFile(PATH_CADASTROS_PACIENTE, Paciente[].class);
 
-			e.printStackTrace();
-		}
 		return patients;
 	}
-	
-	
+
 	public static boolean insertPatient(Paciente patient) {
-		
+
 		try {
-			File file = new File( PATH_CADASTROS_PACIENTE );
-			List<Paciente> patients;
-			
-			if(!cpfIsUnique(patient.getCPF())) {
+
+			if (!cpfIsUnique(patient.getCPF())) {
+
 				throw new Exception("CPF já cadastrado");
 			}
-			if(!file.exists()) {
-				file.createNewFile();
-				patients = new ArrayList<>();
-			}else {
-				patients = getPatients();
-			}
-			patients.add(patient);
-			
-			FileWriter fw = new FileWriter( file );
-			BufferedWriter bw = new BufferedWriter( fw );
-			bw.write(gson.toJson(patients));
-			bw.close();
-			fw.close();
-			
+
+			fileUserRegister.writer(patient);
+
 			return true;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return false;
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 
+		return false;
+
 	}
-	
+
 	public static boolean updatePatient(Paciente patient, Paciente patientOld) {
-		try {
-			File file = new File( PATH_CADASTROS_PACIENTE );
-			if(!file.exists())
-				return false;
-			
-			List<Paciente> patients = getPatients();
-			patients.set(patients.indexOf(patientOld), patient);
-			
-			FileWriter fw = new FileWriter( file );
-			BufferedWriter bw = new BufferedWriter( fw );
-			bw.write(gson.toJson(patients));
-			bw.close();
-			fw.close();
-			return true;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+		
+		List<Paciente> patients = fileUserRegister.readFile(PATH_CADASTROS_PACIENTE, Paciente[].class);
+		
+		patients.set(patients.indexOf(patientOld), patient);
+		
+		return fileUserRegister.reWriter(patients, PATH_CADASTROS_PACIENTE);
 	}
-	
+
 	public static boolean deletePatient(Paciente paciente) {
-		try {
-			File file = new File( PATH_CADASTROS_PACIENTE );
-			if(!file.exists())
-				return false;
-			
-			List<Paciente> patients = getPatients();
-			
-			if(patients.isEmpty())
-				return false;
-			patients.remove(paciente);
-			
-			FileWriter fw = new FileWriter( file );
-			BufferedWriter bw = new BufferedWriter( fw );
-			bw.write(gson.toJson(patients));
-			bw.close();
-			fw.close();
-			return true;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+		
+		boolean isDeletado;
+		
+		List<Paciente> patients = fileUserRegister.readFile(PATH_CADASTROS_PACIENTE, Paciente[].class);
+		
+		isDeletado = patients.remove(paciente);
+		
+		fileUserRegister.reWriter(patients, PATH_CADASTROS_PACIENTE);
 	
+		
+		return isDeletado;
+	}
+
 	public static Paciente login(String cpf, String senha) {
+		
 		try {
 			List<Paciente> patients = getPatients();
-			
-			if(patients.isEmpty())
+
+			if (patients.isEmpty())
 				return null;
-			Optional<Paciente> loged = patients.stream().filter(patient -> 
-				patient.getCPF().equals(cpf) && patient.getSenha().equals(senha)
-			).findFirst();
 			
-			if(!loged.isPresent())
+			Optional<Paciente> loged = patients.stream()
+					.filter(patient -> patient.getCPF().equals(cpf) && patient.getSenha().equals(senha)).findFirst();
+
+			if (!loged.isPresent())
 				return null;
 			return loged.get();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	private static boolean cpfIsUnique(String cpf) {
+		
 		try {
 			List<Paciente> patients = getPatients();
-			
-			if(patients.isEmpty())
+
+			if (patients.isEmpty())
 				return false;
-			
-			Optional<Paciente> pacienteWithCpfRegistered = patients.stream().filter(patient -> 
-				patient.getCPF().equals(cpf)
-			).findFirst();
-			
-			if(pacienteWithCpfRegistered.isPresent())
+
+			Optional<Paciente> pacienteWithCpfRegistered = patients.stream()
+					.filter(patient -> patient.getCPF().equals(cpf)).findFirst();
+
+			if (pacienteWithCpfRegistered.isPresent())
 				return false;
 			return true;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
