@@ -1,6 +1,6 @@
 package model;
 
-public class Usuario {
+public abstract class Usuario {
 
 	private String nome;
 	private String senha;
@@ -21,7 +21,7 @@ public class Usuario {
 		
 	}
 	
-	public boolean login(String nome, String senha) {return true;}
+	public abstract Usuario login(String cpf, String senha);
 
 	public String getNome() {
 		return nome;

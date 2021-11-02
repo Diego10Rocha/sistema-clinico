@@ -1,5 +1,7 @@
 package model;
 
+import dao.PacienteDAO;
+
 public class Paciente extends Usuario {
 
 	private String DATA_NASCIMENTO;
@@ -11,6 +13,7 @@ public class Paciente extends Usuario {
 
 		this.DATA_NASCIMENTO = DATA_NASCIMENTO;
 		this.prontuario = new Prontuario(CPF);
+		PacienteDAO.insertPatient(this);
 	}
 
 	public Paciente(String nome, String CPF) {
@@ -53,5 +56,11 @@ public class Paciente extends Usuario {
 		}
 
 		return objIsEqual;
+	}
+
+	@Override
+	public Usuario login(String cpf, String senha) {
+		// TODO Auto-generated method stub
+		return PacienteDAO.login(cpf, senha);
 	}
 }
