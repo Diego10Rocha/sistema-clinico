@@ -1,13 +1,14 @@
 package dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import file.FileUserRegister;
+import findUser.FindUserRegisters;
 import model.Paciente;
 
 public class PacienteDAO {
 	
+	private static FindUserRegisters<Paciente> findUser = new FindUserRegisters<>(Paciente[].class, "Arquivos/cadastrosPaciente.json");
 	private static final String PATH_CADASTROS_PACIENTE = "Arquivos/cadastrosPaciente.json";
 	private static FileUserRegister fileUserRegister = new FileUserRegister();
 
@@ -64,41 +65,14 @@ public class PacienteDAO {
 
 	public static Paciente login(String cpf, String senha) {
 		
-		try {
-			List<Paciente> patients = getPatients();
-
-			if (patients.isEmpty())
-				return null;
-			
-			Optional<Paciente> loged = patients.stream()
-					.filter(patient -> patient.getCPF().equals(cpf) && patient.getSenha().equals(senha)).findFirst();
-
-			if (!loged.isPresent())
-				return null;
-			return loged.get();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		return findUser.findUser(cpf, senha);
 	}
 
 	private static boolean cpfIsUnique(String cpf) {
 		
-		try {
-			List<Paciente> patients = getPatients();
-
-			if (patients.isEmpty())
-				return false;
-
-			Optional<Paciente> pacienteWithCpfRegistered = patients.stream()
-					.filter(patient -> patient.getCPF().equals(cpf)).findFirst();
-
-			if (pacienteWithCpfRegistered.isPresent())
-				return false;
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+		
+		Paciente temp = findUser.findUser(cpf);
+		
+		return temp == null;
 	}
 }

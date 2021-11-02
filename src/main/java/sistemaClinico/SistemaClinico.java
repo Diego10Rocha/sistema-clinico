@@ -25,8 +25,6 @@ public class SistemaClinico {
 		list.forEach(ob ->{System.out.println(ob.toString());});
 		*/
 		System.out.println("Pacientes: \n");
-		Paciente pNew = new Paciente("Lindão", "999", "019.263.263-98", "2000/03/21");
-		
 		
 		List<Paciente> pacientes = PacienteDAO.getPatients();
 		pacientes.forEach(paciente -> {
