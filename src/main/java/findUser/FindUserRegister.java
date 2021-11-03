@@ -11,20 +11,21 @@ import com.google.gson.Gson;
 
 import model.Usuario;
 
-public class FindRegister<T extends Usuario> {
+
+public class FindUserRegister<T extends Usuario> {
 
 	private final Class<T[]> type;
 	private String path;
 	private Gson gson;
 
-	public FindRegister(Class<T[]> type, String path) {
+	public FindUserRegister(Class<T[]> type, String path) {
 		
 		this.type = type;
 		this.path = path;
 		this.gson = new Gson();
 	}
 
-	public T findUser(String keyWord) {
+	public T findUser(String CPF) {
 
 		T userFound = null;
 
@@ -36,7 +37,7 @@ public class FindRegister<T extends Usuario> {
 
 			cpfUserCadastrado = userCadastrado.getCPF();
 
-			if (cpfUserCadastrado.equals(keyWord)) {
+			if (cpfUserCadastrado.equals(CPF)) {
 
 				userFound = userCadastrado;
 			}
@@ -47,7 +48,7 @@ public class FindRegister<T extends Usuario> {
 
 	}
 
-	public T findUser(String keyWord1, String keyWord2) {
+	public T findUser(String CPF, String senha) {
 
 		T userFound = null;
 
@@ -61,7 +62,7 @@ public class FindRegister<T extends Usuario> {
 			cpfUserCadastrado = userCadastrado.getCPF();
 			senhaUserCadastrado = userCadastrado.getSenha();
 
-			if (cpfUserCadastrado.equals(keyWord1) && senhaUserCadastrado.equals(keyWord2)) {
+			if (cpfUserCadastrado.equals(CPF) && senhaUserCadastrado.equals(senha)) {
 
 				userFound = userCadastrado;
 			}
@@ -70,6 +71,7 @@ public class FindRegister<T extends Usuario> {
 
 		return userFound;
 	}
+	
 
 	public List<T> readFile() {
 

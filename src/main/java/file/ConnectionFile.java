@@ -17,7 +17,6 @@ import model.Especialidade;
 import model.Medico;
 import model.Paciente;
 import model.Recepcionista;
-import model.Usuario;
 
 public class ConnectionFile {
 
@@ -93,10 +92,19 @@ public class ConnectionFile {
 			path = PATH_CADASTROS_MEDICO;
 		}
 
-		else {
+		else if (instanceTypeObj == InstanceType.RECEPCIONISTA) {
 
 			path = PATH_CADASTROS_RECPCIONISTA;
 		}
+
+		else if (instanceTypeObj == InstanceType.ESPECIALIDADE) {
+
+			path = PATH_CADASTROS_ESPECIALIDADE;
+		}
+
+		else
+
+			path = PATH_CADASTROS_PRONTUARIO;
 
 		return path;
 
@@ -151,7 +159,7 @@ public class ConnectionFile {
 		return cadastrosFromJson;
 	}
 
-	public <T extends Usuario> List<T> readFile(String path, Class<T[]> type) {
+	public <T> List<T> readFile(String path, Class<T[]> type) {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
