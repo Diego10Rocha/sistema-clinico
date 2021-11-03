@@ -11,13 +11,13 @@ import com.google.gson.Gson;
 
 import model.Usuario;
 
-public class FindUserRegisters<T extends Usuario> {
+public class FindRegister<T extends Usuario> {
 
 	private final Class<T[]> type;
 	private String path;
 	private Gson gson;
 
-	public FindUserRegisters(Class<T[]> type, String path) {
+	public FindRegister(Class<T[]> type, String path) {
 		
 		this.type = type;
 		this.path = path;
