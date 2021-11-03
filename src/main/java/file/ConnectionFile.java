@@ -17,7 +17,7 @@ import model.Medico;
 import model.Paciente;
 import model.Usuario;
 
-public class FileUserRegister {
+public class ConnectionFile {
 
 	private Gson gson = new Gson();
 
@@ -25,7 +25,7 @@ public class FileUserRegister {
 	private final String PATH_CADASTROS_MEDICO = "Arquivos/cadastrosMedico.json";
 	private final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/cadastrosRecepcionista.json";
 
-	public FileUserRegister() {
+	public ConnectionFile() {
 
 	}
 

@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import file.FileUserRegister;
+import file.ConnectionFile;
 import findUser.FindUserRegisters;
 import model.Paciente;
 
@@ -10,7 +10,7 @@ public class PacienteDAO {
 	
 	private static FindUserRegisters<Paciente> findUser = new FindUserRegisters<>(Paciente[].class, "Arquivos/cadastrosPaciente.json");
 	private static final String PATH_CADASTROS_PACIENTE = "Arquivos/cadastrosPaciente.json";
-	private static FileUserRegister fileUserRegister = new FileUserRegister();
+	private static ConnectionFile fileUserRegister = new ConnectionFile();
 
 	public static List<Paciente> getPatients() {
 
