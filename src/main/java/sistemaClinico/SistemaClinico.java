@@ -6,6 +6,7 @@ import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
 import dao.RecepcionistaDAO;
+import findUser.FindEspecialidadeRegister;
 import model.Especialidade;
 import model.Medico;
 import model.Paciente;
@@ -24,14 +25,17 @@ public class SistemaClinico {
 		List<Object> list = file.readFile("Arquivos/cadastrosPaciente.json");
 		list.forEach(ob ->{System.out.println(ob.toString());});
 		*/
+		/*
 		System.out.println("Pacientes: \n");
-		Paciente p = new Paciente("Bonitão", "123", "036.263.263-98", "2021/03/20");
-		PacienteDAO.insertPatient(p);
+		
 		List<Paciente> pacientes = PacienteDAO.getPatients();
 		pacientes.forEach(paciente -> {
 			System.out.println(paciente.getNome());
-		});
+		});*/
 		
+		FindEspecialidadeRegister find = new FindEspecialidadeRegister();
+		System.out.println(find.find("Pediatra").getNome());
+		/*
 		System.out.println("\nMedicos: \n");
 		
 		Medico m = new Medico("Bonitão", "123", "036.263.263-98", "34133513252", new Especialidade("Ginecologista", true));
@@ -57,6 +61,6 @@ public class SistemaClinico {
 		List<Especialidade> especialidades = EspecialidadeDAO.getSpecialties();
 		especialidades.forEach(especialidade -> {
 			System.out.println(especialidade.getNome());
-		});
+		});*/
 	}
 }

@@ -2,18 +2,21 @@ package instanceType;
 
 public enum InstanceType {
 	
-	MEDICO('M'),
-	PACIENTE('P'),
-	RECEPCIONISTA('R');
+	MEDICO(0),
+	PACIENTE(1),
+	RECEPCIONISTA(2),
+	ESPECIALIDADE(3),
+	PRONTUARIO(4)
+	;
 	
-	private char value;
+	private int value;
 	
-	private InstanceType(char value) {
+	private InstanceType(int value) {
 		
 		this.value = value;
 	}
 
-	public char getValue() {
+	public int getValue() {
 		return value;
 	}
 
