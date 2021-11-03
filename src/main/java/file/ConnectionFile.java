@@ -13,8 +13,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import instanceType.InstanceType;
+import model.Especialidade;
 import model.Medico;
 import model.Paciente;
+import model.Recepcionista;
 import model.Usuario;
 
 public class ConnectionFile {
@@ -24,15 +26,17 @@ public class ConnectionFile {
 	private final String PATH_CADASTROS_PACIENTE = "Arquivos/cadastrosPaciente.json";
 	private final String PATH_CADASTROS_MEDICO = "Arquivos/cadastrosMedico.json";
 	private final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/cadastrosRecepcionista.json";
+	private final String PATH_CADASTROS_ESPECIALIDADE = "Arquivos/cadastrosEspecialidade.json";
+	private final String PATH_CADASTROS_PRONTUARIO = "Arquivos/cadastrosProntuario.json";
 
 	public ConnectionFile() {
 
 	}
 
 	public boolean writer(Object obj) {
-		
+
 		String pathToWriter = getPath(obj);
-		
+
 		String json;
 
 		List<Object> cadastros = readFile(pathToWriter);
@@ -112,10 +116,18 @@ public class ConnectionFile {
 			instanceTypeObj = InstanceType.MEDICO;
 		}
 
-		else {
+		else if (obj instanceof Recepcionista) {
 
 			instanceTypeObj = InstanceType.RECEPCIONISTA;
 		}
+
+		else if (obj instanceof Especialidade) {
+
+			instanceTypeObj = InstanceType.ESPECIALIDADE;
+		}
+
+		else
+			instanceTypeObj = InstanceType.PRONTUARIO;
 
 		return instanceTypeObj;
 	}
@@ -151,10 +163,8 @@ public class ConnectionFile {
 
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-
-	
 
 }
