@@ -14,48 +14,41 @@ import model.Recepcionista;
 
 public class SistemaClinico {
 	public static void main(String[] args) {
-
-		/*FindUserRegisters file = new FindUserRegisters();
-
-		Object userFound = file.findUser("192.344.21", "131");
-
-		System.out.println(userFound.getClass());*/
-	/*	
-		FileUserRegister file = new FileUserRegister();
-		List<Object> list = file.readFile("Arquivos/cadastrosPaciente.json");
-		list.forEach(ob ->{System.out.println(ob.toString());});
-		*/
 		/*
 		System.out.println("Pacientes: \n");
-		
+
 		List<Paciente> pacientes = PacienteDAO.getPatients();
 		pacientes.forEach(paciente -> {
 			System.out.println(paciente.getNome());
-		});*/
-		
-		FindEspecialidadeRegister find = new FindEspecialidadeRegister();
-		System.out.println(find.find("Pediatra").getNome());
-		/*
-		System.out.println("\nMedicos: \n");
-		
-		Medico m = new Medico("Bonitão", "123", "036.263.263-98", "34133513252", new Especialidade("Ginecologista", true));
-		MedicoDAO.insertDoctor(m);
-		List<Medico> medicos = MedicoDAO.getDoctors();
-		medicos.forEach(medico -> {
-			System.out.println(medico.getNome());
 		});
+		*/
+		System.out.println("\nMedicos: \n");
+
+		Medico m = new Medico("Loucão", "199", "119.163.263-98", "3332513252",
+				new Especialidade("Neurocirurgia", true));
 		
+		MedicoDAO.deleteMedico(m);
+		
+		List<Medico> medicos = MedicoDAO.getDoctors();
+	
+		medicos.forEach(medico -> {
+
+
+			System.out.println(medico.getNome());
+
+		});
+		/*
 		System.out.println("\nRecepcionistas: \n");
-		
+
 		Recepcionista r = new Recepcionista("Bonitão", "123", "036.263.263-98");
 		RecepcionistaDAO.insertReceptionist(r);
 		List<Recepcionista> recepcionistas = RecepcionistaDAO.getReceptionists();
 		recepcionistas.forEach(recepcionista -> {
 			System.out.println(recepcionista.getNome());
 		});
-		
+
 		System.out.println("\nEspecialidades: \n");
-		
+
 		Especialidade e = new Especialidade("Pediatra", true);
 		EspecialidadeDAO.insertSpecialty(e);
 		List<Especialidade> especialidades = EspecialidadeDAO.getSpecialties();
