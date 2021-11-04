@@ -43,7 +43,7 @@ public class PacienteDAO {
 
 	public static boolean updatePatient(Paciente patient, Paciente patientOld) {
 
-		List<Paciente> patients = connectionFile.readFile(PATH_CADASTROS_PACIENTE, Paciente[].class);
+		List<Paciente> patients = getPatients();
 
 		patients.set(patients.indexOf(patientOld), patient);
 
@@ -54,7 +54,7 @@ public class PacienteDAO {
 
 		boolean isDeletado;
 
-		List<Paciente> patients = connectionFile.readFile(PATH_CADASTROS_PACIENTE, Paciente[].class);
+		List<Paciente> patients = getPatients();
 
 		isDeletado = patients.remove(paciente);
 
