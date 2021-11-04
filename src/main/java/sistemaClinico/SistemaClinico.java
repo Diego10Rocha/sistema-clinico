@@ -21,14 +21,8 @@ public class SistemaClinico {
 		pacientes.forEach(paciente -> {
 			System.out.println(paciente.getNome());
 		});
-		*/
-		System.out.println("\nMedicos: \n");
-
-		Medico m = new Medico("Lucas", "999", "119.163.263-98", "999913252",
-				new Especialidade("Neurocirurgia", true));
 		
 		
-		MedicoDAO.deleteMedico(m);
 		
 		List<Medico> medicos = MedicoDAO.getDoctors();
 	
@@ -38,16 +32,18 @@ public class SistemaClinico {
 			System.out.println(medico.getNome());
 
 		});
-		/*
+		*/
 		System.out.println("\nRecepcionistas: \n");
 
-		Recepcionista r = new Recepcionista("Bonitão", "123", "036.263.263-98");
+		Recepcionista r = new Recepcionista("Vivian", "111.263.263-98", "938");
 		RecepcionistaDAO.insertReceptionist(r);
+		System.out.println(RecepcionistaDAO.login("111.263.263-98", "938"));
 		List<Recepcionista> recepcionistas = RecepcionistaDAO.getReceptionists();
 		recepcionistas.forEach(recepcionista -> {
 			System.out.println(recepcionista.getNome());
 		});
-
+		
+		/*
 		System.out.println("\nEspecialidades: \n");
 
 		Especialidade e = new Especialidade("Pediatra", true);
