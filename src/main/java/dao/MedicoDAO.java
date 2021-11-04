@@ -2,8 +2,6 @@ package dao;
 
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import file.ConnectionFile;
 import findUser.FindUserRegister;
 import model.Medico;

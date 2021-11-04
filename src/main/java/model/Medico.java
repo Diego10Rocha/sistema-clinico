@@ -72,25 +72,6 @@ public class Medico extends Usuario {
 	}
 	
 	
-	@Override
-	public boolean equals(Object obj) {
-
-		boolean objIsEqual = false;
-
-		if (obj instanceof Medico) {
-
-			Medico medicoASerComparado = (Medico) obj;
-
-			String cpfMedicoASerComparado = medicoASerComparado.getCPF();
-			;
-
-			if (cpfMedicoASerComparado.equals(this.getCPF()))
-				objIsEqual = true;
-
-		}
-
-		return objIsEqual;
-	}
 
 	@Override
 	public Usuario login(String cpf, String senha) {

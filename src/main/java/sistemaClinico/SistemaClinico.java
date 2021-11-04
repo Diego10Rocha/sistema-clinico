@@ -24,9 +24,11 @@ public class SistemaClinico {
 		*/
 		System.out.println("\nMedicos: \n");
 
-
+		Medico m = new Medico("Lucas", "999", "119.163.263-98", "999913252",
+				new Especialidade("Neurocirurgia", true));
 		
-		System.out.println(MedicoDAO.login("119.163.263-98", "999"));
+		
+		MedicoDAO.deleteMedico(m);
 		
 		List<Medico> medicos = MedicoDAO.getDoctors();
 	
