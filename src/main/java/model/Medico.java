@@ -70,6 +70,27 @@ public class Medico extends Usuario {
 	public void setSubEspecialidade(Especialidade especialidades) {
 		this.especialidades[1] = especialidades;
 	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+
+		boolean objIsEqual = false;
+
+		if (obj instanceof Paciente) {
+
+			Medico medicoASerComparado = (Medico) obj;
+
+			String cpfMedicoASerComparado = medicoASerComparado.getCPF();
+			;
+
+			if (cpfMedicoASerComparado.equals(this.getCPF()))
+				objIsEqual = true;
+
+		}
+
+		return objIsEqual;
+	}
 
 	@Override
 	public Usuario login(String cpf, String senha) {
