@@ -1,17 +1,12 @@
 package dao;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.util.List;
-import java.util.Optional;
 
 import com.google.gson.Gson;
 
 import file.ConnectionFile;
 import findUser.FindUserRegister;
 import model.Medico;
-import model.Paciente;
 
 public class MedicoDAO {
 
@@ -19,7 +14,6 @@ public class MedicoDAO {
 			"Arquivos/cadastrosMedico.json");
 	private static final String PATH_CADASTROS_MEDICO = "Arquivos/cadastrosMedico.json";
 	private static ConnectionFile connectionFile = new ConnectionFile();
-	private static Gson gson = new Gson();
 
 	public static List<Medico> getDoctors() {
 
