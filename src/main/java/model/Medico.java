@@ -77,7 +77,7 @@ public class Medico extends Usuario {
 
 		boolean objIsEqual = false;
 
-		if (obj instanceof Paciente) {
+		if (obj instanceof Medico) {
 
 			Medico medicoASerComparado = (Medico) obj;
 
