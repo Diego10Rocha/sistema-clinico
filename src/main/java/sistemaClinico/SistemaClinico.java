@@ -32,7 +32,7 @@ public class SistemaClinico {
 			System.out.println(medico.getNome());
 
 		});
-		*/
+		
 		System.out.println("\nRecepcionistas: \n");
 
 		Recepcionista r = new Recepcionista("Vivian", "111.263.263-98", "938");
@@ -43,14 +43,16 @@ public class SistemaClinico {
 			System.out.println(recepcionista.getNome());
 		});
 		
-		/*
+		*/
+		
 		System.out.println("\nEspecialidades: \n");
 
-		Especialidade e = new Especialidade("Pediatra", true);
-		EspecialidadeDAO.insertSpecialty(e);
+		Especialidade eNew = new Especialidade("Cardiologia", true);
+		
+		
 		List<Especialidade> especialidades = EspecialidadeDAO.getSpecialties();
 		especialidades.forEach(especialidade -> {
 			System.out.println(especialidade.getNome());
-		});*/
+		});
 	}
 }

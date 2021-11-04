@@ -26,7 +26,7 @@ public class RecepcionistaDAO {
 
 			if (!cpfIsUnique(receptionist.getCPF())) {
 
-				throw new Exception("CPF já cadastrado");
+				throw new Exception("Especialidade já cadastrada");
 			}
 
 			connectionFile.writer(receptionist);
