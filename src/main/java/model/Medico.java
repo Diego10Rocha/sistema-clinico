@@ -70,6 +70,8 @@ public class Medico extends Usuario {
 	public void setSubEspecialidade(Especialidade especialidades) {
 		this.especialidades[1] = especialidades;
 	}
+	
+	
 
 	@Override
 	public Usuario login(String cpf, String senha) {

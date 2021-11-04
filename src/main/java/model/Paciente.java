@@ -38,25 +38,6 @@ public class Paciente extends Usuario {
 		this.prontuario = prontuario;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-
-		boolean objIsEqual = false;
-
-		if (obj instanceof Paciente) {
-
-			Paciente pacienteASerComparado = (Paciente) obj;
-
-			String cpfPacienteASerComparado = pacienteASerComparado.getCPF();
-			;
-
-			if (cpfPacienteASerComparado.equals(this.getCPF()))
-				objIsEqual = true;
-
-		}
-
-		return objIsEqual;
-	}
 
 	@Override
 	public Usuario login(String cpf, String senha) {

@@ -8,15 +8,10 @@ public class Prontuario {
 	private String hipotesesDiagnosticas;
 	private String diagnosticosDefinitivos;
 	private String tratamentosEfetuados;
-	// private FileProntuario fileProntuario;
 
 	public Prontuario(String ID_PACIENTE) {
 
 		this.ID_PACIENTE = ID_PACIENTE;
-		// this.fileProntuario = new
-		// FileProntuario(paciente.getNome()+"Prontuário.txt");
-
-		// fileProntuario.writer(getFormularioString());
 
 	}
 
