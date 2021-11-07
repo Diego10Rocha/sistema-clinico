@@ -77,13 +77,23 @@ public class EspecialidadeDAO {
 	
 	private static boolean specialtyIsUnique(String nome) {
 		
+		boolean specialtyIsUnique = true;
+		
 		Optional<Especialidade> temp = findByName(nome);
-
-		return temp.isPresent()? false : true;
+		
+		if(temp.isPresent()) {
+			
+			specialtyIsUnique = false;
+		}
+		
+		return specialtyIsUnique;
+		
 	}
 	
 	private static Optional<Especialidade> findByName(String name) {
+		
 		List<Especialidade> specialties = getSpecialties();
+		
 		return specialties.stream().filter(specialty -> specialty.getNome().equals(name)).findFirst();
 	}
 
