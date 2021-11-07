@@ -6,6 +6,7 @@ import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
 import dao.RecepcionistaDAO;
+import login.Login;
 import model.Especialidade;
 import model.Medico;
 import model.Paciente;
@@ -43,7 +44,17 @@ public class SistemaClinico {
 		});
 		
 		*/
-		
+
+		try {
+			
+			Login.makeLogin("099.163.263-98", "199");
+			System.out.println(Login.getCPF_userLogged());
+		}catch (Exception e) {
+			
+			System.out.println(e.getMessage());
+		}
+			
+		/*
 		System.out.println("\nEspecialidades: \n");
 
 		Especialidade eNew = new Especialidade("Cardiologia", true);
@@ -52,6 +63,6 @@ public class SistemaClinico {
 		List<Especialidade> especialidades = EspecialidadeDAO.getSpecialties();
 		especialidades.forEach(especialidade -> {
 			System.out.println(especialidade.getNome());
-		});
+		});*/
 	}
 }
