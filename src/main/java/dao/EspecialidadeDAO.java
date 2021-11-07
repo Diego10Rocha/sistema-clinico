@@ -1,27 +1,18 @@
 package dao;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.google.gson.Gson;
-
 import file.ConnectionFile;
-import findUser.FindEspecialidadeRegister;
 import model.Especialidade;
-import model.Recepcionista;
+import model.Medico;
 
 
 public class EspecialidadeDAO {
 	
-	private static FindEspecialidadeRegister findEspecialidade = new FindEspecialidadeRegister();
-	private static final String PATH_CADASTROS_ESPECIALIDADE = "Arquivos/cadastrosEspecialidade.json";
+	//private static FindEspecialidadeRegister findEspecialidade = new FindEspecialidadeRegister();
+	private static final String PATH_CADASTROS_ESPECIALIDADE = "Arquivos/Especialidades.json";
 	private static ConnectionFile connectionFile = new ConnectionFile();
-	private static Gson gson = new Gson();
-	
 	public static List<Especialidade> getSpecialties(){
 		
 		List<Especialidade> specialties = connectionFile.readFile(PATH_CADASTROS_ESPECIALIDADE, Especialidade[].class);
@@ -61,11 +52,21 @@ public class EspecialidadeDAO {
 		return connectionFile.reWriter(specialties, PATH_CADASTROS_ESPECIALIDADE);
 	}
 	
-	public static boolean deleteSpecialty(Especialidade specialty) {
+	public static boolean deleteSpecialty(Especialidade specialty) throws Exception {
 		
 		boolean isDeletada;
 
 		List<Especialidade> specialties = getSpecialties();
+		List<Medico> doctors = MedicoDAO.getDoctors();
+		
+		boolean foundAssociation = doctors.stream()
+				.anyMatch(doctor -> 
+					doctor.getEspecialidadePrincipal().equals(specialty)
+					&& doctor.getSubEspecialidade().equals(specialty)
+				);
+		
+		if(foundAssociation)
+			throw new Exception("A especialidade possui medico(s) associado(s)");
 		
 		isDeletada = specialties.remove(specialty);
 
@@ -76,9 +77,14 @@ public class EspecialidadeDAO {
 	
 	private static boolean specialtyIsUnique(String nome) {
 		
-		Especialidade temp = findEspecialidade.find(nome);
+		Optional<Especialidade> temp = findByName(nome);
 
-		return temp == null;
+		return temp.isPresent()? false : true;
+	}
+	
+	private static Optional<Especialidade> findByName(String name) {
+		List<Especialidade> specialties = getSpecialties();
+		return specialties.stream().filter(specialty -> specialty.getNome().equals(name)).findFirst();
 	}
 
 }

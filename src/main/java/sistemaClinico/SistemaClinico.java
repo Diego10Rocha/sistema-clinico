@@ -6,7 +6,6 @@ import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
 import dao.RecepcionistaDAO;
-import findUser.FindEspecialidadeRegister;
 import model.Especialidade;
 import model.Medico;
 import model.Paciente;

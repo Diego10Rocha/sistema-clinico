@@ -1,6 +1,7 @@
 package file;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,11 +23,11 @@ public class ConnectionFile {
 
 	private Gson gson = new Gson();
 
-	private final String PATH_CADASTROS_PACIENTE = "Arquivos/cadastrosPaciente.json";
-	private final String PATH_CADASTROS_MEDICO = "Arquivos/cadastrosMedico.json";
-	private final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/cadastrosRecepcionista.json";
-	private final String PATH_CADASTROS_ESPECIALIDADE = "Arquivos/cadastrosEspecialidade.json";
-	private final String PATH_CADASTROS_PRONTUARIO = "Arquivos/cadastrosProntuario.json";
+	private final String PATH_CADASTROS_PACIENTE = "Arquivos/Pacientes.json";
+	private final String PATH_CADASTROS_MEDICO = "Arquivos/Medicos.json";
+	private final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/Recepcionistas.json";
+	private final String PATH_CADASTROS_ESPECIALIDADE = "Arquivos/Especialidades.json";
+	private final String PATH_CADASTROS_PRONTUARIO = "Arquivos/Prontuarios.json";
 
 	public ConnectionFile() {
 
@@ -41,6 +42,16 @@ public class ConnectionFile {
 		List<Object> cadastros = readFile(pathToWriter);
 
 		cadastros.add(obj);
+		
+		File file = new File( pathToWriter );
+		
+		if(!file.exists())
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		try (FileWriter writer = new FileWriter(pathToWriter)) {
 
@@ -143,6 +154,17 @@ public class ConnectionFile {
 	public List<Object> readFile(String path) {
 
 		List<Object> cadastrosFromJson = new ArrayList<>();
+		
+		File file = new File( path );
+		
+		if(!file.exists())
+			try {
+				file.createNewFile();
+				return new ArrayList<Object>();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
@@ -150,6 +172,9 @@ public class ConnectionFile {
 			}.getType();
 
 			cadastrosFromJson = gson.fromJson(br, typeList);
+			
+			if(cadastrosFromJson == null)
+				return new ArrayList<Object>();
 
 		} catch (IOException e) {
 
@@ -160,10 +185,24 @@ public class ConnectionFile {
 	}
 
 	public <T> List<T> readFile(String path, Class<T[]> type) {
+		
+		File file = new File( path );
+		
+		if(!file.exists())
+			try {
+				file.createNewFile();
+				return new ArrayList<T>();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
 			T[] arrayCadastrosFromJson = gson.fromJson(br, type);
+			
+			if(arrayCadastrosFromJson == null)
+				return new ArrayList<T>();
 
 			return new ArrayList<T>(Arrays.asList(arrayCadastrosFromJson));
 

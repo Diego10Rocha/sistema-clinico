@@ -10,7 +10,7 @@ public class MedicoDAO {
 
 	private static FindUserRegister<Medico> findUserRegister = new FindUserRegister<>(Medico[].class,
 			"Arquivos/cadastrosMedico.json");
-	private static final String PATH_CADASTROS_MEDICO = "Arquivos/cadastrosMedico.json";
+	private static final String PATH_CADASTROS_MEDICO = "Arquivos/Medicos.json";
 	private static ConnectionFile connectionFile = new ConnectionFile();
 
 	public static List<Medico> getDoctors() {

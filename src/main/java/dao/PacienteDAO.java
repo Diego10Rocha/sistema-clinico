@@ -10,7 +10,7 @@ public class PacienteDAO {
 
 	private static FindUserRegister<Paciente> findUserRegister = new FindUserRegister<>(Paciente[].class,
 			"Arquivos/cadastrosPaciente.json");
-	private static final String PATH_CADASTROS_PACIENTE = "Arquivos/cadastrosPaciente.json";
+	private static final String PATH_CADASTROS_PACIENTE = "Arquivos/Pacientes.json";
 	private static ConnectionFile connectionFile = new ConnectionFile();
 
 	public static List<Paciente> getPatients() {

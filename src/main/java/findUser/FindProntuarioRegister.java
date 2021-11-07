@@ -27,7 +27,7 @@ public class FindProntuarioRegister {
 
 		for (Prontuario prontuario : cadastros) {
 
-			ID_PACIENTE_Cadastrado = prontuario.getID_PACIENTE();
+			ID_PACIENTE_Cadastrado = prontuario.getCPF_PACIENTE();
 
 			if (ID_PACIENTE_Cadastrado.equals(ID_PACIENTE)) {
 

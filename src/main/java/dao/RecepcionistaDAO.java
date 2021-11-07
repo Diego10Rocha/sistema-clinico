@@ -10,7 +10,7 @@ public class RecepcionistaDAO {
 
 	private static FindUserRegister<Recepcionista> findUserRegister = new FindUserRegister<>(Recepcionista[].class,
 			"Arquivos/cadastrosRecepcionista.json");
-	private static final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/cadastrosRecepcionista.json";
+	private static final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/Recepcionistas.json";
 	private static ConnectionFile connectionFile = new ConnectionFile();
 
 	public static List<Recepcionista> getReceptionists() {

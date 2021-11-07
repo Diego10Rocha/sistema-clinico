@@ -2,16 +2,16 @@ package model;
 
 public class Prontuario {
 
-	private final String ID_PACIENTE;
+	private final String CPF_PACIENTE;
 	private String anamnese;
 	private String exameFisico;
 	private String hipotesesDiagnosticas;
 	private String diagnosticosDefinitivos;
 	private String tratamentosEfetuados;
 
-	public Prontuario(String ID_PACIENTE) {
+	public Prontuario(String CPF_PACIENTE) {
 
-		this.ID_PACIENTE = ID_PACIENTE;
+		this.CPF_PACIENTE = CPF_PACIENTE;
 
 	}
 
@@ -19,7 +19,7 @@ public class Prontuario {
 
 		String formularioProntuario;
 
-		formularioProntuario = ID_PACIENTE + " Prontuário" + "\n" + "\n" + "Anamnese: " + "\n" + anamnese + "\n" + "\n"
+		formularioProntuario = CPF_PACIENTE + " Prontuário" + "\n" + "\n" + "Anamnese: " + "\n" + anamnese + "\n" + "\n"
 				+ "Exame Físico: " + "\n" + exameFisico + "\n" + "\n" + "Hipóteses diagnósticas: " + "\n"
 				+ hipotesesDiagnosticas + "\n" + "\n" + "Diagnósticos definitivos: " + "\n" + diagnosticosDefinitivos
 				+ "\n" + "\n" + "Tratamentos efetuados: " + "\n" + tratamentosEfetuados + "\n";
@@ -79,13 +79,13 @@ public class Prontuario {
 
 	@Override
 	public String toString() {
-		return "Prontuario [paciente=" + ID_PACIENTE + ", anamnese=" + anamnese + ", exameFisico=" + exameFisico
+		return "Prontuario [paciente=" + CPF_PACIENTE + ", anamnese=" + anamnese + ", exameFisico=" + exameFisico
 				+ ", hipotesesDiagnosticas=" + hipotesesDiagnosticas + ", diagnosticosDefinitivos="
 				+ diagnosticosDefinitivos + ", tratamentosEfetuados=" + tratamentosEfetuados + "]";
 	}
 
-	public String getID_PACIENTE() {
-		return ID_PACIENTE;
+	public String getCPF_PACIENTE() {
+		return CPF_PACIENTE;
 	}
 
 }

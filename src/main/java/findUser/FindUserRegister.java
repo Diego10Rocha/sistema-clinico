@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import com.google.gson.Gson;
 
@@ -27,49 +28,23 @@ public class FindUserRegister<T extends Usuario> {
 
 	public T findUser(String CPF) {
 
-		T userFound = null;
+		List<T> users = readFile();
+		
+		Optional<T> userLoged = users.stream()
+				.filter(user -> user.getCPF() == CPF).findFirst();
 
-		String cpfUserCadastrado;
-
-		List<T> cadastros = readFile();
-
-		for (T userCadastrado : cadastros) {
-
-			cpfUserCadastrado = userCadastrado.getCPF();
-
-			if (cpfUserCadastrado.equals(CPF)) {
-
-				userFound = userCadastrado;
-			}
-
-		}
-
-		return userFound;
+		return userLoged.isPresent()? userLoged.get() : null;
 
 	}
 
 	public T findUser(String CPF, String senha) {
 
-		T userFound = null;
+		List<T> users = readFile();
+		
+		Optional<T> userLoged = users.stream()
+				.filter(user -> user.getCPF().equals(CPF) && user.getSenha().equals(senha)).findFirst();
 
-		String cpfUserCadastrado;
-		String senhaUserCadastrado;
-
-		List<T> cadastros = readFile();
-
-		for (T userCadastrado : cadastros) {
-
-			cpfUserCadastrado = userCadastrado.getCPF();
-			senhaUserCadastrado = userCadastrado.getSenha();
-
-			if (cpfUserCadastrado.equals(CPF) && senhaUserCadastrado.equals(senha)) {
-
-				userFound = userCadastrado;
-			}
-
-		}
-
-		return userFound;
+		return userLoged.isPresent()? userLoged.get() : null;
 	}
 	
 
@@ -103,7 +78,5 @@ public class FindUserRegister<T extends Usuario> {
 	public Class<T[]> getType() {
 		return type;
 	}
-	
-	
 
 }
