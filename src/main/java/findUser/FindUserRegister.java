@@ -27,12 +27,12 @@ public class FindUserRegister<T extends Usuario> {
 	}
 
 	public T findUser(String CPF) {
-
+		
 		List<T> users = readFile();
 		
 		Optional<T> userLoged = users.stream()
-				.filter(user -> user.getCPF() == CPF).findFirst();
-
+				.filter(user -> user.getCPF().equals(CPF)).findFirst();
+		
 		return userLoged.isPresent()? userLoged.get() : null;
 
 	}
