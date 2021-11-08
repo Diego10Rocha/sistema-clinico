@@ -3,6 +3,7 @@ package login;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
 import dao.RecepcionistaDAO;
+import model.Paciente;
 
 public class Login {
 
@@ -10,11 +11,20 @@ public class Login {
 
 	public static void makeLogin(String cpf, String senha) throws Exception {
 
-		if (PacienteDAO.login(cpf, senha) != null) {
+		if (PacienteDAO.cpfAlreadyRegistered(cpf)) {
+			
+			Paciente temp = PacienteDAO.findByCPF(cpf);
+			
+			if (temp.getSenha().equals(senha)) {
 
-			setCPF_userLogged(cpf);
+				setCPF_userLogged(cpf);
 
-			openScreenLoginPaciente();
+				openScreenLoginPaciente();
+				
+			} else {
+				
+				throw new Exception("Senha inválida");
+			}
 
 		}
 
@@ -34,7 +44,7 @@ public class Login {
 
 		else {
 
-			throw new Exception("Cpf e/ou senha inválidos");
+			throw new Exception("Cpf inválido");
 		}
 
 	}

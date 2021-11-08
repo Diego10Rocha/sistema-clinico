@@ -24,7 +24,7 @@ public class RecepcionistaDAO {
 
 		try {
 
-			if (!cpfIsUnique(receptionist.getCPF())) {
+			if (!cpfAlreadyRegistered(receptionist.getCPF())) {
 
 				throw new Exception("Especialidade já cadastrada");
 			}
@@ -68,7 +68,7 @@ public class RecepcionistaDAO {
 		return findUserRegister.findUser(cpf, senha);
 	}
 
-	private static boolean cpfIsUnique(String cpf) {
+	private static boolean cpfAlreadyRegistered(String cpf) {
 		
 		Recepcionista temp = findUserRegister.findUser(cpf);
 

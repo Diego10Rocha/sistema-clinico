@@ -6,6 +6,7 @@ import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
 import dao.RecepcionistaDAO;
+import findUser.FindUserRegister;
 import login.Login;
 import model.Especialidade;
 import model.Medico;
@@ -44,10 +45,10 @@ public class SistemaClinico {
 		});
 		
 		*/
-
+	
 		try {
 			
-			Login.makeLogin("099.163.263-98", "199");
+			Login.makeLogin("036.263.263-98", "123");
 			System.out.println(Login.getCPF_userLogged());
 		}catch (Exception e) {
 			
