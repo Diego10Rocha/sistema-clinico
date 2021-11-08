@@ -3,65 +3,95 @@ package login;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
 import dao.RecepcionistaDAO;
-import model.Paciente;
+import instanceType.InstanceType;
+import model.Usuario;
+import resultLoginTry.ResultLoginTry;
 
 public class Login {
 
 	private static String CPF_userLogged;
+	private static InstanceType instanceCpfWasRegistered;
 
-	public static void makeLogin(String cpf, String senha) throws Exception {
+	public static ResultLoginTry makeLogin(String cpf, String senha) {
 
-		if (PacienteDAO.cpfAlreadyRegistered(cpf)) {
-			
-			Paciente temp = PacienteDAO.findByCPF(cpf);
-			
-			if (temp.getSenha().equals(senha)) {
+		boolean isCpfRegistered = isCpfRegistered(cpf);
 
-				setCPF_userLogged(cpf);
+		if (isCpfRegistered) {
 
-				openScreenLoginPaciente();
-				
-			} else {
-				
-				throw new Exception("Senha inválida");
+			boolean isPasswordCorrect;
+
+			Usuario userTemp = setUserOwnerCpf(cpf);
+
+			isPasswordCorrect = isPasswordCorrect(userTemp, senha);
+
+			if (!isPasswordCorrect) {
+
+				return ResultLoginTry.FAIL_PASSWORD;
 			}
 
-		}
-
-		else if (MedicoDAO.login(cpf, senha) != null) {
-
 			setCPF_userLogged(cpf);
 
-			openScreenLoginMedico();
+			return ResultLoginTry.SUCCESS;
 		}
 
-		else if (RecepcionistaDAO.login(cpf, senha) != null) {
+		return ResultLoginTry.FAIL_CPF;
+	}
 
-			setCPF_userLogged(cpf);
+	private static boolean isCpfRegistered(String cpf) {
 
-			openScreenLoginRecepcionista();
+		boolean isCpfRegistered = false;
+
+		if (PacienteDAO.cpfAlreadyRegistered(cpf)) {
+
+			isCpfRegistered = true;
+
+			setInstanceCpfWasRegistered(InstanceType.PACIENTE);
+		}
+		
+		else if (MedicoDAO.cpfAlreadyRegistered(cpf)) {
+
+			isCpfRegistered = true;
+
+			setInstanceCpfWasRegistered(InstanceType.MEDICO);
+		}
+		
+		else if (RecepcionistaDAO.cpfAlreadyRegistered(cpf)) {
+
+			isCpfRegistered = true;
+
+			setInstanceCpfWasRegistered(InstanceType.RECEPCIONISTA);
 		}
 
-		else {
+		return isCpfRegistered;
+	}
 
-			throw new Exception("Cpf inválido");
+	private static Usuario setUserOwnerCpf(String cpf) {
+
+		Usuario instanceOwnerCPF = null;
+
+		if (instanceCpfWasRegistered == InstanceType.PACIENTE) {
+
+			instanceOwnerCPF = PacienteDAO.findByCPF(cpf);
+
 		}
 
+		else if (instanceCpfWasRegistered == InstanceType.MEDICO) {
+
+			instanceOwnerCPF = MedicoDAO.findByCPF(cpf);
+		}
+
+		else if (instanceCpfWasRegistered == InstanceType.RECEPCIONISTA) {
+
+			instanceOwnerCPF = RecepcionistaDAO.findByCPF(cpf);
+
+		}
+
+		return instanceOwnerCPF;
 	}
 
-	private static void openScreenLoginRecepcionista() {
-		// TODO Auto-generated method stub
+	private static boolean isPasswordCorrect(Usuario temp, String senha) {
 
-	}
-
-	private static void openScreenLoginMedico() {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void openScreenLoginPaciente() {
-		// TODO Auto-generated method stub
-
+		return temp.getSenha().equals(senha);
 	}
 
 	public static String getCPF_userLogged() {
@@ -70,6 +100,16 @@ public class Login {
 
 	public static void setCPF_userLogged(String cPF_userLogged) {
 		CPF_userLogged = cPF_userLogged;
+	}
+
+	public static InstanceType getInstanceCpfWasRegistered() {
+
+		return instanceCpfWasRegistered;
+	}
+
+	public static void setInstanceCpfWasRegistered(InstanceType instance) {
+
+		instanceCpfWasRegistered = instance;
 	}
 
 }

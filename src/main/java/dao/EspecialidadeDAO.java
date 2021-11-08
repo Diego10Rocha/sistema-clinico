@@ -23,7 +23,7 @@ public class EspecialidadeDAO {
 
 		try {
 
-			if (!specialtyAlreadyRegistered(specialty.getNome())) {
+			if (specialtyAlreadyRegistered(specialty.getNome())) {
 
 				throw new Exception("Especialidade já cadastrada");
 			}
@@ -73,16 +73,16 @@ public class EspecialidadeDAO {
 
 	private static boolean specialtyAlreadyRegistered(String nome) {
 
-		boolean specialtyIsUnique = true;
+		boolean specialtyAlreadyRegistered = false;
 
 		Optional<Especialidade> temp = findByName(nome);
 
 		if (temp.isPresent()) {
 
-			specialtyIsUnique = false;
+			specialtyAlreadyRegistered = true;
 		}
 
-		return specialtyIsUnique;
+		return specialtyAlreadyRegistered;
 
 	}
 

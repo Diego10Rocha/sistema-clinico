@@ -24,7 +24,7 @@ public class PacienteDAO {
 
 		try {
 
-			if (!cpfAlreadyRegistered(patient.getCPF())) {
+			if (cpfAlreadyRegistered(patient.getCPF())) {
 
 				throw new Exception("CPF já cadastrado");
 			}
@@ -69,10 +69,10 @@ public class PacienteDAO {
 	}
 
 	public static boolean cpfAlreadyRegistered(String cpf) {
-
+		
 		Paciente temp = findUserRegister.findUser(cpf);
 
-		return temp == null;
+		return temp != null;
 	}
 	
 	public static Paciente findByCPF(String cpf) {
