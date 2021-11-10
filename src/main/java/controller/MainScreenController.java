@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,8 +39,9 @@ public class MainScreenController implements Initializable {
 	}
 
 	@FXML
-	void openScreenAutoAtendimento(ActionEvent event) {
-
+	void openScreenAutoAtendimento(ActionEvent event) throws IOException {
+		
+		screenManager.openNewScreen("AutoAtendimentoScreen", "Autoatendimento");
 	}
 
 	@FXML
