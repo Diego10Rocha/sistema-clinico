@@ -45,8 +45,9 @@ public class MainScreenController implements Initializable {
 	}
 
 	@FXML
-	void openScreenLogin(ActionEvent event) {
-
+	void openScreenLogin(ActionEvent event) throws IOException {
+		
+		screenManager.openNewScreen("LoginScreen", "Login");
 	}
 
 	@FXML

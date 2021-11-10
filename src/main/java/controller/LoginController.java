@@ -1,26 +1,25 @@
 package controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class LoginController {
 
 	@FXML
-	private JFXTextField txtCPF;
+    private TextField txtCPF;
 
-	@FXML
-	private JFXPasswordField txtSenha;
+    @FXML
+    private TextField txtSenha;
 
-	@FXML
-	private JFXButton btnEntrar;
+    @FXML
+    private Button btnEntrar;
 
-	@FXML
-	void makeLogin(ActionEvent event) {
+    @FXML
+    void makeLogin(ActionEvent event) {
 
-	}
+    }
+
 
 }
