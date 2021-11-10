@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import screenManager.ScreenManager;
 
 public class MainScreenController implements Initializable {
 
@@ -28,6 +29,8 @@ public class MainScreenController implements Initializable {
 
 	@FXML
 	private MenuItem menuItemSobre;
+	
+	private ScreenManager screenManager = new ScreenManager();
 
 	@FXML
 	void openFormularioScreenCadastroRecepcionista(ActionEvent event) {
