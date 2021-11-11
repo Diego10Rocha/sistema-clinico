@@ -34,8 +34,11 @@ public class MainScreenController implements Initializable {
 	private ScreenManager screenManager = new ScreenManager();
 
 	@FXML
-	void openFormularioScreenCadastroRecepcionista(ActionEvent event) {
-
+	void openFormularioScreenCadastroRecepcionista(ActionEvent event) throws IOException {
+		
+		screenManager.openNewScreen("FormularioCadastroRecepcionista", "Cadastro recepcionista");
+		
+		
 	}
 
 	@FXML

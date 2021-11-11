@@ -9,7 +9,7 @@ import model.Recepcionista;
 public class RecepcionistaDAO {
 
 	private static FindUserRegister<Recepcionista> findUserRegister = new FindUserRegister<>(Recepcionista[].class,
-			"Arquivos/cadastrosRecepcionista.json");
+			"Arquivos/Recepcionistas.json");
 	private static final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/Recepcionistas.json";
 	private static ConnectionFile connectionFile = new ConnectionFile();
 
@@ -26,11 +26,11 @@ public class RecepcionistaDAO {
 
 			if (cpfAlreadyRegistered(receptionist.getCPF())) {
 
-				throw new Exception("Especialidade já cadastrada");
+				throw new Exception("Recepcionista já cadastrada");
 			}
 
 			connectionFile.writer(receptionist);
-
+			
 			return true;
 
 		} catch (Exception e) {
