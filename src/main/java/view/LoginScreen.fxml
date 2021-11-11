@@ -6,38 +6,42 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <VBox alignment="CENTER" layoutX="216.0" layoutY="65.0" pickOnBounds="false" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="BOTTOM_CENTER" layoutY="51.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label text="CPF">
-               <VBox.margin>
-                  <Insets right="340.0" />
-               </VBox.margin>
+               <HBox.margin>
+                  <Insets right="250.0" />
+               </HBox.margin>
             </Label>
-            <TextField fx:id="txtCPF" alignment="TOP_LEFT">
-               <VBox.margin>
-                  <Insets left="120.0" right="120.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Senha">
-               <VBox.margin>
-                  <Insets right="330.0" top="30.0" />
-               </VBox.margin>
-            </Label>
-            <PasswordField fx:id="txtSenha">
-               <VBox.margin>
-                  <Insets left="120.0" right="120.0" />
-               </VBox.margin>
-            </PasswordField>
-            <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#makeLogin" text="Entrar">
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </Button>
          </children>
-      </VBox>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="94.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="94.0">
+         <children>
+            <TextField fx:id="txtCPF" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="270.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="168.0" prefHeight="32.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label text="Senha">
+               <HBox.margin>
+                  <Insets right="240.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="200.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <PasswordField prefHeight="25.0" prefWidth="270.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="8.0" layoutY="267.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#makeLogin" text="Entrar" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
