@@ -30,7 +30,7 @@ public class MessageAlert {
 	 * Conte�do da mensagem: "Por favor preencha os campos primeiro".
 	 */
 
-	public void getMessageCadastroRecepcionistaSucces() {
+	public void getMessageCadastroRecepcionistaSuccess() {
 
 		alert = new Alert(AlertType.CONFIRMATION);
 		alert.setContentText("Cadastro Realizado com sucesso");
@@ -38,7 +38,7 @@ public class MessageAlert {
 		alert.show();
 
 	}
-	
+
 	public void getMessageCadastroRecepcionistaFailCampoEmBranco() {
 
 		alert = new Alert(AlertType.WARNING);
@@ -47,8 +47,8 @@ public class MessageAlert {
 		alert.show();
 
 	}
-	
-	public void getMessageCadastroRecepcionistaFailCpfAlreadyRegistered() { 
+
+	public void getMessageCadastroRecepcionistaFailCpfAlreadyRegistered() {
 
 		alert = new Alert(AlertType.WARNING);
 		alert.setContentText("CPF já Cadastrado!");
@@ -57,126 +57,22 @@ public class MessageAlert {
 
 	}
 
-	/**
-	 * Apresenta uma <b>mensagem</b> de aviso na tela.<br>
-	 * Conte�do da mensagem: "As tarefas devem estar conclu�das para que um projeto
-	 * seja exclu�do".
-	 */
-
-	public void getMessageTarefasNaoConcluidas() {
+	public void getMessageFailLoginPassword() {
 
 		alert = new Alert(AlertType.WARNING);
-		alert.setContentText("As tarefas devem estar conclu�das para que um projeto seja exclu�do");
+		alert.setContentText("Senha incorreta!");
 
 		alert.show();
 
 	}
 
-	/**
-	 * Apresenta uma <b>mensagem</b> de confirma��o na tela.<br>
-	 * Conte�do da mensagem: "Projeto Salvo com Sucesso".
-	 */
-
-	public void getMessageProjetoSalvo() {
-
-		alert = new Alert(AlertType.CONFIRMATION);
-		alert.setContentText("Projeto Salvo com Sucesso!");
-
-		alert.show();
-	}
-
-	/**
-	 * Apresenta uma <b>mensagem</b> de confirma��o na tela.<br>
-	 * Conte�do da mensagem: "Projeto Editado com Sucesso".
-	 */
-
-	public void getMessageProjetoEditado() {
-
-		alert = new Alert(AlertType.CONFIRMATION);
-		alert.setContentText("Projeto Editado com Sucesso!");
-
-		alert.show();
-	}
-
-	/**
-	 * Apresenta uma <b>mensagem</b> de aviso na tela.<br>
-	 * Conte�do da mensagem: "Por favor selecione um projeto primeiro!".
-	 */
-
-	public void getMessageProjetoNaoSelecionada() {
-
+	public void getMessageFailLoginCPF() {
+		
 		alert = new Alert(AlertType.WARNING);
-		alert.setContentText("Por favor selecione um projeto primeiro!");
+		alert.setContentText("CPF inválido!");
 
 		alert.show();
-	}
-
-	/**
-	 * Apresenta uma <b>mensagem</b> de confirma��o na tela.<br>
-	 * Conte�do da mensagem: "Projeto exclu�do com Sucesso!".
-	 */
-
-	public void getMessageProjetoExcluida() {
-
-		alert = new Alert(AlertType.CONFIRMATION);
-		alert.setContentText("Projeto exclu�do com Sucesso!");
-
-		alert.show();
-	}
-
-	/**
-	 * Apresenta uma <b>mensagem</b> de confirma��o na tela.<br>
-	 * Conte�do da mensagem: "Tarefa salva com Sucesso!".
-	 */
-
-	public void getMessageTarefaSalva() {
-
-		alert = new Alert(AlertType.CONFIRMATION);
-		alert.setContentText("Tarefa salva com Sucesso!");
-
-		alert.show();
-
-	}
-
-	/**
-	 * Apresenta uma <b>mensagem</b> de confirma��o na tela.<br>
-	 * Conte�do da mensagem: "Tarefa editada com Sucesso!".
-	 */
-
-	public void getMessageTarefaEditada() {
-
-		alert = new Alert(AlertType.CONFIRMATION);
-		alert.setContentText("Tarefa editada com Sucesso!");
-
-		alert.show();
-
-	}
-
-	/**
-	 * Apresenta uma <b>mensagem</b> de aviso na tela.<br>
-	 * Conte�do da mensagem: "Por favor selecione uma Tarefa!".
-	 */
-
-	public void getMessageTarefaNaoSelecionada() {
-
-		alert = new Alert(AlertType.WARNING);
-		alert.setContentText("Por favor selecione uma Tarefa!");
-
-		alert.show();
-
-	}
-
-	/**
-	 * Apresenta uma <b>mensagem</b> de confirma��o na tela.<br>
-	 * Conte�do da mensagem: "Tarefa exclu�da com Sucesso!".
-	 */
-
-	public void getMessageTarefaExcluida() {
-
-		alert = new Alert(AlertType.CONFIRMATION);
-		alert.setContentText("Tarefa exclu�da com Sucesso!");
-
-		alert.show();
+		
 	}
 
 }

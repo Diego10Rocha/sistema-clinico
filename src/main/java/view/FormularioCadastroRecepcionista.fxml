@@ -40,7 +40,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="314.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#cadastrarRecepcionista" text="Cadastrar" />
+            <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#cadastrarRecepcionista" text="Cadastrar" />
          </children>
       </HBox>
       <HBox alignment="BOTTOM_CENTER" layoutY="14.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

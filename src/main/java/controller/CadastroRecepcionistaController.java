@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Recepcionista;
 
@@ -18,7 +19,7 @@ public class CadastroRecepcionistaController {
 	private PasswordField txtSenha;
 
 	@FXML
-	private Button btnEntrar;
+	private Button btnCadastrar;
 
 	@FXML
 	private TextField txtNome;
@@ -53,10 +54,20 @@ public class CadastroRecepcionistaController {
 
 				Recepcionista newRecepcionista = new Recepcionista(name, CPF, password);
 				
-				msgAlert.getMessageCadastroRecepcionistaSucces();
+				msgAlert.getMessageCadastroRecepcionistaSuccess();
+				
+				closeScreen();
 			}
 		}
 
+	}
+
+	private void closeScreen() {
+		
+		Stage stage = (Stage) btnCadastrar.getScene().getWindow();
+    	
+    	stage.close();
+		
 	}
 
 	private boolean isAnyCampoEmBranco() {
