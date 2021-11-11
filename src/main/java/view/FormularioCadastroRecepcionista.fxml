@@ -43,7 +43,7 @@
             <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#cadastrarRecepcionista" text="Cadastrar" />
          </children>
       </HBox>
-      <HBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="14.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="BOTTOM_CENTER" layoutY="14.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label text="Nome">
                <HBox.margin>
