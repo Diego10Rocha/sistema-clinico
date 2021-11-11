@@ -35,7 +35,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="200.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
          <children>
-            <PasswordField prefHeight="25.0" prefWidth="270.0" />
+            <PasswordField fx:id="txtSenha" prefHeight="25.0" prefWidth="270.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="8.0" layoutY="267.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
