@@ -27,6 +27,8 @@ public class LoginController {
 	private Text txtMessageSenha;
 
 	private MessageAlert msgAlert = new MessageAlert();
+	
+	
 
 	@FXML
 	void makeLogin(ActionEvent event) {
@@ -48,11 +50,11 @@ public class LoginController {
 
 		else if (resultLoginTryLogin.getValue().equals("FAIL_CPF")) {
 			
-			txtMessageCPF.setText("CPF Inválido");
+			txtMessageCPF.setText("CPF Inválido.");
 		}
 
 		else
-			txtMessageSenha.setText("Senha incorreta");;
+			txtMessageSenha.setText("Senha incorreta.");;
 
 	}
 

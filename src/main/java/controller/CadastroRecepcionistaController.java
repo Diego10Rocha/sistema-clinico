@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Recepcionista;
@@ -23,12 +24,17 @@ public class CadastroRecepcionistaController {
 
 	@FXML
 	private TextField txtNome;
+	
+	@FXML
+    private Text txtMessageCPF_Cadastrado;
 
 	private MessageAlert msgAlert = new MessageAlert();
 
 	@FXML
 	void cadastrarRecepcionista(ActionEvent event) {
-
+		
+		txtMessageCPF_Cadastrado.setText("");
+		
 		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
 
 		if (isAnyCampoEmBranco) {
@@ -44,7 +50,7 @@ public class CadastroRecepcionistaController {
 
 			if (isCpfAlreadyRegistered) {
 
-				msgAlert.getMessageCadastroRecepcionistaFailCpfAlreadyRegistered();
+				txtMessageCPF_Cadastrado.setText("CPF Já cadastrado.");
 			}
 
 			else {

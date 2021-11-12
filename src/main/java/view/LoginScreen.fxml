@@ -23,7 +23,7 @@
          <children>
             <Label text="CPF">
                <VBox.margin>
-                  <Insets left="150.0" right="150.0" />
+                  <Insets bottom="3.0" left="150.0" right="150.0" />
                </VBox.margin>
             </Label>
             <TextField fx:id="txtCPF" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="169.0">
@@ -38,11 +38,11 @@
             </Text>
          </children>
       </VBox>
-      <VBox layoutY="200.0" prefHeight="43.0" prefWidth="600.0">
+      <VBox layoutY="200.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label text="Senha">
                <VBox.margin>
-                  <Insets left="150.0" right="150.0" />
+                  <Insets bottom="3.0" left="150.0" right="150.0" />
                </VBox.margin>
             </Label>
             <PasswordField fx:id="txtSenha" prefHeight="25.0" prefWidth="270.0">
