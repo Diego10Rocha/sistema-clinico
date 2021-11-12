@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import login.Login;
 import message.MessageAlert;
@@ -20,11 +21,18 @@ public class LoginController {
 
 	@FXML
 	private Button btnEntrar;
+	@FXML
+	private Text txtMessageCPF;
+	@FXML
+	private Text txtMessageSenha;
 
 	private MessageAlert msgAlert = new MessageAlert();
 
 	@FXML
 	void makeLogin(ActionEvent event) {
+
+		txtMessageCPF.setText("");
+		txtMessageSenha.setText("");
 
 		String CPF_User = txtCPF.getText();
 		String passwordUser = txtSenha.getText();
@@ -39,12 +47,12 @@ public class LoginController {
 		}
 
 		else if (resultLoginTryLogin.getValue().equals("FAIL_CPF")) {
-
-			msgAlert.getMessageFailLoginCPF();
+			
+			txtMessageCPF.setText("CPF Inválido");
 		}
 
 		else
-			msgAlert.getMessageFailLoginPassword();
+			txtMessageSenha.setText("Senha incorreta");;
 
 	}
 

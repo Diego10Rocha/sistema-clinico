@@ -7,41 +7,55 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <HBox alignment="BOTTOM_CENTER" layoutY="51.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Label text="CPF">
-               <HBox.margin>
-                  <Insets right="250.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutY="94.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="94.0">
-         <children>
-            <TextField fx:id="txtCPF" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="270.0" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutY="168.0" prefHeight="32.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Label text="Senha">
-               <HBox.margin>
-                  <Insets right="240.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutY="200.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
-         <children>
-            <PasswordField fx:id="txtSenha" prefHeight="25.0" prefWidth="270.0" />
-         </children>
-      </HBox>
+      <HBox alignment="BOTTOM_CENTER" layoutY="51.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <HBox alignment="CENTER" layoutY="168.0" prefHeight="32.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <HBox alignment="CENTER" layoutX="8.0" layoutY="267.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#makeLogin" text="Entrar" />
          </children>
       </HBox>
+      <VBox layoutY="109.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label text="CPF">
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtCPF" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="169.0">
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fx:id="txtMessageCPF" fill="#dd0b0b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="97.0">
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutY="200.0" prefHeight="43.0" prefWidth="600.0">
+         <children>
+            <Label text="Senha">
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" />
+               </VBox.margin>
+            </Label>
+            <PasswordField fx:id="txtSenha" prefHeight="25.0" prefWidth="270.0">
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Text fx:id="txtMessageSenha" fill="#dd0b0b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="97.0">
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
