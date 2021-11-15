@@ -8,6 +8,7 @@ public class Recepcionista extends Usuario{
 		
 		super(nome, CPF);
 		
+		RecepcionistaDAO.insertReceptionist(this);
 	}
 	
 	public Recepcionista(String nome, String CPF, String senha) {
@@ -16,6 +17,7 @@ public class Recepcionista extends Usuario{
 		
 		this.setSenha(senha);
 		
+		RecepcionistaDAO.insertReceptionist(this);
 	}
 
 	@Override

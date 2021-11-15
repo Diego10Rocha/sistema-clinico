@@ -31,7 +31,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
     	
-    	FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/HomeScreen.fxml"));
+    	FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/MainScreen.fxml"));
         Parent root = loader.load();
         
         

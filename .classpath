@@ -25,5 +25,14 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX17"/>
+	<classpathentry kind="lib" path="C:/Users/User/sistema-clinico/JavaFX/javafx-sdk-17.0.0.1/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/sistema-clinico/JavaFX/javafx-sdk-17.0.0.1/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/sistema-clinico/JavaFX/javafx-sdk-17.0.0.1/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/sistema-clinico/JavaFX/javafx-sdk-17.0.0.1/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/sistema-clinico/JavaFX/javafx-sdk-17.0.0.1/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/sistema-clinico/JavaFX/javafx-sdk-17.0.0.1/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/sistema-clinico/JavaFX/javafx-sdk-17.0.0.1/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/sistema-clinico/JavaFX/javafx-sdk-17.0.0.1/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/sistema-clinico/JFX/jfoenix-1.4.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

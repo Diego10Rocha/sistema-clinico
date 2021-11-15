@@ -2,15 +2,15 @@ package resultLoginTry;
 
 public enum ResultLoginTry {
 
-	SUCCESS(1), FAIL_CPF(2), FAIL_PASSWORD(3);
+	SUCCESS("SUCCESS"), FAIL_CPF("FAIL_CPF"), FAIL_PASSWORD("FAIL_PASSWORD");
 
-	private int value;
+	private String value;
 
-	private ResultLoginTry(int value) {
+	private ResultLoginTry(String value) {
 		this.value = value;
 	}
 
-	public int getValue() {
+	public String getValue() {
 		return this.value;
 	}
 

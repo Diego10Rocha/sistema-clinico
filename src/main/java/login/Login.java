@@ -41,52 +41,58 @@ public class Login {
 
 		boolean isCpfRegistered = false;
 
-		if (PacienteDAO.cpfAlreadyRegistered(cpf)) {
+		if (PacienteDAO.cpfAlreadyRegistered(cpf) || MedicoDAO.cpfAlreadyRegistered(cpf)
+				|| RecepcionistaDAO.cpfAlreadyRegistered(cpf)) {
 
 			isCpfRegistered = true;
 
-			setInstanceCpfWasRegistered(InstanceType.PACIENTE);
-		}
-		
-		else if (MedicoDAO.cpfAlreadyRegistered(cpf)) {
-
-			isCpfRegistered = true;
-
-			setInstanceCpfWasRegistered(InstanceType.MEDICO);
-		}
-		
-		else if (RecepcionistaDAO.cpfAlreadyRegistered(cpf)) {
-
-			isCpfRegistered = true;
-
-			setInstanceCpfWasRegistered(InstanceType.RECEPCIONISTA);
+			setInstanceCpfWasRegistered(cpf);
 		}
 
 		return isCpfRegistered;
 	}
 
+	public static void setInstanceCpfWasRegistered(String cpf) {
+		
+		if (PacienteDAO.cpfAlreadyRegistered(cpf)) {
+
+			instanceCpfWasRegistered = InstanceType.PACIENTE;
+		}
+		
+		else if (MedicoDAO.cpfAlreadyRegistered(cpf)) {
+
+			instanceCpfWasRegistered = InstanceType.MEDICO;
+		}
+		
+		else if (RecepcionistaDAO.cpfAlreadyRegistered(cpf)) {
+
+			instanceCpfWasRegistered = InstanceType.RECEPCIONISTA;
+		}
+		
+	}
+
 	private static Usuario setUserOwnerCpf(String cpf) {
 
-		Usuario instanceOwnerCPF = null;
+		Usuario userOwnerCPF = null;
 
 		if (instanceCpfWasRegistered == InstanceType.PACIENTE) {
 
-			instanceOwnerCPF = PacienteDAO.findByCPF(cpf);
+			userOwnerCPF = PacienteDAO.findByCPF(cpf);
 
 		}
 
 		else if (instanceCpfWasRegistered == InstanceType.MEDICO) {
 
-			instanceOwnerCPF = MedicoDAO.findByCPF(cpf);
+			userOwnerCPF = MedicoDAO.findByCPF(cpf);
 		}
 
 		else if (instanceCpfWasRegistered == InstanceType.RECEPCIONISTA) {
 
-			instanceOwnerCPF = RecepcionistaDAO.findByCPF(cpf);
+			userOwnerCPF = RecepcionistaDAO.findByCPF(cpf);
 
 		}
 
-		return instanceOwnerCPF;
+		return userOwnerCPF;
 	}
 
 	private static boolean isPasswordCorrect(Usuario temp, String senha) {
@@ -105,11 +111,6 @@ public class Login {
 	public static InstanceType getInstanceCpfWasRegistered() {
 
 		return instanceCpfWasRegistered;
-	}
-
-	public static void setInstanceCpfWasRegistered(InstanceType instance) {
-
-		instanceCpfWasRegistered = instance;
 	}
 
 }

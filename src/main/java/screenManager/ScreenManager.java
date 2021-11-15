@@ -1,12 +1,12 @@
 /*******************************************************************************
 Autor: Diego Cerqueira e Joanderson Santos
-Componente Curricular: MI Programação
+Componente Curricular: MI Programaï¿½ï¿½o
 Concluido em: 18/10/2021
-Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
-trecho de código de outro colega ou de outro autor, tais como provindos de livros e
-apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
-de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
-do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+Declaro que este cï¿½digo foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e nï¿½o contï¿½m nenhum
+trecho de cï¿½digo de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e pï¿½ginas ou documentos eletrï¿½nicos da Internet. Qualquer trecho de cï¿½digo
+de outra autoria que nï¿½o a minha estï¿½ destacado com uma citaï¿½ï¿½o para o autor e a fonte
+do cï¿½digo, e estou ciente que estes trechos nï¿½o serï¿½o considerados para fins de avaliaï¿½ï¿½o.
 ******************************************************************************************/
 
 package screenManager;
@@ -20,7 +20,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * A Classe <b>ScreenManager</b> permite através de uma instância o gerenciamento de <b>telas</b>.
+ * A Classe <b>ScreenManager</b> permite atravï¿½s de uma instï¿½ncia o gerenciamento de <b>telas</b>.
  * @since 2021
  * @author Joanderson Santos e Dicego Cerqueira
  */
@@ -31,9 +31,9 @@ public class ScreenManager {
 	
 	/**
 	 * Abri um nova <b>tela</b>.
-	 * @param path caminho referente à <b>tela</b>.
-	 * @param title título da tela.
-	 * @throws IOException caso o caminho esteja errado, ou a tela não exista.
+	 * @param path caminho referente ï¿½ <b>tela</b>.
+	 * @param title tï¿½tulo da tela.
+	 * @throws IOException caso o caminho esteja errado, ou a tela nï¿½o exista.
 	 */
 	
 	public void openNewScreen(String path, String title) throws IOException{
@@ -48,7 +48,6 @@ public class ScreenManager {
     
         stage.setScene(new Scene(p));
         stage.setTitle(title);
-        stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         
@@ -57,8 +56,8 @@ public class ScreenManager {
     }
 	
 	/**
-	 * Obtém o controlador  referente à última <b>tela</b> aberta.
-	 * @return controlador referente à última <b>tela</b> aberta.
+	 * Obtï¿½m o controlador  referente ï¿½ ï¿½ltima <b>tela</b> aberta.
+	 * @return controlador referente ï¿½ ï¿½ltima <b>tela</b> aberta.
 	 */
 	
 	public Object getCurrenController() { return this.currentController; }
