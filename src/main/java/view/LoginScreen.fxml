@@ -26,7 +26,7 @@
                   <Insets bottom="3.0" left="150.0" right="150.0" />
                </VBox.margin>
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <TextField fx:id="txtCPF" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="169.0">
@@ -48,7 +48,7 @@
                   <Insets bottom="3.0" left="150.0" right="150.0" />
                </VBox.margin>
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <PasswordField fx:id="txtSenha" prefHeight="25.0" prefWidth="270.0">
@@ -67,7 +67,7 @@
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NaClin">
                <font>
-                  <Font name="System Bold" size="36.0" />
+                  <Font size="36.0" />
                </font>
             </Text>
          </children>

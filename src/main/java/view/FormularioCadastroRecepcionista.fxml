@@ -8,65 +8,84 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroRecepcionistaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroRecepcionistaController">
    <children>
-      <HBox alignment="BOTTOM_CENTER" layoutY="116.0" prefHeight="32.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutY="276.0" prefHeight="32.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label text="CPF">
+            <Label text="Senha" textFill="WHITE">
                <HBox.margin>
-                  <Insets right="250.0" />
+                  <Insets right="230.0" />
                </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="148.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="148.0">
-         <children>
-            <TextField fx:id="txtCPF" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="270.0" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutY="241.0" prefHeight="32.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Label text="Senha">
-               <HBox.margin>
-                  <Insets right="240.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox alignment="TOP_CENTER" layoutY="273.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="273.0">
+      <HBox alignment="TOP_CENTER" layoutY="308.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="308.0">
          <children>
             <PasswordField fx:id="txtSenha" prefHeight="25.0" prefWidth="270.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="328.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutY="343.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#cadastrarRecepcionista" text="Cadastrar" />
+            <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#cadastrarRecepcionista" style="-fx-background-color: white;" text="Cadastrar" />
          </children>
       </HBox>
-      <HBox alignment="BOTTOM_CENTER" layoutY="14.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="BOTTOM_CENTER" layoutX="7.0" layoutY="79.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label text="Nome">
+            <Label text="Nome" textFill="WHITE">
                <HBox.margin>
-                  <Insets right="240.0" />
+                  <Insets right="230.0" />
                </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="57.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutY="122.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <TextField fx:id="txtNome" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="270.0" />
          </children>
       </HBox>
       <VBox alignment="TOP_CENTER" layoutY="192.0" prefHeight="6.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="32.0" prefWidth="600.0">
+               <children>
+                  <Label text="CPF" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="240.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <Text fx:id="txtMessageCPF_Cadastrado" fill="#e80909" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="113.0">
                <VBox.margin>
                   <Insets right="160.0" />
                </VBox.margin>
             </Text>
+            <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="txtCPF" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="270.0" />
+               </children>
+            </HBox>
          </children>
       </VBox>
+      <HBox alignment="CENTER" layoutX="192.0" layoutY="-8.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NaClin">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
