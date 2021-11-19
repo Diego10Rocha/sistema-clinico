@@ -5,12 +5,14 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
    <children>
-      <HBox alignment="CENTER" layoutX="79.0" layoutY="43.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="257.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutY="109.0" prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="109.0">
          <children>
-            <MenuBar>
+            <MenuBar style="-fx-background-color: white;">
               <menus>
                 <Menu fx:id="menuArquivo" mnemonicParsing="false" text="Arquivo">
                   <items>
@@ -26,6 +28,15 @@
                 </Menu>
               </menus>
             </MenuBar>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="29.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+         <children>
+            <Text fill="#f5efef" strokeType="OUTSIDE" strokeWidth="0.0" text="NaClin">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
          </children>
       </HBox>
    </children>

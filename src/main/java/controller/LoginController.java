@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.IOException;
+
+import instanceType.InstanceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +13,7 @@ import javafx.stage.Stage;
 import login.Login;
 import message.MessageAlert;
 import resultLoginTry.ResultLoginTry;
+import screenManager.ScreenManager;
 
 public class LoginController {
 
@@ -25,13 +29,11 @@ public class LoginController {
 	private Text txtMessageCPF;
 	@FXML
 	private Text txtMessageSenha;
-
-	private MessageAlert msgAlert = new MessageAlert();
 	
 	
 
 	@FXML
-	void makeLogin(ActionEvent event) {
+	void makeLogin(ActionEvent event) throws IOException {
 
 		txtMessageCPF.setText("");
 		txtMessageSenha.setText("");
@@ -66,8 +68,19 @@ public class LoginController {
 
 	}
 
-	private void openSpecificScrenLoginUser() {
-		// TODO Auto-generated method stub
+	private void openSpecificScrenLoginUser() throws IOException {
+		
+		InstanceType instanceTypeRecepcionista = InstanceType.RECEPCIONISTA;
+		
+		ScreenManager screenManager = new ScreenManager();
+		
+		if(Login.getInstanceCpfWasRegistered().equals(instanceTypeRecepcionista)) {
+			
+			screenManager.openNewScreen("RecepcionistaScreen", "Recepcionista");
+		}
+		
+		else 	
+			screenManager.openNewScreen("MedicoScreen", "Recepcionista");
 
 	}
 
