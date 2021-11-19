@@ -58,7 +58,7 @@
                <children>
                   <Label text="CPF" textFill="WHITE">
                      <HBox.margin>
-                        <Insets right="240.0" />
+                        <Insets right="250.0" />
                      </HBox.margin>
                      <font>
                         <Font size="14.0" />
