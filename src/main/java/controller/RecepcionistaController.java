@@ -1,6 +1,15 @@
 package controller;
 
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import screenManager.ScreenManager;
+
 public class RecepcionistaController {
+	
 	@FXML
 	private Menu menuCadastro;
 
@@ -30,6 +39,9 @@ public class RecepcionistaController {
 
 	@FXML
 	private Menu menuSair;
+	
+	private ScreenManager screenManager = new ScreenManager();
+	
 
 	@FXML
 	void openScreenAddConsulta(ActionEvent event) {
@@ -47,8 +59,9 @@ public class RecepcionistaController {
 	}
 
 	@FXML
-	void openScreenCadastroRecepcionista(ActionEvent event) {
-
+	void openScreenCadastroRecepcionista(ActionEvent event) throws IOException {
+		
+		screenManager.openNewScreen("FormularioCadastroRecepcionista", "Cadastro Recepcionista");
 	}
 
 	@FXML
