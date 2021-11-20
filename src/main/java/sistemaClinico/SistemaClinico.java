@@ -44,22 +44,25 @@ public class SistemaClinico {
 		 * 
 		 */
 
-		ResultLoginTry resultLogin;
-
-		resultLogin = Login.makeLogin("019.263.263-98", "999");
-
-		System.out.println(Login.getCPF_userLogged());
-		System.out.println(resultLogin.getValue());
-
-		/*
-		 * System.out.println("\nEspecialidades: \n");
+		/**
 		 * 
-		 * Especialidade eNew = new Especialidade("Cardiologia", true);
+		 * ResultLoginTry resultLogin;
 		 * 
+		 * resultLogin = Login.makeLogin("019.263.263-98", "999");
 		 * 
-		 * List<Especialidade> especialidades = EspecialidadeDAO.getSpecialties();
-		 * especialidades.forEach(especialidade -> {
-		 * System.out.println(especialidade.getNome()); });
+		 * System.out.println(Login.getCPF_userLogged());
+		 * System.out.println(resultLogin.getValue());
 		 */
+
+		System.out.println("\nEspecialidades: \n");
+
+		if (EspecialidadeDAO.insertSpecialty(new Especialidade("Pediatra", false))) {
+			System.out.println("a");
+		}
+		List<Especialidade> especialidades = EspecialidadeDAO.getSpecialties();
+		especialidades.forEach(especialidade -> {
+			System.out.println(especialidade.getNome());
+		});
+
 	}
 }

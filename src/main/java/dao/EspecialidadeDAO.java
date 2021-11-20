@@ -71,7 +71,7 @@ public class EspecialidadeDAO {
 		return isDeletada;
 	}
 
-	private static boolean specialtyAlreadyRegistered(String nome) {
+	public static boolean specialtyAlreadyRegistered(String nome) {
 
 		boolean specialtyAlreadyRegistered = false;
 

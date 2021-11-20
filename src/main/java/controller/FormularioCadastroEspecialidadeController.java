@@ -2,6 +2,7 @@ package controller;
 
 import dao.EspecialidadeDAO;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -26,22 +27,26 @@ public class FormularioCadastroEspecialidadeController {
 
 	private MessageAlert msg = new MessageAlert();
 
-	@FXML
-	void cadastrarEspecialidade(ActionEvent event) {
+	public void cadastrarEspecialidade() {
 
 		txtMessageEspecialidade_Cadastrada.setText("");
 
 		if (txtNome.getText() != "") {
 
-			if (EspecialidadeDAO.insertSpecialty(new Especialidade(txtNome.getText(), false))) {
+			if (EspecialidadeDAO.specialtyAlreadyRegistered(txtNome.getText())) {
 
-				msg.getMessageCadastroSuccess();
+				txtMessageEspecialidade_Cadastrada.setText("Especialidade Já Cadastrada.");
 
 			}
 
 			else {
 
-				txtMessageEspecialidade_Cadastrada.setText("Especialidade Já Cadastrada.");
+				Especialidade newEspecialidade = new Especialidade(txtNome.getText(), false);
+
+				msg.getMessageCadastroSuccess();
+
+				closeScreen();
+
 			}
 		}
 
@@ -51,11 +56,42 @@ public class FormularioCadastroEspecialidadeController {
 		}
 	}
 
-	@FXML
-	void closeScreen(ActionEvent event) {
+	public void closeScreen() {
 
 		Stage stage = (Stage) btnCadastrar.getScene().getWindow();
 
 		stage.close();
 	}
+
+	public void addButtonsListener(EventHandler<ActionEvent> listener) {
+
+		btnCadastrar.setOnAction(listener);
+		btnCancelar.setOnAction(listener);
+
+	}
+
+	public TextField getTxtNome() {
+		return txtNome;
+	}
+
+	public void setTxtNome(TextField txtNome) {
+		this.txtNome = txtNome;
+	}
+
+	public Button getBtnCadastrar() {
+		return btnCadastrar;
+	}
+
+	public void setBtnCadastrar(Button btnCadastrar) {
+		this.btnCadastrar = btnCadastrar;
+	}
+
+	public Button getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public void setBtnCancelar(Button btnCancelar) {
+		this.btnCancelar = btnCancelar;
+	}
+
 }

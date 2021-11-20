@@ -31,32 +31,33 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="-14.0" layoutY="266.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0">
          <children>
-            <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#cadastrarEspecialidade" style="-fx-background-color: white;" text="Cadastrar">
+            <Button fx:id="btnCadastrar" mnemonicParsing="false" style="-fx-background-color: white;" text="Cadastrar">
                <HBox.margin>
                   <Insets left="63.0" right="63.0" />
                </HBox.margin></Button>
-            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#closeScreen" style="-fx-background-color: white;" text="Cancelar">
+            <Button fx:id="btnCancelar" mnemonicParsing="false" style="-fx-background-color: white;" text="Cancelar">
                <HBox.margin>
                   <Insets left="63.0" right="63.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <VBox alignment="TOP_CENTER" layoutY="192.0" prefHeight="6.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Text fx:id="txtMessageEspecialidade_Cadastrada" fill="#e80909" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="113.0">
-               <VBox.margin>
-                  <Insets right="160.0" />
-               </VBox.margin>
-            </Text>
-         </children>
-      </VBox>
+      <VBox alignment="TOP_CENTER" layoutY="192.0" prefHeight="6.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <HBox alignment="CENTER" layoutX="192.0" layoutY="-8.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NaClin">
                <font>
                   <Font size="36.0" />
                </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="108.0" layoutY="178.0" prefHeight="16.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Text fx:id="txtMessageEspecialidade_Cadastrada" fill="#e80909" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="357.0">
+               <HBox.margin>
+                  <Insets left="81.0" />
+               </HBox.margin>
             </Text>
          </children>
       </HBox>
