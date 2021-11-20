@@ -9,7 +9,7 @@ import javafx.scene.control.MenuItem;
 import screenManager.ScreenManager;
 
 public class RecepcionistaController {
-	
+
 	@FXML
 	private Menu menuCadastro;
 
@@ -26,12 +26,6 @@ public class RecepcionistaController {
 	private Menu menuConsulta;
 
 	@FXML
-	private MenuItem menuItemAddConsulta;
-
-	@FXML
-	private MenuItem menuItemVerConsultas;
-
-	@FXML
 	private Menu menuMedicos;
 
 	@FXML
@@ -39,9 +33,8 @@ public class RecepcionistaController {
 
 	@FXML
 	private Menu menuSair;
-	
+
 	private ScreenManager screenManager = new ScreenManager();
-	
 
 	@FXML
 	void openScreenAddConsulta(ActionEvent event) {
@@ -50,25 +43,26 @@ public class RecepcionistaController {
 
 	@FXML
 	void openScreenCadastroMedico(ActionEvent event) throws IOException {
-		
+
 		screenManager.openNewScreen("FormularioCadastroMedico", "Cadastro Medico");
 	}
 
 	@FXML
 	void openScreenCadastroPaciente(ActionEvent event) throws IOException {
-		
+
 		screenManager.openNewScreen("FormularioCadastroPaciente", "Cadastro Paciente");
 	}
 
 	@FXML
 	void openScreenCadastroRecepcionista(ActionEvent event) throws IOException {
-		
+
 		screenManager.openNewScreen("FormularioCadastroRecepcionista", "Cadastro Recepcionista");
 	}
 
 	@FXML
-	void openScreenConsultas(ActionEvent event) {
-
+	void openScreenConsultaRecepcionista(ActionEvent event) throws IOException {
+		
+		screenManager.openNewScreen("ConsultaRecepcionistaScreen", "Consulta");
 	}
 
 	@FXML

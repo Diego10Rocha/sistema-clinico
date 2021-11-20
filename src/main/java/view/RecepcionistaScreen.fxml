@@ -21,12 +21,7 @@
                         <MenuItem fx:id="menuItemCadastroPaciente" mnemonicParsing="false" onAction="#openScreenCadastroPaciente" text="Paciente" />
                   </items>
                 </Menu>
-                <Menu fx:id="menuConsulta" mnemonicParsing="false" text="Consulta">
-                  <items>
-                    <MenuItem fx:id="menuItemAddConsulta" mnemonicParsing="false" onAction="#openScreenAddConsulta" text="Adicionar Consulta Ao Autoatendimento" />
-                        <MenuItem fx:id="menuItemVerConsultas" mnemonicParsing="false" onAction="#openScreenConsultas" text="Ver consultas" />
-                  </items>
-                </Menu>
+                <Menu fx:id="menuConsulta" mnemonicParsing="false" onAction="#openScreenConsultaRecepcionista" text="Consulta" />
                 <Menu fx:id="menuMedicos" mnemonicParsing="false" onAction="#openScreenMedicosCadastrados" text="Médicos" />
                   <Menu fx:id="menuEspecialidades" mnemonicParsing="false" onAction="#openScreenEspecialidades" text="Especialidades" />
                   <Menu fx:id="menuSair" mnemonicParsing="false" onAction="#sair" text="Sair" />
