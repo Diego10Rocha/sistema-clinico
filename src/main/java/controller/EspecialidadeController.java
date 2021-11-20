@@ -36,7 +36,10 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 	private ScreenManager screenManager = new ScreenManager();
 
 	private FormularioCadastroEspecialidadeController formularioEspecialidade;
-	
+	private FormularioEspecialidadeEditController formularioEspecialidadeEdit;
+
+	private static Especialidade especialidadeSelecionada;
+
 	private MessageAlert msg = new MessageAlert();
 
 	@FXML
@@ -55,14 +58,40 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	@FXML
 	void closeScreen(ActionEvent event) {
-		
+
 		Stage stage = (Stage) btnVoltar.getScene().getWindow();
 
 		stage.close();
 	}
 
 	@FXML
-	void openScreenFormularioEditEspecialidade(ActionEvent event) {
+	void openScreenFormularioEditEspecialidade(ActionEvent event) throws IOException {
+
+		especialidadeSelecionada = lvEspecialidades.getSelectionModel().getSelectedItem();
+
+		if (especialidadeSelecionada == null) {
+			
+
+			msg.getMessageEspecialidadeNaoSelecionada();
+
+		}
+
+		else {
+
+			screenManager.openNewScreen("FormularioEspecialidadeEdit", "Edição especialidades");
+
+			setReferenciaFormularioEspecialidadeEdit();
+
+		}
+	}
+
+	private void setReferenciaFormularioEspecialidadeEdit() {
+
+		Object currentController = screenManager.getCurrenController();
+
+		formularioEspecialidadeEdit = (FormularioEspecialidadeEditController) currentController;
+
+		formularioEspecialidadeEdit.addButtonsListener(this);
 
 	}
 
@@ -87,36 +116,35 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	@FXML
 	void removerEspecialidade(ActionEvent event) {
-		
+
 		Especialidade EspecialidadeAlvo = lvEspecialidades.getSelectionModel().getSelectedItem();
-		
-		if(EspecialidadeAlvo != null) {
-			
+
+		if (EspecialidadeAlvo != null) {
+
 			try {
-				
+
 				EspecialidadeDAO.deleteSpecialty(EspecialidadeAlvo);
-				
+
 				loadEspecialidades();
-				
-				
-				
+
 			} catch (Exception e) {
-				
+
 				msg.getMessageEspecialidadeFailExcluir();
-				
+
 			}
 		}
-		
+
 		else {
 			msg.getMessageEspecialidadeNaoSelecionada();
 		}
-		
+
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		formularioEspecialidade = new FormularioCadastroEspecialidadeController();
+		formularioEspecialidadeEdit = new FormularioEspecialidadeEditController();
 
 		loadEspecialidades();
 
@@ -124,19 +152,39 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	@Override
 	public void handle(ActionEvent event) {
-		
-		if(event.getSource() == formularioEspecialidade.getBtnCadastrar()) {
-			
+
+		if (event.getSource() == formularioEspecialidade.getBtnCadastrar()) {
+
 			formularioEspecialidade.cadastrarEspecialidade();
+
+			loadEspecialidades();
+
+		}
+
+		else if (event.getSource() == formularioEspecialidade.getBtnCancelar()) {
+
+			formularioEspecialidade.closeScreen();
+
+		}
+		
+		else if (event.getSource() == formularioEspecialidadeEdit.getBtnSalvar()) {
+
+			formularioEspecialidadeEdit.salvarEspecialidadeEditada();
 			
 			loadEspecialidades();
-			
+
 		}
 		
-		else if(event.getSource() == formularioEspecialidade.getBtnCancelar()) {
-			
-			formularioEspecialidade.closeScreen();;
+		else if (event.getSource() == formularioEspecialidadeEdit.getBtnCancelar()) {
+
+			formularioEspecialidadeEdit.closeScreen();;
+
 		}
-		
+
+	}
+
+	public static Especialidade getEspecialidadeSelecionada() {
+
+		return especialidadeSelecionada;
 	}
 }
