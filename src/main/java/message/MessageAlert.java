@@ -75,4 +75,22 @@ public class MessageAlert {
 		
 	}
 
+	public void getMessageEspecialidadeNaoSelecionada() {
+		
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("Por Favor selecione uma Especialidade primeiro!");
+
+		alert.show();
+		
+	}
+
+	public void getMessageEspecialidadeFailExcluir() {
+		
+		
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("A especialidade possui médico(s) asociada!");
+
+		alert.show();
+	}
+
 }

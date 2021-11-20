@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+import message.MessageAlert;
 import model.Especialidade;
 import screenManager.ScreenManager;
 
@@ -34,6 +36,8 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 	private ScreenManager screenManager = new ScreenManager();
 
 	private FormularioCadastroEspecialidadeController formularioEspecialidade;
+	
+	private MessageAlert msg = new MessageAlert();
 
 	@FXML
 	private Button btnVoltar;
@@ -51,7 +55,10 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	@FXML
 	void closeScreen(ActionEvent event) {
+		
+		Stage stage = (Stage) btnVoltar.getScene().getWindow();
 
+		stage.close();
 	}
 
 	@FXML
@@ -80,7 +87,30 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	@FXML
 	void removerEspecialidade(ActionEvent event) {
-
+		
+		Especialidade EspecialidadeAlvo = lvEspecialidades.getSelectionModel().getSelectedItem();
+		
+		if(EspecialidadeAlvo != null) {
+			
+			try {
+				
+				EspecialidadeDAO.deleteSpecialty(EspecialidadeAlvo);
+				
+				loadEspecialidades();
+				
+				
+				
+			} catch (Exception e) {
+				
+				msg.getMessageEspecialidadeFailExcluir();
+				
+			}
+		}
+		
+		else {
+			msg.getMessageEspecialidadeNaoSelecionada();
+		}
+		
 	}
 
 	@Override
