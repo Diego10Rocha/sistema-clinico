@@ -40,10 +40,13 @@ public class CadastroMedicoController {
 	@FXML
 	private TextField txtSubEspecialidade;
 
+	@FXML
+	private TextField txtHoraConsulta;
+
 	private MessageAlert msgAlert = new MessageAlert();
 
 	@FXML
-	void cadastrarmMedico(ActionEvent event) {
+	void cadastrarMedico(ActionEvent event) {
 
 		txtMessageCPF_Cadastrado.setText("");
 
@@ -72,13 +75,13 @@ public class CadastroMedicoController {
 				String CRM = txtCRM.getText();
 				String especialidadeTxt = txtEspecialidade.getText();
 				String subEspecialidadeTxt = txtSubEspecialidade.getText();
-				
-				Especialidade especialidadeOBJ = new Especialidade(especialidadeTxt, true);
-				Especialidade subEspecialidadeOBJ =  new Especialidade(subEspecialidadeTxt, false);;
-				
-				
+				String horaDisponivelConsulta = txtHoraConsulta.getText();
 
-				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeOBJ, subEspecialidadeOBJ);
+				Especialidade especialidadeOBJ = new Especialidade(especialidadeTxt, true);
+				Especialidade subEspecialidadeOBJ = new Especialidade(subEspecialidadeTxt, false);
+
+				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeOBJ, subEspecialidadeOBJ,
+						horaDisponivelConsulta);
 
 				msgAlert.getMessageCadastroSuccess();
 
@@ -100,7 +103,8 @@ public class CadastroMedicoController {
 		boolean anyCampoEmBranco = false;
 
 		if (txtCPF.getText().equals("") || txtNome.getText().equals(" ") || txtSenha.getText().equals("")
-				|| txtCRM.getText().equals("") || txtEspecialidade.getText().equals("")) {
+				|| txtCRM.getText().equals("") || txtEspecialidade.getText().equals("")
+				|| txtHoraConsulta.getText().equals("")) {
 
 			anyCampoEmBranco = true;
 		}
