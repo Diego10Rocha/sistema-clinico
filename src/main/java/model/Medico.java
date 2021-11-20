@@ -90,5 +90,14 @@ public class Medico extends Usuario {
 		// TODO Auto-generated method stub
 		return MedicoDAO.login(cpf, senha);
 	}
+	
+	@Override
+	public String toString() {
+		return  "Nome: " + this.getNome() + "\n" +
+				"CRM:  " + this.getCRM() + "\n" +
+				"Especialidade: " + this.getEspecialidadePrincipal().getNome() + "\n" +
+				"SubEspecialidade" + this.getSubEspecialidade().getNome() + "\n" +
+				"Hora disponível para consultas" + this.getHoraDisponivelConsulta();
+	}
 
 }

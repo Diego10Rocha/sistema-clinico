@@ -50,6 +50,11 @@ public class Especialidade {
 
 		return objIsEqual;
 	}
+
+	@Override
+	public String toString() {
+		return "Nome: " + this.getNome();
+	}
 	
 	
 

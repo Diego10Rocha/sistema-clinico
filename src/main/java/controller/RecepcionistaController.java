@@ -90,8 +90,9 @@ public class RecepcionistaController {
 	}
 
 	@FXML
-	void openScreenPacientesCadastrados(ActionEvent event) {
-
+	void openScreenPacientesCadastrados(ActionEvent event) throws IOException {
+		
+		screenManager.openNewScreen("PacientesRecepcionistaScreen", "Pacientes");
 	}
 
 	@FXML

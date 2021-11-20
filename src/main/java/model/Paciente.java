@@ -39,10 +39,19 @@ public class Paciente extends Usuario {
 		this.prontuario = prontuario;
 	}
 
-
+	
 	@Override
 	public Usuario login(String cpf, String senha) {
 		// TODO Auto-generated method stub
 		return PacienteDAO.login(cpf, senha);
 	}
+
+	@Override
+	public String toString() {
+		return  "Nome: " + this.getNome() + "\n" +
+				"Data de Nascimento: " + this.getDATA_NASCIMENTO() + "\n" +
+				"CPF: " + this.getCPF();
+	}
+	
+	
 }
