@@ -33,7 +33,7 @@ public class PacienteRecepcionistaController implements Initializable{
 
 	private ObservableList<Paciente> obsPacientes;
 
-	public void loadEspecialidades() {
+	public void loadPacientes() {
 
 		List<Paciente> pacientesCadastrados = PacienteDAO.getPatients();
 
@@ -65,7 +65,7 @@ public class PacienteRecepcionistaController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		loadEspecialidades();
+		loadPacientes();
 		
 	}
 }
