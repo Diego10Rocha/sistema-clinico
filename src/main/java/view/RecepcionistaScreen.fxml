@@ -37,7 +37,7 @@
                   </Menu>
                   <Menu fx:id="menuEspecialidades" mnemonicParsing="false" text="Especialidades">
                      <items>
-                        <MenuItem fx:id="menuItemVerEspecialidades" mnemonicParsing="false" onAction="#openScreenEspecialidades" text="Ver consultas" />
+                        <MenuItem fx:id="menuItemVerEspecialidades" mnemonicParsing="false" onAction="#openScreenEspecialidades" text="Ver especialidades" />
                      </items></Menu>
                   <Menu fx:id="menuSair" mnemonicParsing="false" onAction="#sair" text="Sair" />
               </menus>
