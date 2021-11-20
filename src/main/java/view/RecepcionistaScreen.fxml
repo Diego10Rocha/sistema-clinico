@@ -30,6 +30,11 @@
                      <items>
                         <MenuItem fx:id="menuItemVerMedicos" mnemonicParsing="false" text="Ver Médicos" />
                      </items></Menu>
+                  <Menu fx:id="menuPacientes" mnemonicParsing="false" text="Pacientes">
+                     <items>
+                        <MenuItem fx:id="menuItemVerPacientes" mnemonicParsing="false" onAction="#openScreenPacientesCadastrados" text="Ver Pacientes" />
+                     </items>
+                  </Menu>
                   <Menu fx:id="menuEspecialidades" mnemonicParsing="false" text="Especialidades">
                      <items>
                         <MenuItem fx:id="menuItemVerEspecialidades" mnemonicParsing="false" onAction="#openScreenEspecialidades" text="Ver consultas" />

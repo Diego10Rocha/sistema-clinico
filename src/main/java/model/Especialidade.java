@@ -50,5 +50,7 @@ public class Especialidade {
 
 		return objIsEqual;
 	}
+	
+	
 
 }

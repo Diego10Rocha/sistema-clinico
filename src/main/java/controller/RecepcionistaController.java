@@ -14,6 +14,12 @@ public class RecepcionistaController {
 	private Menu menuCadastro;
 
 	@FXML
+	private Menu menuPacientes;
+
+	@FXML
+	private MenuItem menuItemVerPacientes;
+
+	@FXML
 	private MenuItem menuItemCadastroRecepcionista;
 
 	@FXML
@@ -84,8 +90,13 @@ public class RecepcionistaController {
 	}
 
 	@FXML
+	void openScreenPacientesCadastrados(ActionEvent event) {
+
+	}
+
+	@FXML
 	void sair(ActionEvent event) {
-		
+
 		System.out.println("a");
 
 	}
