@@ -7,12 +7,13 @@ public class Paciente extends Usuario {
 	private String DATA_NASCIMENTO;
 	private Prontuario prontuario;
 
-	public Paciente(String nome, String senha, String CPF, String DATA_NASCIMENTO) {
+	public Paciente(String nome, String CPF, String DATA_NASCIMENTO) {
 
-		super(nome, senha, CPF);
+		super(nome, CPF);
 
 		this.DATA_NASCIMENTO = DATA_NASCIMENTO;
 		this.prontuario = new Prontuario(CPF);
+		
 		PacienteDAO.insertPatient(this);
 	}
 
