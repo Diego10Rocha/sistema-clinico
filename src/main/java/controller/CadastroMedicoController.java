@@ -78,7 +78,12 @@ public class CadastroMedicoController {
 				String horaDisponivelConsulta = txtHoraConsulta.getText();
 
 				Especialidade especialidadeOBJ = new Especialidade(especialidadeTxt, true);
-				Especialidade subEspecialidadeOBJ = new Especialidade(subEspecialidadeTxt, false);
+				Especialidade subEspecialidadeOBJ = null;
+
+				if (subEspecialidadeTxt != "") {
+
+					subEspecialidadeOBJ = new Especialidade(subEspecialidadeTxt, false);
+				}
 
 				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeOBJ, subEspecialidadeOBJ,
 						horaDisponivelConsulta);
