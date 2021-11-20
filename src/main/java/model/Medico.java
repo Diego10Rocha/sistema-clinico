@@ -19,6 +19,7 @@ public class Medico extends Usuario {
 		this.pacientes = new ArrayList<>();
 		this.setEspecialidades(new Especialidade[2]);
 		this.setEspecialidadePrincipal(principal);
+		
 		MedicoDAO.insertDoctor(this);
 	}
 	
@@ -32,6 +33,7 @@ public class Medico extends Usuario {
 		this.setEspecialidades(new Especialidade[2]);
 		this.setEspecialidadePrincipal(principal);
 		this.setSubEspecialidade(subespecialidade);
+		
 		MedicoDAO.insertDoctor(this);
 	}
 

@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import message.MessageAlert;
+import model.Especialidade;
+import model.Medico;
 import model.Recepcionista;
 
 public class CadastroMedicoController {
@@ -31,6 +33,12 @@ public class CadastroMedicoController {
 
 	@FXML
 	private TextField txtCRM;
+
+	@FXML
+	private TextField txtEspecialidade;
+
+	@FXML
+	private TextField txtSubEspecialidade;
 
 	private MessageAlert msgAlert = new MessageAlert();
 
@@ -62,8 +70,15 @@ public class CadastroMedicoController {
 				String name = txtNome.getText();
 				String password = txtSenha.getText();
 				String CRM = txtCRM.getText();
+				String especialidadeTxt = txtEspecialidade.getText();
+				String subEspecialidadeTxt = txtSubEspecialidade.getText();
+				
+				Especialidade especialidadeOBJ = new Especialidade(especialidadeTxt, true);
+				Especialidade subEspecialidadeOBJ =  new Especialidade(subEspecialidadeTxt, false);;
+				
+				
 
-				Medico newRecepcionista = new Recepcionista(name, CPF, password);
+				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeOBJ, subEspecialidadeOBJ);
 
 				msgAlert.getMessageCadastroSuccess();
 
@@ -85,7 +100,7 @@ public class CadastroMedicoController {
 		boolean anyCampoEmBranco = false;
 
 		if (txtCPF.getText().equals("") || txtNome.getText().equals(" ") || txtSenha.getText().equals("")
-				|| txtCRM.getText().equals("")) {
+				|| txtCRM.getText().equals("") || txtEspecialidade.getText().equals("")) {
 
 			anyCampoEmBranco = true;
 		}
