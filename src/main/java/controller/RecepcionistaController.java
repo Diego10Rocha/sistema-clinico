@@ -54,8 +54,9 @@ public class RecepcionistaController {
 	}
 
 	@FXML
-	void openScreenCadastroPaciente(ActionEvent event) {
-
+	void openScreenCadastroPaciente(ActionEvent event) throws IOException {
+		
+		screenManager.openNewScreen("FormularioCadastroPaciente", "Cadastro Paciente");
 	}
 
 	@FXML

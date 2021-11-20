@@ -30,16 +30,16 @@ public class MessageAlert {
 	 * Conte�do da mensagem: "Por favor preencha os campos primeiro".
 	 */
 
-	public void getMessageCadastroRecepcionistaSuccess() {
+	public void getMessageCadastroSuccess() {
 
-		alert = new Alert(AlertType.CONFIRMATION);
+		alert = new Alert(AlertType.INFORMATION);
 		alert.setContentText("Cadastro Realizado com sucesso");
 
 		alert.show();
 
 	}
 
-	public void getMessageCadastroRecepcionistaFailCampoEmBranco() {
+	public void getMessageCadastroFailCampoEmBranco() {
 
 		alert = new Alert(AlertType.WARNING);
 		alert.setContentText("Por Favor preencha todos os campos!");
