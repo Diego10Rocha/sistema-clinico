@@ -1,8 +1,14 @@
 package controller;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+
 public class EspecialidadeController {
+	
 	@FXML
-	private ListView<?> lvConsultas;
+	private ListView<?> lvEspecialidade;
 
 	@FXML
 	private Button btnAdicionarEspecialidade;
