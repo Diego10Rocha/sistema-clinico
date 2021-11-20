@@ -44,7 +44,7 @@
       </HBox>
       <VBox alignment="TOP_CENTER" layoutY="192.0" prefHeight="6.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Text fx:id="txtMessageCPF_Cadastrado" fill="#e80909" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="113.0">
+            <Text fx:id="txtMessageEspecialidade_Cadastrada" fill="#e80909" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="113.0">
                <VBox.margin>
                   <Insets right="160.0" />
                </VBox.margin>
