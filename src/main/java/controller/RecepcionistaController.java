@@ -23,6 +23,13 @@ public class RecepcionistaController {
 	private MenuItem menuItemCadastroPaciente;
 
 	@FXML
+	private MenuItem menuItemVerConsultas;
+	@FXML
+	private MenuItem menuItemVerMedicos;
+	@FXML
+	private MenuItem menuItemVerEspecialidades;
+
+	@FXML
 	private Menu menuConsulta;
 
 	@FXML
@@ -61,13 +68,14 @@ public class RecepcionistaController {
 
 	@FXML
 	void openScreenConsultaRecepcionista(ActionEvent event) throws IOException {
-		
+
 		screenManager.openNewScreen("ConsultaRecepcionistaScreen", "Consulta");
 	}
 
 	@FXML
-	void openScreenEspecialidades(ActionEvent event) {
+	void openScreenEspecialidades(ActionEvent event) throws IOException {
 
+		screenManager.openNewScreen("EspecialidadeScreen", "Especialidade");
 	}
 
 	@FXML
@@ -77,6 +85,8 @@ public class RecepcionistaController {
 
 	@FXML
 	void sair(ActionEvent event) {
+		
+		System.out.println("a");
 
 	}
 

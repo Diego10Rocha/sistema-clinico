@@ -21,9 +21,19 @@
                         <MenuItem fx:id="menuItemCadastroPaciente" mnemonicParsing="false" onAction="#openScreenCadastroPaciente" text="Paciente" />
                   </items>
                 </Menu>
-                <Menu fx:id="menuConsulta" mnemonicParsing="false" onAction="#openScreenConsultaRecepcionista" text="Consulta" />
-                <Menu fx:id="menuMedicos" mnemonicParsing="false" onAction="#openScreenMedicosCadastrados" text="Médicos" />
-                  <Menu fx:id="menuEspecialidades" mnemonicParsing="false" onAction="#openScreenEspecialidades" text="Especialidades" />
+                <Menu fx:id="menuConsulta" mnemonicParsing="false" text="Consulta">
+                     <items>
+                        <MenuItem fx:id="menuItemVerConsultas" mnemonicParsing="false" onAction="#openScreenConsultaRecepcionista" text="Ver consultas" />
+                     </items>
+                </Menu>
+                <Menu fx:id="menuMedicos" mnemonicParsing="false" onAction="#openScreenMedicosCadastrados" text="Médicos">
+                     <items>
+                        <MenuItem fx:id="menuItemVerMedicos" mnemonicParsing="false" text="Ver Médicos" />
+                     </items></Menu>
+                  <Menu fx:id="menuEspecialidades" mnemonicParsing="false" text="Especialidades">
+                     <items>
+                        <MenuItem fx:id="menuItemVerEspecialidades" mnemonicParsing="false" onAction="#openScreenEspecialidades" text="Ver consultas" />
+                     </items></Menu>
                   <Menu fx:id="menuSair" mnemonicParsing="false" onAction="#sair" text="Sair" />
               </menus>
             </MenuBar>
