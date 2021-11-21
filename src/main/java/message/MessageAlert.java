@@ -67,30 +67,56 @@ public class MessageAlert {
 	}
 
 	public void getMessageFailLoginCPF() {
-		
+
 		alert = new Alert(AlertType.WARNING);
 		alert.setContentText("CPF inválido!");
 
 		alert.show();
-		
+
 	}
 
 	public void getMessageEspecialidadeNaoSelecionada() {
-		
+
 		alert = new Alert(AlertType.WARNING);
 		alert.setContentText("Por Favor selecione uma Especialidade primeiro!");
 
 		alert.show();
-		
+
 	}
 
 	public void getMessageEspecialidadeFailExcluir() {
-		
-		
+
 		alert = new Alert(AlertType.WARNING);
 		alert.setContentText("A especialidade possui médico(s) asociada!");
 
 		alert.show();
+	}
+
+	public void getMessageConsultaNaoSelecionada() {
+
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("Por Favor selecione uma Consulta primeiro!");
+
+		alert.show();
+
+	}
+
+	public void getMessageConsultaMarcadaSucess() {
+
+		alert = new Alert(AlertType.INFORMATION);
+		alert.setContentText("Consulta marcada com Sucesso");
+
+		alert.show();
+
+	}
+
+	public void getMessageFailMarcacaoConsulta() {
+
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("CPF não cadastrado! Por favor dirija-se à Recepção para realização do cadastro ");
+
+		alert.show();
+
 	}
 
 }

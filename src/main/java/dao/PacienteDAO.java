@@ -9,7 +9,7 @@ import model.Paciente;
 public class PacienteDAO {
 
 	private static FindUserRegister<Paciente> findUserRegister = new FindUserRegister<>(Paciente[].class,
-			"Arquivos/cadastrosPaciente.json");
+			"Arquivos/Pacientes.json");
 	private static final String PATH_CADASTROS_PACIENTE = "Arquivos/Pacientes.json";
 	private static ConnectionFile connectionFile = new ConnectionFile();
 
@@ -71,7 +71,6 @@ public class PacienteDAO {
 	public static boolean cpfAlreadyRegistered(String cpf) {
 		
 		Paciente temp = findUserRegister.findUser(cpf);
-
 		return temp != null;
 	}
 	

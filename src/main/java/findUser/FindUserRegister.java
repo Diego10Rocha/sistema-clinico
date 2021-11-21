@@ -33,6 +33,7 @@ public class FindUserRegister<T extends Usuario> {
 		Optional<T> userLoged = users.stream()
 				.filter(user -> user.getCPF().equals(CPF)).findFirst();
 		
+		
 		return userLoged.isPresent()? userLoged.get() : null;
 
 	}
