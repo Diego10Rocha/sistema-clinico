@@ -60,14 +60,7 @@ public class Consulta {
 		this.paciente = paciente;
 	}
 
-	public boolean isMarcada() {
-		return isMarcada;
-	}
-
-	public void setMarcada(boolean isMarcada) {
-		this.isMarcada = isMarcada;
-	}
-
+	
 	public boolean isRealizada() {
 		return isRealizada;
 	}

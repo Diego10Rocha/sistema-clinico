@@ -3,6 +3,7 @@ package sistemaClinico;
 import java.util.List;
 
 import dao.AgendaConsultaDAO;
+import dao.ConsultaDAO;
 import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
@@ -10,6 +11,7 @@ import dao.RecepcionistaDAO;
 import findUser.FindUserRegister;
 import login.Login;
 import model.AgendaConsulta;
+import model.Consulta;
 import model.Especialidade;
 import model.Medico;
 import model.Paciente;
@@ -66,14 +68,14 @@ public class SistemaClinico {
 			System.out.println(especialidade.getNome());
 		});*/
 		
-		AgendaConsulta agenda = new AgendaConsulta();
+		AgendaConsulta agendaConsulta = new AgendaConsulta();
 		Medico medico = MedicoDAO.getDoctors().get(0);
 		
-		agenda.setData("21/11/2021");
-		agenda.setHora("10:21");
-		agenda.setMedico(medico);
+		agendaConsulta.setData("21/11/2021");
+		agendaConsulta.setHora(medico.getHoraDisponivelConsulta());
+		agendaConsulta.setMedico(medico);
 		
-		AgendaConsultaDAO.insertAgendaConsulta(agenda);
+		AgendaConsultaDAO.insertAgendaConsulta(agendaConsulta);
 
 	}
 }

@@ -11,6 +11,7 @@ public class AgendaConsulta {
 	}
 
 	public AgendaConsulta(String data, String hora, Medico medico) {
+		
 		this.data = data;
 		this.hora = hora;
 		this.medico = medico;
@@ -33,7 +34,7 @@ public class AgendaConsulta {
 	}
 
 	public Medico getMedico() {
-		return medico;
+		return this.medico;
 	}
 
 	public void setMedico(Medico medico) {
@@ -66,7 +67,7 @@ public class AgendaConsulta {
 
 		return "Data: " + this.getData() + "\n" + "Hora: " + this.getHora() + "\n" + "Médico: "
 				+ this.getMedico().getNome() + "\n"
-				+ "Especialidade: " + this.getMedico().getEspecialidades() ;
+				+ "Especialidade: " + this.getMedico().getEspecialidadePrincipal().getNome() ;
 	}
 
 }
