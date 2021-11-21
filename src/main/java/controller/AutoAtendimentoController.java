@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,7 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import message.MessageAlert;
 import model.AgendaConsulta;
+import screenManager.ScreenManager;
 
 public class AutoAtendimentoController implements Initializable {
 
@@ -21,12 +24,33 @@ public class AutoAtendimentoController implements Initializable {
 
 	@FXML
 	private Button btnMarcarConsulta;
+	
+	private static AgendaConsulta consultaSelecionada;
+	
+	private ScreenManager screenManager = new ScreenManager();
 
 	private ObservableList<AgendaConsulta> obsConsultas;
+	
+	private MessageAlert msg = new MessageAlert();
 
 	@FXML
-	void openScreenRequestCPF(ActionEvent event) {
+	void openScreenRequestCPF(ActionEvent event) throws IOException {
+		
+		consultaSelecionada = lvConsultas.getSelectionModel().getSelectedItem();
 
+		if (consultaSelecionada == null) {
+			
+
+			msg.getMessageConsultaNaoSelecionada();
+
+		}
+
+		else {
+
+			screenManager.openNewScreen("RequestCPF", "Requisição CPF");
+
+
+		}
 	}
 
 	private void loadConsultas() {
@@ -43,6 +67,11 @@ public class AutoAtendimentoController implements Initializable {
 
 		loadConsultas();
 
+	}
+
+	public static AgendaConsulta getConsultaSelecionada() {
+		
+		return consultaSelecionada;
 	}
 
 }

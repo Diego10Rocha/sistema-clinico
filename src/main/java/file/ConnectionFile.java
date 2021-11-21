@@ -42,7 +42,6 @@ public class ConnectionFile {
 		String pathToWriter = getPath(obj);
 
 		String json;
-		System.out.println(pathToWriter);
 		List<Object> cadastros = readFile(pathToWriter);
 
 		cadastros.add(obj);
