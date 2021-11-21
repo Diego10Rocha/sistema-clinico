@@ -23,7 +23,7 @@
                 </Menu>
                 <Menu fx:id="menuConsulta" mnemonicParsing="false" text="Consulta">
                      <items>
-                        <MenuItem fx:id="menuItemVerConsultas" mnemonicParsing="false" onAction="#openScreenConsultaRecepcionista" text="Ver consultas" />
+                        <MenuItem fx:id="menuItemAgendaConsultas" mnemonicParsing="false" onAction="#openScreenConsultaRecepcionista" text="Agenda" />
                      </items>
                 </Menu>
                 <Menu fx:id="menuMedicos" mnemonicParsing="false" onAction="#openScreenMedicosCadastrados" text="Médicos">
