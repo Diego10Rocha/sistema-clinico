@@ -14,6 +14,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import instanceType.InstanceType;
+import model.AgendaConsulta;
+import model.Consulta;
 import model.Especialidade;
 import model.Medico;
 import model.Paciente;
@@ -28,6 +30,8 @@ public class ConnectionFile {
 	private final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/Recepcionistas.json";
 	private final String PATH_CADASTROS_ESPECIALIDADE = "Arquivos/Especialidades.json";
 	private final String PATH_CADASTROS_PRONTUARIO = "Arquivos/Prontuarios.json";
+	private static final String PATH_CADASTROS_CONSULTA = "Arquivos/Consultas.json";
+	private static final String PATH_CADASTROS_AGENDA_CONSULTA = "Arquivos/AgendaConsulta.json";
 
 	public ConnectionFile() {
 
@@ -38,7 +42,6 @@ public class ConnectionFile {
 		String pathToWriter = getPath(obj);
 
 		String json;
-
 		List<Object> cadastros = readFile(pathToWriter);
 
 		cadastros.add(obj);
@@ -56,7 +59,7 @@ public class ConnectionFile {
 		try (FileWriter writer = new FileWriter(pathToWriter)) {
 
 			json = gson.toJson(cadastros);
-
+			System.out.println(json);
 			writer.write(json);
 
 		} catch (IOException e) {
@@ -113,11 +116,25 @@ public class ConnectionFile {
 			path = PATH_CADASTROS_ESPECIALIDADE;
 		}
 
-		else
+		else if (instanceTypeObj == InstanceType.CONSULTA) {
 
+			path = PATH_CADASTROS_CONSULTA;
+
+		}
+		
+		else if (instanceTypeObj == InstanceType.AGENDA_CONSULTA) {
+
+			path = PATH_CADASTROS_AGENDA_CONSULTA;
+
+		}
+		
+		else {
+			
 			path = PATH_CADASTROS_PRONTUARIO;
-
+		}
+		
 		return path;
+
 
 	}
 
@@ -143,6 +160,16 @@ public class ConnectionFile {
 		else if (obj instanceof Especialidade) {
 
 			instanceTypeObj = InstanceType.ESPECIALIDADE;
+		}
+
+		else if (obj instanceof Consulta) {
+
+			instanceTypeObj = InstanceType.CONSULTA;
+		}
+		
+		else if (obj instanceof AgendaConsulta) {
+
+			instanceTypeObj = InstanceType.AGENDA_CONSULTA;
 		}
 
 		else

@@ -30,16 +30,16 @@ public class MessageAlert {
 	 * Conte�do da mensagem: "Por favor preencha os campos primeiro".
 	 */
 
-	public void getMessageCadastroRecepcionistaSuccess() {
+	public void getMessageCadastroSuccess() {
 
-		alert = new Alert(AlertType.CONFIRMATION);
+		alert = new Alert(AlertType.INFORMATION);
 		alert.setContentText("Cadastro Realizado com sucesso");
 
 		alert.show();
 
 	}
 
-	public void getMessageCadastroRecepcionistaFailCampoEmBranco() {
+	public void getMessageCadastroFailCampoEmBranco() {
 
 		alert = new Alert(AlertType.WARNING);
 		alert.setContentText("Por Favor preencha todos os campos!");
@@ -67,12 +67,56 @@ public class MessageAlert {
 	}
 
 	public void getMessageFailLoginCPF() {
-		
+
 		alert = new Alert(AlertType.WARNING);
 		alert.setContentText("CPF inválido!");
 
 		alert.show();
-		
+
+	}
+
+	public void getMessageEspecialidadeNaoSelecionada() {
+
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("Por Favor selecione uma Especialidade primeiro!");
+
+		alert.show();
+
+	}
+
+	public void getMessageEspecialidadeFailExcluir() {
+
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("A especialidade possui médico(s) asociada!");
+
+		alert.show();
+	}
+
+	public void getMessageConsultaNaoSelecionada() {
+
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("Por Favor selecione uma Consulta primeiro!");
+
+		alert.show();
+
+	}
+
+	public void getMessageConsultaMarcadaSucess() {
+
+		alert = new Alert(AlertType.INFORMATION);
+		alert.setContentText("Consulta marcada com Sucesso");
+
+		alert.show();
+
+	}
+
+	public void getMessageFailMarcacaoConsulta() {
+
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("CPF não cadastrado! Por favor dirija-se à Recepção para realização do cadastro ");
+
+		alert.show();
+
 	}
 
 }

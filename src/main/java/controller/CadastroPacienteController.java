@@ -1,40 +1,40 @@
 package controller;
 
-import dao.RecepcionistaDAO;
+import dao.PacienteDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import message.MessageAlert;
-import model.Recepcionista;
+import model.Paciente;
 
-public class CadastroRecepcionistaController {
-
-	@FXML
-	private TextField txtCPF;
+public class CadastroPacienteController {
 
 	@FXML
-	private PasswordField txtSenha;
+	private TextField txtNome;
+
+	@FXML
+	private DatePicker txtDataNascimento;
 
 	@FXML
 	private Button btnCadastrar;
 
 	@FXML
-	private TextField txtNome;
-	
+	private Text txtMessageCPF_Cadastrado;
+
 	@FXML
-    private Text txtMessageCPF_Cadastrado;
+	private TextField txtCPF;
 
 	private MessageAlert msgAlert = new MessageAlert();
 
 	@FXML
-	void cadastrarRecepcionista(ActionEvent event) {
-		
+	void cadastrarPaciente(ActionEvent event) {
+
 		txtMessageCPF_Cadastrado.setText("");
-		
+
 		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
 
 		if (isAnyCampoEmBranco) {
@@ -43,10 +43,10 @@ public class CadastroRecepcionistaController {
 		}
 
 		else {
-			
+
 			String CPF = txtCPF.getText();
 
-			boolean isCpfAlreadyRegistered = RecepcionistaDAO.cpfAlreadyRegistered(CPF);
+			boolean isCpfAlreadyRegistered = PacienteDAO.cpfAlreadyRegistered(CPF);
 
 			if (isCpfAlreadyRegistered) {
 
@@ -56,12 +56,12 @@ public class CadastroRecepcionistaController {
 			else {
 
 				String name = txtNome.getText();
-				String password = txtSenha.getText();
+				String dataNascimento = txtDataNascimento.getEditor().getText();
 
-				Recepcionista newRecepcionista = new Recepcionista(name, CPF, password);
-				
+				Paciente newPaciente = new Paciente(name, CPF, dataNascimento);
+
 				msgAlert.getMessageCadastroSuccess();
-				
+
 				closeScreen();
 			}
 		}
@@ -71,21 +71,21 @@ public class CadastroRecepcionistaController {
 	private void closeScreen() {
 		
 		Stage stage = (Stage) btnCadastrar.getScene().getWindow();
-    	
-    	stage.close();
-		
+
+		stage.close();
+
 	}
 
 	private boolean isAnyCampoEmBranco() {
 
 		boolean anyCampoEmBranco = false;
 
-		if (txtCPF.getText().equals("") || txtNome.getText().equals(" ") || txtSenha.getText().equals("")) {
+		if (txtCPF.getText().equals("") || txtNome.getText().equals(" ")
+				|| txtDataNascimento.getEditor().getText().equals("")) {
 
 			anyCampoEmBranco = true;
 		}
 
 		return anyCampoEmBranco;
 	}
-
 }

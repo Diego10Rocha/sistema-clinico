@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RecepcionistaController">
+   <children>
+      <HBox alignment="CENTER" layoutY="134.0" prefHeight="93.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="134.0">
+         <children>
+            <MenuBar style="-fx-background-color: white;">
+              <menus>
+                <Menu fx:id="menuCadastro" mnemonicParsing="false" text="Cadastro">
+                  <items>
+                    <MenuItem fx:id="menuItemCadastroRecepcionista" mnemonicParsing="false" onAction="#openScreenCadastroRecepcionista" text="Recepcionista" />
+                        <MenuItem fx:id="menuItemCadastroMedico" mnemonicParsing="false" onAction="#openScreenCadastroMedico" text="Médico" />
+                        <MenuItem fx:id="menuItemCadastroPaciente" mnemonicParsing="false" onAction="#openScreenCadastroPaciente" text="Paciente" />
+                  </items>
+                </Menu>
+                <Menu fx:id="menuConsulta" mnemonicParsing="false" text="Consulta">
+                     <items>
+                        <MenuItem fx:id="menuItemAgendaConsultas" mnemonicParsing="false" onAction="#openScreenConsultaRecepcionista" text="Agenda" />
+                     </items>
+                </Menu>
+                <Menu fx:id="menuMedicos" mnemonicParsing="false" onAction="#openScreenMedicosCadastrados" text="Médicos">
+                     <items>
+                        <MenuItem fx:id="menuItemVerMedicos" mnemonicParsing="false" text="Ver Médicos" />
+                     </items></Menu>
+                  <Menu fx:id="menuPacientes" mnemonicParsing="false" text="Pacientes">
+                     <items>
+                        <MenuItem fx:id="menuItemVerPacientes" mnemonicParsing="false" onAction="#openScreenPacientesCadastrados" text="Ver Pacientes" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuEspecialidades" mnemonicParsing="false" text="Especialidades">
+                     <items>
+                        <MenuItem fx:id="menuItemVerEspecialidades" mnemonicParsing="false" onAction="#openScreenEspecialidades" text="Ver especialidades" />
+                     </items></Menu>
+                  <Menu fx:id="menuSair" mnemonicParsing="false" onAction="#sair" text="Sair" />
+              </menus>
+            </MenuBar>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="40.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Text fill="#f5efef" strokeType="OUTSIDE" strokeWidth="0.0" text="NaClin">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
