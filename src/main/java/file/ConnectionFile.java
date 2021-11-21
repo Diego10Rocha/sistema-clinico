@@ -28,6 +28,8 @@ public class ConnectionFile {
 	private final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/Recepcionistas.json";
 	private final String PATH_CADASTROS_ESPECIALIDADE = "Arquivos/Especialidades.json";
 	private final String PATH_CADASTROS_PRONTUARIO = "Arquivos/Prontuarios.json";
+	private static final String PATH_CADASTROS_CONSULTA = "Arquivos/Consultas.json";
+	private static final String PATH_CADASTROS_AGENDA_CONSULTA = "Arquivos/AgendaConsulta.json";
 
 	public ConnectionFile() {
 
@@ -113,11 +115,25 @@ public class ConnectionFile {
 			path = PATH_CADASTROS_ESPECIALIDADE;
 		}
 
-		else
+		else if (instanceTypeObj == InstanceType.CONSULTA) {
 
+			path = PATH_CADASTROS_CONSULTA;
+
+		}
+		
+		else if (instanceTypeObj == InstanceType.AGENDA_CONSULTA) {
+
+			path = PATH_CADASTROS_AGENDA_CONSULTA;
+
+		}
+		
+		else {
+			
 			path = PATH_CADASTROS_PRONTUARIO;
-
+		}
+		
 		return path;
+
 
 	}
 
