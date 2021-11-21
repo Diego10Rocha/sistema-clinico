@@ -14,19 +14,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import model.AgendaConsulta;
 
-public class AutoAtendimentoController implements Initializable{
+public class AutoAtendimentoController implements Initializable {
 
 	@FXML
 	private ListView<AgendaConsulta> lvConsultas;
 
 	@FXML
 	private Button btnMarcarConsulta;
-	
+
 	private ObservableList<AgendaConsulta> obsConsultas;
 
-
 	@FXML
-	void openScreenLogin(ActionEvent event) {
+	void openScreenRequestCPF(ActionEvent event) {
 
 	}
 
@@ -41,9 +40,9 @@ public class AutoAtendimentoController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		loadConsultas();
-		
+
 	}
 
 }

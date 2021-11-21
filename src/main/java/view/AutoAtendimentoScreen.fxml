@@ -12,7 +12,7 @@
       <ListView fx:id="lvConsultas" layoutX="211.0" layoutY="52.0" prefHeight="367.0" prefWidth="600.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="30.0" />
       <HBox alignment="CENTER" layoutX="180.0" layoutY="371.0" prefHeight="61.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btnMarcarConsulta" mnemonicParsing="false" onAction="#openScreenLogin" style="-fx-background-color: white;" text="Marcar consulta">
+            <Button fx:id="btnMarcarConsulta" mnemonicParsing="false" onAction="#openScreenRequestCPF" style="-fx-background-color: white;" text="Marcar consulta">
                <font>
                   <Font size="14.0" />
                </font></Button>
