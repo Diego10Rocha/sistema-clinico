@@ -6,6 +6,10 @@ public class Especialidade {
 
 	private String nome;
 	private boolean principal;// true - principal; false - subespecialidade
+	
+	public Especialidade() {
+		
+	}
 
 	public Especialidade(String nome, boolean principal) {
 		this.nome = nome;
@@ -50,5 +54,12 @@ public class Especialidade {
 
 		return objIsEqual;
 	}
+
+	@Override
+	public String toString() {
+		return "Nome: " + this.getNome();
+	}
+	
+	
 
 }

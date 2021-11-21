@@ -59,7 +59,7 @@ public class EspecialidadeDAO {
 
 		boolean foundAssociation = doctors.stream()
 				.anyMatch(doctor -> doctor.getEspecialidadePrincipal().equals(specialty)
-						&& doctor.getSubEspecialidade().equals(specialty));
+						|| doctor.getSubEspecialidade().equals(specialty));
 
 		if (foundAssociation)
 			throw new Exception("A especialidade possui medico(s) associado(s)");
@@ -71,7 +71,7 @@ public class EspecialidadeDAO {
 		return isDeletada;
 	}
 
-	private static boolean specialtyAlreadyRegistered(String nome) {
+	public static boolean specialtyAlreadyRegistered(String nome) {
 
 		boolean specialtyAlreadyRegistered = false;
 

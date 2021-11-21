@@ -7,20 +7,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AutoAtendimentoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AutoAtendimentoController">
    <children>
       <ListView fx:id="lvConsultas" layoutX="211.0" layoutY="52.0" prefHeight="367.0" prefWidth="600.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="30.0" />
       <HBox alignment="CENTER" layoutX="180.0" layoutY="371.0" prefHeight="61.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btnMarcarConsulta" mnemonicParsing="false" onAction="#openScreenLogin" text="Marcar consulta" />
+            <Button fx:id="btnMarcarConsulta" mnemonicParsing="false" onAction="#openScreenLogin" style="-fx-background-color: white;" text="Marcar consulta">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </HBox>
       <HBox alignment="TOP_CENTER" layoutX="209.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Consultas">
+            <Label text="Consultas" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="14.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
          </children>

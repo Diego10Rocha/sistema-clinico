@@ -30,16 +30,16 @@ public class MessageAlert {
 	 * Conte�do da mensagem: "Por favor preencha os campos primeiro".
 	 */
 
-	public void getMessageCadastroRecepcionistaSuccess() {
+	public void getMessageCadastroSuccess() {
 
-		alert = new Alert(AlertType.CONFIRMATION);
+		alert = new Alert(AlertType.INFORMATION);
 		alert.setContentText("Cadastro Realizado com sucesso");
 
 		alert.show();
 
 	}
 
-	public void getMessageCadastroRecepcionistaFailCampoEmBranco() {
+	public void getMessageCadastroFailCampoEmBranco() {
 
 		alert = new Alert(AlertType.WARNING);
 		alert.setContentText("Por Favor preencha todos os campos!");
@@ -73,6 +73,24 @@ public class MessageAlert {
 
 		alert.show();
 		
+	}
+
+	public void getMessageEspecialidadeNaoSelecionada() {
+		
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("Por Favor selecione uma Especialidade primeiro!");
+
+		alert.show();
+		
+	}
+
+	public void getMessageEspecialidadeFailExcluir() {
+		
+		
+		alert = new Alert(AlertType.WARNING);
+		alert.setContentText("A especialidade possui médico(s) asociada!");
+
+		alert.show();
 	}
 
 }
