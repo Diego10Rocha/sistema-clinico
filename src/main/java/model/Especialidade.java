@@ -5,7 +5,7 @@ import dao.EspecialidadeDAO;
 public class Especialidade {
 
 	private String nome;
-	private boolean principal;// true - principal; false - subespecialidade
+	private boolean principal;// true - principal; false - subespecialidade;
 
 	public Especialidade(String nome, boolean principal) {
 		this.nome = nome;
