@@ -4,16 +4,16 @@ public class AgendaConsulta {
 
 	private String data;
 	private String hora;
-	private String nomeMedico;
+	private Medico medico;
 
 	public AgendaConsulta() {
 
 	}
 
-	public AgendaConsulta(String data, String hora, String nomeMedico) {
+	public AgendaConsulta(String data, String hora, Medico medico) {
 		this.data = data;
 		this.hora = hora;
-		this.nomeMedico = nomeMedico;
+		this.medico = medico;
 	}
 
 	public String getData() {
@@ -32,12 +32,12 @@ public class AgendaConsulta {
 		this.hora = hora;
 	}
 
-	public String getNomeMedico() {
-		return nomeMedico;
+	public Medico getMedico() {
+		return medico;
 	}
 
-	public void setNomeMedico(String nomeMedico) {
-		this.nomeMedico = nomeMedico;
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class AgendaConsulta {
 
 			if (agendaConsultaASerComparada.getData().equals(this.getData())
 					&& agendaConsultaASerComparada.getHora().equals(this.getHora())
-					&& agendaConsultaASerComparada.getNomeMedico().equals(this.getNomeMedico())) {
+					&& agendaConsultaASerComparada.getMedico().equals(this.getMedico())) {
 
 				objIsEqual = true;
 			}
@@ -65,7 +65,8 @@ public class AgendaConsulta {
 	public String toString() {
 
 		return "Data: " + this.getData() + "\n" + "Hora: " + this.getHora() + "\n" + "Médico: "
-				+ this.getNomeMedico();
+				+ this.getMedico().getNome() + "\n"
+				+ "Especialidade: " + this.getMedico().getEspecialidades() ;
 	}
 
 }
