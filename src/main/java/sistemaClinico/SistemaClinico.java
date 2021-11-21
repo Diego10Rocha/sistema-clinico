@@ -71,7 +71,7 @@ public class SistemaClinico {
 		
 		agenda.setData("21/11/2021");
 		agenda.setHora("10:21");
-		agenda.setNomeMedico(medico.getNome());
+		agenda.setMedico(medico);
 		
 		AgendaConsultaDAO.insertAgendaConsulta(agenda);
 

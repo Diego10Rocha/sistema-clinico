@@ -6,7 +6,6 @@ public class Consulta {
 	private String hora;
 	private Medico medico;
 	private Paciente paciente;
-	private boolean isMarcada;
 	private boolean isRealizada;
 
 	public Consulta() {
