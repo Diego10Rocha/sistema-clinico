@@ -41,6 +41,27 @@ public class AgendaConsulta {
 	}
 
 	@Override
+	public boolean equals(Object obj) {
+
+		boolean objIsEqual = false;
+
+		if (obj instanceof AgendaConsulta) {
+
+			AgendaConsulta agendaConsultaASerComparada = (AgendaConsulta) obj;
+
+			if (agendaConsultaASerComparada.getData().equals(this.getData())
+					&& agendaConsultaASerComparada.getHora().equals(this.getHora())
+					&& agendaConsultaASerComparada.getMedico().equals(this.getMedico())) {
+
+				objIsEqual = true;
+			}
+
+		}
+
+		return objIsEqual;
+	}
+
+	@Override
 	public String toString() {
 
 		return "Data: " + this.getData() + "\n" + "Hora: " + this.getHora() + "\n" + "Médico: "
