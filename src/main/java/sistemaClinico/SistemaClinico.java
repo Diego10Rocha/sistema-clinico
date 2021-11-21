@@ -2,12 +2,14 @@ package sistemaClinico;
 
 import java.util.List;
 
+import dao.AgendaConsultaDAO;
 import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
 import dao.RecepcionistaDAO;
 import findUser.FindUserRegister;
 import login.Login;
+import model.AgendaConsulta;
 import model.Especialidade;
 import model.Medico;
 import model.Paciente;
@@ -53,7 +55,7 @@ public class SistemaClinico {
 		 * System.out.println(Login.getCPF_userLogged());
 		 * System.out.println(resultLogin.getValue());
 		 */
-
+		/*
 		System.out.println("\nEspecialidades: \n");
 
 		if (EspecialidadeDAO.insertSpecialty(new Especialidade("Pediatra", false))) {
@@ -62,7 +64,16 @@ public class SistemaClinico {
 		List<Especialidade> especialidades = EspecialidadeDAO.getSpecialties();
 		especialidades.forEach(especialidade -> {
 			System.out.println(especialidade.getNome());
-		});
+		});*/
+		
+		AgendaConsulta agenda = new AgendaConsulta();
+		Medico medico = MedicoDAO.getDoctors().get(0);
+		
+		agenda.setData("21/11/2021");
+		agenda.setHora("10:21");
+		agenda.setMedico(medico);
+		
+		AgendaConsultaDAO.insertAgendaConsulta(agenda);
 
 	}
 }

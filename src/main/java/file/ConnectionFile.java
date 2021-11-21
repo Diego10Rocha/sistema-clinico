@@ -14,6 +14,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import instanceType.InstanceType;
+import model.AgendaConsulta;
+import model.Consulta;
 import model.Especialidade;
 import model.Medico;
 import model.Paciente;
@@ -40,7 +42,7 @@ public class ConnectionFile {
 		String pathToWriter = getPath(obj);
 
 		String json;
-
+		System.out.println(pathToWriter);
 		List<Object> cadastros = readFile(pathToWriter);
 
 		cadastros.add(obj);
@@ -58,7 +60,7 @@ public class ConnectionFile {
 		try (FileWriter writer = new FileWriter(pathToWriter)) {
 
 			json = gson.toJson(cadastros);
-
+			System.out.println(json);
 			writer.write(json);
 
 		} catch (IOException e) {
@@ -159,6 +161,16 @@ public class ConnectionFile {
 		else if (obj instanceof Especialidade) {
 
 			instanceTypeObj = InstanceType.ESPECIALIDADE;
+		}
+
+		else if (obj instanceof Consulta) {
+
+			instanceTypeObj = InstanceType.CONSULTA;
+		}
+		
+		else if (obj instanceof AgendaConsulta) {
+
+			instanceTypeObj = InstanceType.AGENDA_CONSULTA;
 		}
 
 		else
