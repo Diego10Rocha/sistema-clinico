@@ -79,12 +79,31 @@ public class Consulta {
 
 	@Override
 	public String toString() {
-		
-		return "Data: " + this.getData() + "\n" +
-			   "Hora: " + this.getHora() + "\n" + 
-			   "Médico: " + this.getMedico().toString();
+
+		return "Data: " + this.getData() + "\n" + "Hora: " + this.getHora() + "\n" + "Médico: "
+				+ this.getMedico().toString();
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+
+		boolean objIsEqual = false;
+
+		if (obj instanceof Consulta) {
+
+			Consulta consultaASerComparada = (Consulta) obj;
+
+			if (consultaASerComparada.getData().equals(this.getData())
+					&& consultaASerComparada.getHora().equals(this.getHora())
+					&& consultaASerComparada.getMedico().equals(this.getMedico())
+					&& consultaASerComparada.getPaciente().equals(this.getPaciente())) {
+
+				objIsEqual = true;
+			}
+
+		}
+
+		return objIsEqual;
+	}
 
 }
