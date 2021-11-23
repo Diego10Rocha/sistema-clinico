@@ -20,9 +20,6 @@ public class MedicoRecepcionistaController implements Initializable{
 	private ListView<Medico> lvMedicos;
 
 	@FXML
-	private Button btnAdicionarMedico;
-
-	@FXML
 	private Button btnRemoverMedico;
 
 	@FXML
@@ -52,10 +49,6 @@ public class MedicoRecepcionistaController implements Initializable{
 
 	}
 
-	@FXML
-	void openScreenFormularioMedico(ActionEvent event) {
-
-	}
 
 	@FXML
 	void removerMedico(ActionEvent event) {
