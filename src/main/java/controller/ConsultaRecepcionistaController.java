@@ -60,8 +60,9 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	}
 
 	@FXML
-	void marcarConsulta(ActionEvent event) {
-
+	void openScreenRequestCPF(ActionEvent event) throws IOException {
+		
+		screenManager.openNewScreen("RequestCPF", "Marcação Consulta");
 	}
 
 	@FXML
