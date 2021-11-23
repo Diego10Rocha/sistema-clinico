@@ -35,12 +35,12 @@ public class RequestCPFController {
 
 		if (isPacienteCadastrado) {
 
-			Paciente paciente = PacienteDAO.findByCPF(CPF);
-			Medico medico = consultaSelecionada.getMedico();
+			String CPF_Medico = consultaSelecionada.getCPF_medico();
 			String horaConsulta = consultaSelecionada.getHora();
 			String dataConsulta = consultaSelecionada.getData();
+			String CPF_Paciente = txtCPF.getText();
 
-			Consulta newConsulta = new Consulta(dataConsulta, horaConsulta, medico, paciente);
+			Consulta newConsulta = new Consulta(dataConsulta, horaConsulta, CPF_Medico, CPF_Paciente);
 
 			ConsultaDAO.insertConsulta(newConsulta);
 
@@ -50,7 +50,8 @@ public class RequestCPFController {
 
 		else {
 
-			msg.showMessage("CPF não cadastrado!", AlertType.WARNING);;
+			msg.showMessage("CPF não cadastrado!", AlertType.WARNING);
+			;
 		}
 
 		closeScreen();
