@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import dao.MedicoDAO;
 import dao.PacienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import message.MessageAlert;
+import model.GerenciadorConsulta;
 import model.Paciente;
 import screenManager.ScreenManager;
 
@@ -92,8 +94,32 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 	}
 
 	@FXML
-	void removerPaciente(ActionEvent event) {
+	void removerPaciente(ActionEvent event) throws Exception {
 
+		pacienteSelecionado = lvPacientes.getSelectionModel().getSelectedItem();
+
+		if (pacienteSelecionado == null) {
+
+			msg.showMessage("Por Favor selecione um Paciente primeiro!", AlertType.WARNING);
+
+		}
+
+		else {
+
+			if (GerenciadorConsulta.hasConsultaRealizada(pacienteSelecionado.getCPF())) {
+
+				msg.showMessage("Falha! Este Paciente possui consultas realizadas no sistema.", AlertType.WARNING);
+			}
+
+			else if (GerenciadorConsulta.hasConsultaMarcada(pacienteSelecionado.getCPF())) {
+
+				GerenciadorConsulta.removeAllConsultaContainsCPF(pacienteSelecionado.getCPF());
+			}
+
+			PacienteDAO.deletePatient(pacienteSelecionado);
+			
+			loadPacientes();
+		}
 	}
 
 	@Override
