@@ -55,7 +55,7 @@ public class MedicoRecepcionistaController implements Initializable, EventHandle
 
 	@FXML
 	void closeScreen(ActionEvent event) {
-		
+
 		Stage stage = (Stage) btnVoltar.getScene().getWindow();
 
 		stage.close();
@@ -116,10 +116,8 @@ public class MedicoRecepcionistaController implements Initializable, EventHandle
 		if (event.getSource() == formularioMedicoEdit.getBtnSalvar()) {
 
 			formularioMedicoEdit.salvarMedicoEdit();
-			;
 
 			loadMedicos();
-			;
 
 		}
 

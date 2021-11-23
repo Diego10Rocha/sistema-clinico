@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -8,14 +9,18 @@ import dao.PacienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import message.MessageAlert;
 import model.Paciente;
+import screenManager.ScreenManager;
 
-public class PacienteRecepcionistaController implements Initializable {
+public class PacienteRecepcionistaController implements Initializable, EventHandler<ActionEvent> {
 
 	@FXML
 	private ListView<Paciente> lvPacientes;
@@ -30,6 +35,14 @@ public class PacienteRecepcionistaController implements Initializable {
 	private Button btnVoltar;
 
 	private ObservableList<Paciente> obsPacientes;
+
+	private static Paciente pacienteSelecionado;
+
+	private ScreenManager screenManager = new ScreenManager();
+
+	private MessageAlert msg = new MessageAlert();
+
+	private FormularioPacienteEditController formularioPacienteEdit;
 
 	public void loadPacientes() {
 
@@ -49,7 +62,32 @@ public class PacienteRecepcionistaController implements Initializable {
 	}
 
 	@FXML
-	void openScreenFormularioEditPaciente(ActionEvent event) {
+	void openScreenFormularioEditPaciente(ActionEvent event) throws IOException {
+
+		pacienteSelecionado = lvPacientes.getSelectionModel().getSelectedItem();
+
+		if (pacienteSelecionado == null) {
+
+			msg.showMessage("Por Favor selecione um Paciente primeiro!", AlertType.WARNING);
+
+		}
+
+		else {
+
+			screenManager.openNewScreen("FormularioPacienteEdit", "Edição paciente");
+
+			setReferenciaFormularioPacienteEdit();
+
+		}
+	}
+
+	private void setReferenciaFormularioPacienteEdit() {
+
+		Object currentController = screenManager.getCurrenController();
+
+		formularioPacienteEdit = (FormularioPacienteEditController) currentController;
+
+		formularioPacienteEdit.addButtonsListener(this);
 
 	}
 
@@ -62,6 +100,30 @@ public class PacienteRecepcionistaController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		loadPacientes();
+
+	}
+
+	public static Paciente getPacienteSelecionado() {
+
+		return pacienteSelecionado;
+	}
+
+	@Override
+	public void handle(ActionEvent event) {
+
+		if (event.getSource() == formularioPacienteEdit.getBtnSalvar()) {
+
+			formularioPacienteEdit.salvarPacienteEdit();
+
+			loadPacientes();
+
+		}
+
+		else if (event.getSource() == formularioPacienteEdit.getBtnCancelar()) {
+
+			formularioPacienteEdit.closeScreen();
+
+		}
 
 	}
 }
