@@ -12,15 +12,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import model.Paciente;
 
-public class PacienteRecepcionistaController implements Initializable{
+public class PacienteRecepcionistaController implements Initializable {
 
 	@FXML
 	private ListView<Paciente> lvPacientes;
-
-	@FXML
-	private Button btnAdicionarPaciente;
 
 	@FXML
 	private Button btnRemoverPaciente;
@@ -45,15 +43,13 @@ public class PacienteRecepcionistaController implements Initializable{
 	@FXML
 	void closeScreen(ActionEvent event) {
 
+		Stage stage = (Stage) btnVoltar.getScene().getWindow();
+
+		stage.close();
 	}
 
 	@FXML
 	void openScreenFormularioEditPaciente(ActionEvent event) {
-
-	}
-
-	@FXML
-	void openScreenFormularioPaciente(ActionEvent event) {
 
 	}
 
@@ -64,8 +60,8 @@ public class PacienteRecepcionistaController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		loadPacientes();
-		
+
 	}
 }

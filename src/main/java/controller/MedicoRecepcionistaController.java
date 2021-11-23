@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Medico;
 import screenManager.ScreenManager;
@@ -54,7 +55,10 @@ public class MedicoRecepcionistaController implements Initializable, EventHandle
 
 	@FXML
 	void closeScreen(ActionEvent event) {
+		
+		Stage stage = (Stage) btnVoltar.getScene().getWindow();
 
+		stage.close();
 	}
 
 	@FXML
@@ -108,12 +112,14 @@ public class MedicoRecepcionistaController implements Initializable, EventHandle
 
 	@Override
 	public void handle(ActionEvent event) {
-		
+
 		if (event.getSource() == formularioMedicoEdit.getBtnSalvar()) {
 
-			formularioMedicoEdit.salvarMedicoEdit();;
+			formularioMedicoEdit.salvarMedicoEdit();
+			;
 
-			loadMedicos();;
+			loadMedicos();
+			;
 
 		}
 
