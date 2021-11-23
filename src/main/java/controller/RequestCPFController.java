@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import message.MessageAlert;
 import model.AgendaConsulta;
@@ -43,13 +44,13 @@ public class RequestCPFController {
 
 			ConsultaDAO.insertConsulta(newConsulta);
 
-			msg.getMessageConsultaMarcadaSucess();
+			msg.showMessage("Consulta marcada com Sucesso", AlertType.INFORMATION);
 
 		}
 
 		else {
 
-			msg.getMessageFailMarcacaoConsulta();
+			msg.showMessage("CPF não cadastrado!", AlertType.WARNING);;
 		}
 
 		closeScreen();

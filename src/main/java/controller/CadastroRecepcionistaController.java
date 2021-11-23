@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import message.MessageAlert;
@@ -39,7 +40,7 @@ public class CadastroRecepcionistaController {
 
 		if (isAnyCampoEmBranco) {
 
-			msgAlert.getMessageCadastroFailCampoEmBranco();
+			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 		}
 
 		else {
@@ -60,7 +61,7 @@ public class CadastroRecepcionistaController {
 
 				Recepcionista newRecepcionista = new Recepcionista(name, CPF, password);
 				
-				msgAlert.getMessageCadastroSuccess();
+				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 				
 				closeScreen();
 			}

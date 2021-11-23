@@ -4,6 +4,7 @@ import dao.MedicoDAO;
 import dao.RecepcionistaDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -54,7 +55,7 @@ public class CadastroMedicoController {
 
 		if (isAnyCampoEmBranco) {
 
-			msgAlert.getMessageCadastroFailCampoEmBranco();
+			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 		}
 
 		else {
@@ -88,7 +89,7 @@ public class CadastroMedicoController {
 				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeOBJ, subEspecialidadeOBJ,
 						horaDisponivelConsulta);
 
-				msgAlert.getMessageCadastroSuccess();
+				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
 				closeScreen();
 			}
