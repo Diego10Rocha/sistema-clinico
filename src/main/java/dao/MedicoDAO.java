@@ -9,7 +9,7 @@ import model.Medico;
 public class MedicoDAO {
 
 	private static FindUserRegister<Medico> findUserRegister = new FindUserRegister<>(Medico[].class,
-			"Arquivos/cadastrosMedico.json");
+			"Arquivos/Medicos.json");
 	private static final String PATH_CADASTROS_MEDICO = "Arquivos/Medicos.json";
 	private static ConnectionFile connectionFile = new ConnectionFile();
 
