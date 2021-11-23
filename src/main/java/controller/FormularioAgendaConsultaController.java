@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import dao.AgendaConsultaDAO;
 import dao.MedicoDAO;
+import date.MyDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,9 +42,9 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 	public void salvar() {
 
-		if (isDataEmBranco()) {
-
-			msgAlert.showMessage("Por Favor informe a data da consulta!", AlertType.WARNING);
+		if (isDataEmBranco() || isDataInvalida()) {
+			
+			msgAlert.showMessage("Por Favor informe uma data válida!", AlertType.WARNING);
 		}
 
 		else if (isMedicoNaoSelecionado()) {
@@ -73,6 +74,18 @@ public class FormularioAgendaConsultaController implements Initializable {
 			
 			closeScreen();
 		}
+	}
+
+	private boolean isDataInvalida() {
+		
+		MyDate myDate = new MyDate();
+		
+		String dataAtual = myDate.getCurrentDate();
+		String dataSelecionada = txtDataConsulta.getEditor().getText();
+		
+		int valComparate  = myDate.compareTo(dataAtual, dataSelecionada);
+		
+		return valComparate >= 1;
 	}
 
 	private boolean isDataEmBranco() {
