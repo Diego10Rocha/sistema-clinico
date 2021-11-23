@@ -71,7 +71,6 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 		especialidadeSelecionada = lvEspecialidades.getSelectionModel().getSelectedItem();
 
 		if (especialidadeSelecionada == null) {
-			
 
 			msg.showMessage("Por Favor selecione uma Especialidade primeiro!", AlertType.WARNING);
 
@@ -167,18 +166,19 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 			formularioEspecialidade.closeScreen();
 
 		}
-		
+
 		else if (event.getSource() == formularioEspecialidadeEdit.getBtnSalvar()) {
 
 			formularioEspecialidadeEdit.salvarEspecialidadeEditada();
-			
+
 			loadEspecialidades();
 
 		}
-		
+
 		else if (event.getSource() == formularioEspecialidadeEdit.getBtnCancelar()) {
 
-			formularioEspecialidadeEdit.closeScreen();;
+			formularioEspecialidadeEdit.closeScreen();
+			;
 
 		}
 

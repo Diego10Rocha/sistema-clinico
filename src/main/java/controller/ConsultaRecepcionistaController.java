@@ -42,6 +42,7 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	private ScreenManager screenManager = new ScreenManager();
 
 	private FormularioAgendaConsultaController formularioAgendaConsulta;
+	private FormularioAgendaConsultaEditController formularioAgendaConsultaEdit;
 
 	private ObservableList<AgendaConsulta> obsConsultas;
 
@@ -78,7 +79,31 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	}
 
 	@FXML
-	void openScreenFormularioEditConsulta(ActionEvent event) {
+	void openScreenFormularioEditConsulta(ActionEvent event) throws IOException {
+
+		agendaSelecionada = lvConsultas.getSelectionModel().getSelectedItem();
+
+		if (agendaSelecionada == null) {
+
+			msg.showMessage("Por Favor selecione uma Agenda primeiro!", AlertType.WARNING);
+		}
+
+		else {
+
+			screenManager.openNewScreen("FormularioAgendaConsultaEdit", "Edição Agenda");
+
+			setReferenciaFormularioAgendaConsultaEdit();
+		}
+
+	}
+
+	private void setReferenciaFormularioAgendaConsultaEdit() {
+
+		Object currentController = screenManager.getCurrenController();
+
+		formularioAgendaConsultaEdit = (FormularioAgendaConsultaEditController) currentController;
+
+		formularioAgendaConsultaEdit.addButtonsListener(this);
 
 	}
 
@@ -96,7 +121,7 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 		else {
 
 			AgendaConsultaDAO.deleteAgendaConsulta(agendaSelecionada);
-			
+
 			loadConsultas();
 
 		}
@@ -104,6 +129,9 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		formularioAgendaConsulta = new FormularioAgendaConsultaController();
+		formularioAgendaConsultaEdit = new FormularioAgendaConsultaEditController();
 
 		loadConsultas();
 
@@ -126,7 +154,6 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 			formularioAgendaConsulta.salvar();
 
 			loadConsultas();
-			;
 
 		}
 
@@ -136,5 +163,24 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 
 		}
 
+		if (event.getSource() == formularioAgendaConsultaEdit.getBtnSalvar()) {
+
+			formularioAgendaConsultaEdit.salvarAgendaEdit();
+
+			loadConsultas();
+
+		}
+
+		else if (event.getSource() == formularioAgendaConsultaEdit.getBtnVoltar()) {
+
+			formularioAgendaConsultaEdit.closeScreen();
+
+		}
+
+	}
+
+	public static AgendaConsulta getAgendaSelecionada() {
+
+		return agendaSelecionada;
 	}
 }
