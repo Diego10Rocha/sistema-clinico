@@ -48,7 +48,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="314.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btnSalvar" mnemonicParsing="false" style="-fx-background-color: white;" text="Cadastrar">
+            <Button fx:id="btnSalvar" mnemonicParsing="false" style="-fx-background-color: white;" text="Salvar">
                <HBox.margin>
                   <Insets left="72.0" right="72.0" />
                </HBox.margin></Button>
