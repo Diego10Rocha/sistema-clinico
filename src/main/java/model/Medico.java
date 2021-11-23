@@ -3,43 +3,52 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
+import dao.PacienteDAO;
 
 public class Medico extends Usuario {
 
 	private final String CRM;
 	private String horaDisponivelConsulta;
 	private List<Paciente> pacientes;
-	private Especialidade[] especialidades;//indice 0 - Especialidade principal; indice 1 - subespecialidade;
+	private List<String> CPFs_pacientes;
+	private final int MAX_QUANTIDADE_NOMES_ESPECIALIDADE = 2;
+	private String[] nomesEspecialidade;// indice 0 - Especialidade principal; indice 1 - subespecialidade;;
 
-	public Medico(String nome, String senha, String CPF, String CRM, Especialidade principal) {
+	public Medico(String nome, String senha, String CPF, String CRM, String principal) {
 
 		super(nome, senha, CPF);
 
 		this.CRM = CRM;
 		this.pacientes = new ArrayList<>();
-		this.setEspecialidades(new Especialidade[2]);
-		this.setEspecialidadePrincipal(principal);
-		
+		this.CPFs_pacientes = new ArrayList<>();
+		this.nomesEspecialidade = new String[MAX_QUANTIDADE_NOMES_ESPECIALIDADE];
+		this.setNomeEspecialidadePrincipal(principal);
+
 		MedicoDAO.insertDoctor(this);
 	}
-	
-	public Medico(String nome, String senha, String CPF, String CRM, 
-			Especialidade principal, Especialidade subespecialidade, String horaDisponivelConsulta) {
+
+	public Medico(String nome, String senha, String CPF, String CRM, String principal, String subespecialidade,
+			String horaDisponivelConsulta) {
 
 		super(nome, senha, CPF);
 
 		this.CRM = CRM;
 		this.pacientes = new ArrayList<>();
-		this.setEspecialidades(new Especialidade[2]);
-		this.setEspecialidadePrincipal(principal);
-		this.setSubEspecialidade(subespecialidade);
+		this.CPFs_pacientes = new ArrayList<>();
+		this.nomesEspecialidade = new String[MAX_QUANTIDADE_NOMES_ESPECIALIDADE];
+		this.setNomeEspecialidadePrincipal(principal);
+		this.setNomeSubEspecialidade(subespecialidade);
 		this.horaDisponivelConsulta = horaDisponivelConsulta;
-		
+
 		MedicoDAO.insertDoctor(this);
 	}
 
 	public List<Paciente> getPacientes() {
+
+		this.CPFs_pacientes.forEach(CPF_Paciente -> PacienteDAO.findByCPF(CPF_Paciente));
+
 		return pacientes;
 	}
 
@@ -47,35 +56,38 @@ public class Medico extends Usuario {
 		this.pacientes = pacientes;
 	}
 
+	public List<String> getCPFs_pacientes() {
+		return CPFs_pacientes;
+	}
+
+	public void setCPFs_pacientes(List<String> CPFs_pacientes) {
+		this.CPFs_pacientes = CPFs_pacientes;
+	}
+
+	public void setCPF_Paciente(String CPF_paciente) {
+		this.CPFs_pacientes.add(CPF_paciente);
+	}
+
 	public String getCRM() {
 		return CRM;
 	}
-	
-	public Especialidade[] getEspecialidades() {
-		return especialidades;
+
+	public void setNomeEspecialidadePrincipal(String nomeEspecialidadePrincipal) {
+		this.nomesEspecialidade[0] = nomeEspecialidadePrincipal;
 	}
 
-	public void setEspecialidades(Especialidade[] especialidades) {
-		this.especialidades = especialidades;
+	public void setNomeSubEspecialidade(String nomeSubEspecialidade) {
+		this.nomesEspecialidade[1] = nomeSubEspecialidade;
 	}
 
 	public Especialidade getEspecialidadePrincipal() {
-		return especialidades[0];
+
+		return EspecialidadeDAO.findByName(nomesEspecialidade[0]);
 	}
 
-	public void setEspecialidadePrincipal(Especialidade especialidades) {
-		this.especialidades[0] = especialidades;
-	}
-	
 	public Especialidade getSubEspecialidade() {
-		return especialidades[1];
+		return EspecialidadeDAO.findByName(nomesEspecialidade[1]);
 	}
-
-	public void setSubEspecialidade(Especialidade especialidades) {
-		this.especialidades[1] = especialidades;
-	}
-	
-	
 
 	public String getHoraDisponivelConsulta() {
 		return horaDisponivelConsulta;
@@ -90,14 +102,18 @@ public class Medico extends Usuario {
 		// TODO Auto-generated method stub
 		return MedicoDAO.login(cpf, senha);
 	}
-	
+
 	@Override
 	public String toString() {
-		return  "Nome: " + this.getNome() + "\n" +
-				"CRM:  " + this.getCRM() + "\n" +
-				"Especialidade: " + this.getEspecialidadePrincipal().getNome() + "\n" +
-				"SubEspecialidade: " + this.getSubEspecialidade().getNome() + "\n" +
-				"Hora disponível para consultas: " + this.getHoraDisponivelConsulta();
+
+		String subEspecialidade = "Não detém.";
+
+		if (this.getSubEspecialidade() != null)
+			subEspecialidade = this.getSubEspecialidade().getNome();
+
+		return "Nome: " + this.getNome() + "\n" + "CRM:  " + this.getCRM() + "\n" + "Especialidade: "
+				+ this.getEspecialidadePrincipal().getNome() + "\n" + "SubEspecialidade: " + subEspecialidade + "\n"
+				+ "Hora disponível para consultas: " + this.getHoraDisponivelConsulta();
 	}
 
 }
