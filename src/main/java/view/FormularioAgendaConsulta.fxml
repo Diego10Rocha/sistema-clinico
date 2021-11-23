@@ -46,7 +46,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutY="502.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <DatePicker fx:id="txtDataNascimento" prefHeight="25.0" prefWidth="270.0">
+            <DatePicker fx:id="txtDataConsulta" prefHeight="25.0" prefWidth="270.0">
                <HBox.margin>
                   <Insets left="6.0" />
                </HBox.margin>

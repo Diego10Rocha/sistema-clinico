@@ -47,7 +47,6 @@ public class AgendaConsulta {
 			if (agendaConsultaASerComparada.getData().equals(this.getData())
 					&& agendaConsultaASerComparada.getHora().equals(this.getHora())
 					&& agendaConsultaASerComparada.getCPF_medico().equals(this.getCPF_medico())) {
-
 				objIsEqual = true;
 			}
 

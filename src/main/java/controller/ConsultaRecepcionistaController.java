@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -8,13 +9,15 @@ import dao.AgendaConsultaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import model.AgendaConsulta;
+import screenManager.ScreenManager;
 
-public class ConsultaRecepcionistaController implements Initializable {
+public class ConsultaRecepcionistaController implements Initializable, EventHandler<ActionEvent> {
 
 	@FXML
 	private ListView<AgendaConsulta> lvConsultas;
@@ -34,6 +37,10 @@ public class ConsultaRecepcionistaController implements Initializable {
 	@FXML
 	private Button btnVoltar;
 
+	private ScreenManager screenManager = new ScreenManager();
+
+	private FormularioAgendaConsultaController formularioAgendaConsulta;
+
 	private ObservableList<AgendaConsulta> obsConsultas;
 
 	@FXML
@@ -47,7 +54,20 @@ public class ConsultaRecepcionistaController implements Initializable {
 	}
 
 	@FXML
-	void openScreenFormularioConsulta(ActionEvent event) {
+	void openScreenFormularioConsulta(ActionEvent event) throws IOException {
+
+		screenManager.openNewScreen("FormularioAgendaConsulta", "Cadastro Agenda");
+
+		setReferenciaFormularioAgendaConsulta();
+	}
+
+	private void setReferenciaFormularioAgendaConsulta() {
+
+		Object currentController = screenManager.getCurrenController();
+
+		formularioAgendaConsulta = (FormularioAgendaConsultaController) currentController;
+
+		formularioAgendaConsulta.addButtonsListener(this);
 
 	}
 
@@ -74,6 +94,25 @@ public class ConsultaRecepcionistaController implements Initializable {
 		obsConsultas = FXCollections.observableArrayList(agendasConsultaCadastradas);
 
 		lvConsultas.setItems(obsConsultas);
+
+	}
+
+	@Override
+	public void handle(ActionEvent event) {
+
+		if (event.getSource() == formularioAgendaConsulta.getBtnCadastrar()) {
+
+			formularioAgendaConsulta.salvar();
+
+			loadConsultas();;
+
+		}
+
+		else if (event.getSource() == formularioAgendaConsulta.getBtnVoltar()) {
+
+			formularioAgendaConsulta.closeScreen();
+
+		}
 
 	}
 }
