@@ -42,8 +42,8 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 	public void salvar() {
 
-		if (isDataEmBranco()) {
-			
+		if (isDataInvalida()) {
+
 			msgAlert.showMessage("Por Favor informe uma data válida!", AlertType.WARNING);
 		}
 
@@ -71,24 +71,33 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 				msgAlert.showMessage("Agenda já cadastrada!", AlertType.INFORMATION);
 			}
-			
+
 			closeScreen();
 		}
 	}
-	
+
 	public boolean isDataInvalida() {
-		
 		return isDataMenorDoQueDataAtual() || isDataEmBranco();
 	}
+
 	private boolean isDataMenorDoQueDataAtual() {
-		
+
 		MyDate myDate = new MyDate();
-		
+
 		String dataAtual = myDate.getCurrentDate();
 		String dataSelecionada = txtDataConsulta.getEditor().getText();
-		
-		int valComparate  = myDate.compareTo(dataAtual, dataSelecionada);
-		
+
+		int valComparate = 0;
+
+		try {
+
+			valComparate = myDate.compareTo(dataAtual, dataSelecionada);
+
+		} catch (IllegalArgumentException e) {
+
+			return true;
+		}
+
 		return valComparate >= 1;
 	}
 
