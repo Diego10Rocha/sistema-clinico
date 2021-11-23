@@ -42,7 +42,7 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 	public void salvar() {
 
-		if (isDataEmBranco() || isDataInvalida()) {
+		if (isDataEmBranco()) {
 			
 			msgAlert.showMessage("Por Favor informe uma data válida!", AlertType.WARNING);
 		}
@@ -75,8 +75,12 @@ public class FormularioAgendaConsultaController implements Initializable {
 			closeScreen();
 		}
 	}
-
-	private boolean isDataInvalida() {
+	
+	public boolean isDataInvalida() {
+		
+		return isDataMenorDoQueDataAtual() || isDataEmBranco();
+	}
+	private boolean isDataMenorDoQueDataAtual() {
 		
 		MyDate myDate = new MyDate();
 		
