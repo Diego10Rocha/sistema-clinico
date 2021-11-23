@@ -1,20 +1,18 @@
 package model;
 
+import dao.MedicoDAO;
+
 public class AgendaConsulta {
 
 	private String data;
 	private String hora;
-	private Medico medico;
+	private final String CPF_medico;
 
-	public AgendaConsulta() {
+	public AgendaConsulta(String data, String hora, String CPF_medico) {
 
-	}
-
-	public AgendaConsulta(String data, String hora, Medico medico) {
-		
 		this.data = data;
 		this.hora = hora;
-		this.medico = medico;
+		this.CPF_medico = CPF_medico;
 	}
 
 	public String getData() {
@@ -33,12 +31,8 @@ public class AgendaConsulta {
 		this.hora = hora;
 	}
 
-	public Medico getMedico() {
-		return this.medico;
-	}
-
-	public void setMedico(Medico medico) {
-		this.medico = medico;
+	public String getCPF_medico() {
+		return CPF_medico;
 	}
 
 	@Override
@@ -52,7 +46,7 @@ public class AgendaConsulta {
 
 			if (agendaConsultaASerComparada.getData().equals(this.getData())
 					&& agendaConsultaASerComparada.getHora().equals(this.getHora())
-					&& agendaConsultaASerComparada.getMedico().equals(this.getMedico())) {
+					&& agendaConsultaASerComparada.getCPF_medico().equals(this.getCPF_medico())) {
 
 				objIsEqual = true;
 			}
@@ -65,9 +59,10 @@ public class AgendaConsulta {
 	@Override
 	public String toString() {
 
-		return "Data: " + this.getData() + "\n" + "Hora: " + this.getHora() + "\n" + "Médico: "
-				+ this.getMedico().getNome() + "\n"
-				+ "Especialidade: " + this.getMedico().getEspecialidadePrincipal().getNome() ;
+		Medico medico = MedicoDAO.findByCPF(CPF_medico);
+
+		return "Data: " + this.getData() + "\n" + "Hora: " + this.getHora() + "\n" + "Médico: " + medico.getNome()
+				+ "\n" + "Especialidade: " + medico.getEspecialidadePrincipal().getNome();
 	}
 
 }
