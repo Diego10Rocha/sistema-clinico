@@ -16,6 +16,14 @@ public class Medico extends Usuario {
 	private final int MAX_QUANTIDADE_NOMES_ESPECIALIDADE = 2;
 	private String[] nomesEspecialidade;// indice 0 - Especialidade principal; indice 1 - subespecialidade;;
 
+	public Medico(String CRM) {
+		this.CRM = CRM;
+		this.pacientes = new ArrayList<>();
+		this.CPFs_pacientes = new ArrayList<>();
+		this.nomesEspecialidade = new String[MAX_QUANTIDADE_NOMES_ESPECIALIDADE];
+
+	};
+
 	public Medico(String nome, String senha, String CPF, String CRM, String principal) {
 
 		super(nome, senha, CPF);
