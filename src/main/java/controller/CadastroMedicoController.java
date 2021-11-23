@@ -86,7 +86,7 @@ public class CadastroMedicoController {
 					subEspecialidadeOBJ = new Especialidade(subEspecialidadeTxt, false);
 				}
 
-				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeOBJ, subEspecialidadeOBJ,
+				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeTxt, subEspecialidadeTxt,
 						horaDisponivelConsulta);
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
