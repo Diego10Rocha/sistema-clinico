@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
+import message.MessageAlert;
 import model.AgendaConsulta;
 import screenManager.ScreenManager;
 
@@ -42,6 +44,10 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	private FormularioAgendaConsultaController formularioAgendaConsulta;
 
 	private ObservableList<AgendaConsulta> obsConsultas;
+
+	private static AgendaConsulta agendaSelecionada;
+
+	private MessageAlert msg = new MessageAlert();
 
 	@FXML
 	void closeScreen(ActionEvent event) {
@@ -77,8 +83,23 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	}
 
 	@FXML
-	void removerConsulta(ActionEvent event) {
+	void removerConsulta(ActionEvent event) throws Exception {
 
+		agendaSelecionada = lvConsultas.getSelectionModel().getSelectedItem();
+
+		if (agendaSelecionada == null) {
+
+			msg.showMessage("Por Favor selecione uma Agenda primeiro!", AlertType.WARNING);
+
+		}
+
+		else {
+
+			AgendaConsultaDAO.deleteAgendaConsulta(agendaSelecionada);
+			
+			loadConsultas();
+
+		}
 	}
 
 	@Override
@@ -104,7 +125,8 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 
 			formularioAgendaConsulta.salvar();
 
-			loadConsultas();;
+			loadConsultas();
+			;
 
 		}
 
