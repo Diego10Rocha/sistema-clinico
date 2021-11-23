@@ -108,6 +108,8 @@ public class MedicoRecepcionistaController implements Initializable, EventHandle
 			if (GerenciadorConsulta.hasConsultaRealizada(medicoSelecionado.getCPF())) {
 
 				msg.showMessage("Falha! Este médico possui consultas realizadas no sistema.", AlertType.WARNING);
+				
+				return;
 			}
 
 			else if (GerenciadorConsulta.hasConsultaMarcada(medicoSelecionado.getCPF())) {
