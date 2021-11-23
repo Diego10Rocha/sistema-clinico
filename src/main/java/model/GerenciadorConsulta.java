@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 
+import dao.AgendaConsultaDAO;
 import dao.ConsultaDAO;
 
 public class GerenciadorConsulta {
@@ -17,7 +18,7 @@ public class GerenciadorConsulta {
 		return foundAssociation;
 
 	}
-	
+
 	public static boolean hasConsultaRealizada(String CPF_Target) {
 
 		List<Consulta> consultasCadastradas = ConsultaDAO.getConsultas();
@@ -34,16 +35,28 @@ public class GerenciadorConsulta {
 
 		List<Consulta> consultasCadastradas = ConsultaDAO.getConsultas();
 
-		for(Consulta consultaCadastrada: consultasCadastradas) {
-			
-			if( consultaCadastrada.getCPF_medico().equals(CPF_Target)
-				|| consultaCadastrada.getCPF_paciente().equals(CPF_Target)) {
-				
+		for (Consulta consultaCadastrada : consultasCadastradas) {
+
+			if (consultaCadastrada.getCPF_medico().equals(CPF_Target)
+					|| consultaCadastrada.getCPF_paciente().equals(CPF_Target)) {
+
 				ConsultaDAO.deleteConsulta(consultaCadastrada);
 			}
 		}
-		
 
+	}
+
+	public static void removeAllConsultaAgendaContainsCPF(String CPF_Target) throws Exception {
+
+		List<AgendaConsulta> agendasCadastradas = AgendaConsultaDAO.getAgendasConsulta();
+
+		for (AgendaConsulta agendaCadastrada : agendasCadastradas) {
+
+			if (agendaCadastrada.getCPF_medico().equals(CPF_Target)) {
+
+				AgendaConsultaDAO.deleteAgendaConsulta(agendaCadastrada);
+			}
+		}
 
 	}
 }

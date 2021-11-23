@@ -17,6 +17,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import message.MessageAlert;
+import model.GerenciadorConsulta;
 import model.Medico;
 import screenManager.ScreenManager;
 
@@ -92,8 +93,33 @@ public class MedicoRecepcionistaController implements Initializable, EventHandle
 	}
 
 	@FXML
-	void removerMedico(ActionEvent event) {
+	void removerMedico(ActionEvent event) throws Exception {
 
+		medicoSelecionado = lvMedicos.getSelectionModel().getSelectedItem();
+
+		if (medicoSelecionado == null) {
+
+			msg.showMessage("Por Favor selecione uma Médico primeiro!", AlertType.WARNING);
+
+		}
+
+		else {
+
+			if (GerenciadorConsulta.hasConsultaRealizada(medicoSelecionado.getCPF())) {
+
+				msg.showMessage("Falha! Este médico possui consultas realizadas no sistema.", AlertType.WARNING);
+			}
+
+			else if (GerenciadorConsulta.hasConsultaMarcada(medicoSelecionado.getCPF())) {
+
+				GerenciadorConsulta.removeAllConsultaContainsCPF(medicoSelecionado.getCPF());
+				GerenciadorConsulta.removeAllConsultaAgendaContainsCPF(medicoSelecionado.getCPF());
+			}
+			
+			MedicoDAO.deleteMedico(medicoSelecionado);
+			
+			loadMedicos();
+		}
 	}
 
 	@Override
