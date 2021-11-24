@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -70,9 +71,8 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 		especialidadeSelecionada = lvEspecialidades.getSelectionModel().getSelectedItem();
 
 		if (especialidadeSelecionada == null) {
-			
 
-			msg.getMessageEspecialidadeNaoSelecionada();
+			msg.showMessage("Por Favor selecione uma Especialidade primeiro!", AlertType.WARNING);
 
 		}
 
@@ -129,13 +129,13 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 			} catch (Exception e) {
 
-				msg.getMessageEspecialidadeFailExcluir();
+				msg.showMessage("A especialidade possui médico(s) asociada!", AlertType.WARNING);
 
 			}
 		}
 
 		else {
-			msg.getMessageEspecialidadeNaoSelecionada();
+			msg.showMessage("Por Favor selecione uma Especialidade primeiro!", AlertType.WARNING);
 		}
 
 	}
@@ -166,18 +166,19 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 			formularioEspecialidade.closeScreen();
 
 		}
-		
+
 		else if (event.getSource() == formularioEspecialidadeEdit.getBtnSalvar()) {
 
 			formularioEspecialidadeEdit.salvarEspecialidadeEditada();
-			
+
 			loadEspecialidades();
 
 		}
-		
+
 		else if (event.getSource() == formularioEspecialidadeEdit.getBtnCancelar()) {
 
-			formularioEspecialidadeEdit.closeScreen();;
+			formularioEspecialidadeEdit.closeScreen();
+			;
 
 		}
 

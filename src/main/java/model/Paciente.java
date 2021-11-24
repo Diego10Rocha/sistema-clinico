@@ -7,13 +7,17 @@ public class Paciente extends Usuario {
 	private String DATA_NASCIMENTO;
 	private Prontuario prontuario;
 
+	public Paciente() {
+
+	}
+
 	public Paciente(String nome, String CPF, String DATA_NASCIMENTO) {
 
 		super(nome, CPF);
 
 		this.DATA_NASCIMENTO = DATA_NASCIMENTO;
 		this.prontuario = new Prontuario(CPF);
-		
+
 		PacienteDAO.insertPatient(this);
 	}
 
@@ -39,7 +43,6 @@ public class Paciente extends Usuario {
 		this.prontuario = prontuario;
 	}
 
-	
 	@Override
 	public Usuario login(String cpf, String senha) {
 		// TODO Auto-generated method stub
@@ -48,10 +51,8 @@ public class Paciente extends Usuario {
 
 	@Override
 	public String toString() {
-		return  "Nome: " + this.getNome() + "\n" +
-				"Data de Nascimento: " + this.getDATA_NASCIMENTO() + "\n" +
-				"CPF: " + this.getCPF();
+		return "Nome: " + this.getNome() + "\n" + "Data de Nascimento: " + this.getDATA_NASCIMENTO() + "\n" + "CPF: "
+				+ this.getCPF();
 	}
-	
-	
+
 }

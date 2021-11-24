@@ -75,9 +75,9 @@ public class EspecialidadeDAO {
 
 		boolean specialtyAlreadyRegistered = false;
 
-		Optional<Especialidade> temp = findByName(nome);
+		Especialidade temp = findByName(nome);
 
-		if (temp.isPresent()) {
+		if (temp != null) {
 
 			specialtyAlreadyRegistered = true;
 		}
@@ -86,11 +86,14 @@ public class EspecialidadeDAO {
 
 	}
 
-	private static Optional<Especialidade> findByName(String name) {
+	public static Especialidade findByName(String name) {
 
 		List<Especialidade> specialties = getSpecialties();
 
-		return specialties.stream().filter(specialty -> specialty.getNome().equals(name)).findFirst();
+		Optional<Especialidade> specialtie = specialties.stream()
+				.filter(specialtieRecord -> specialtieRecord.getNome().equals(name)).findFirst();
+
+		return specialtie.isPresent() ? specialtie.get() : null;
 	}
 
 }

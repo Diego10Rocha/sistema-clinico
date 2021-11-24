@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import message.MessageAlert;
 import model.AgendaConsulta;
@@ -34,22 +35,23 @@ public class RequestCPFController {
 
 		if (isPacienteCadastrado) {
 
-			Paciente paciente = PacienteDAO.findByCPF(CPF);
-			Medico medico = consultaSelecionada.getMedico();
+			String CPF_Medico = consultaSelecionada.getCPF_medico();
 			String horaConsulta = consultaSelecionada.getHora();
 			String dataConsulta = consultaSelecionada.getData();
+			String CPF_Paciente = txtCPF.getText();
 
-			Consulta newConsulta = new Consulta(dataConsulta, horaConsulta, medico, paciente);
+			Consulta newConsulta = new Consulta(dataConsulta, horaConsulta, CPF_Medico, CPF_Paciente);
 
 			ConsultaDAO.insertConsulta(newConsulta);
 
-			msg.getMessageConsultaMarcadaSucess();
+			msg.showMessage("Consulta marcada com Sucesso", AlertType.INFORMATION);
 
 		}
 
 		else {
 
-			msg.getMessageFailMarcacaoConsulta();
+			msg.showMessage("CPF não cadastrado!", AlertType.WARNING);
+			;
 		}
 
 		closeScreen();

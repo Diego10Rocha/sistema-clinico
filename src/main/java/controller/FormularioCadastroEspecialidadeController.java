@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import message.MessageAlert;
@@ -43,7 +44,7 @@ public class FormularioCadastroEspecialidadeController {
 
 				Especialidade newEspecialidade = new Especialidade(txtNome.getText(), false);
 
-				msg.getMessageCadastroSuccess();
+				msg.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
 				closeScreen();
 
@@ -52,7 +53,7 @@ public class FormularioCadastroEspecialidadeController {
 
 		else {
 
-			msg.getMessageCadastroFailCampoEmBranco();
+			msg.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 		}
 	}
 

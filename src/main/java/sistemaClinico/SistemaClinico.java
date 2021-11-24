@@ -68,14 +68,9 @@ public class SistemaClinico {
 			System.out.println(especialidade.getNome());
 		});*/
 		
-		AgendaConsulta agendaConsulta = new AgendaConsulta();
-		Medico medico = MedicoDAO.getDoctors().get(0);
+		AgendaConsulta agenda = new AgendaConsulta("23/11/2021", "15:30", "133.756.333.57");
 		
-		agendaConsulta.setData("21/11/2021");
-		agendaConsulta.setHora(medico.getHoraDisponivelConsulta());
-		agendaConsulta.setMedico(medico);
-		
-		AgendaConsultaDAO.insertAgendaConsulta(agendaConsulta);
+		AgendaConsultaDAO.insertAgendaConsulta(agenda);
 
 	}
 }

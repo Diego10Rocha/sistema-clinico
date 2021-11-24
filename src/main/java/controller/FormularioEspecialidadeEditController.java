@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import message.MessageAlert;
@@ -59,7 +60,7 @@ public class FormularioEspecialidadeEditController implements Initializable {
 
 		else {
 
-			msg.getMessageCadastroFailCampoEmBranco();
+			msg.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 		}
 	}
 

@@ -1,30 +1,21 @@
 package model;
 
+import dao.PacienteDAO;
+
 public class Consulta {
 
 	private String data;
 	private String hora;
-	private Medico medico;
-	private Paciente paciente;
+	private final String CPF_medico;
+	private final String CPF_paciente;
 	private boolean isRealizada;
 
-	public Consulta() {
-	};
-
-	public Consulta(String data, String hora, Medico medico) {
+	public Consulta(String data, String hora, String CPF_medico, String CPF_paciente) {
 
 		this.data = data;
 		this.hora = hora;
-		this.medico = medico;
-
-	}
-
-	public Consulta(String data, String hora, Medico medico, Paciente paciente) {
-
-		this.data = data;
-		this.hora = hora;
-		this.medico = medico;
-		this.paciente = paciente;
+		this.CPF_medico = CPF_medico;
+		this.CPF_paciente = CPF_paciente;
 
 	}
 
@@ -44,23 +35,6 @@ public class Consulta {
 		this.hora = hora;
 	}
 
-	public Medico getMedico() {
-		return medico;
-	}
-
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
-
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-	}
-
-	
 	public boolean isRealizada() {
 		return isRealizada;
 	}
@@ -69,11 +43,20 @@ public class Consulta {
 		this.isRealizada = isRealizada;
 	}
 
+	public String getCPF_medico() {
+		return CPF_medico;
+	}
+
+	public String getCPF_paciente() {
+		return CPF_paciente;
+	}
+
 	@Override
 	public String toString() {
 
-		return "Data: " + this.getData() + "\n" + "Hora: " + this.getHora() + "\n" + "Médico: "
-				+ this.getMedico().toString();
+		String nomePaciente = PacienteDAO.findByCPF(CPF_paciente).getNome();
+
+		return "Data: " + this.getData() + "\n" + "Hora: " + this.getHora() + "\n" + "Paciente: " + nomePaciente;
 	}
 
 	@Override
@@ -87,8 +70,8 @@ public class Consulta {
 
 			if (consultaASerComparada.getData().equals(this.getData())
 					&& consultaASerComparada.getHora().equals(this.getHora())
-					&& consultaASerComparada.getMedico().equals(this.getMedico())
-					&& consultaASerComparada.getPaciente().equals(this.getPaciente())) {
+					&& consultaASerComparada.getCPF_medico().equals(this.getCPF_medico())
+					&& consultaASerComparada.getCPF_paciente().equals(this.getCPF_paciente())) {
 
 				objIsEqual = true;
 			}
