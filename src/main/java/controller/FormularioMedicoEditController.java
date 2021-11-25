@@ -3,6 +3,7 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -51,16 +52,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 		else {
 
-			String especialidadeTxt = txtEspecialidade.getText();
-			String subEspecialidadeTxt = txtSubEspecialidade.getText();
-			
-			Especialidade especialidadeOBJ = new Especialidade(especialidadeTxt, true);
-			Especialidade subEspecialidadeOBJ = null;
-
-			if (subEspecialidadeTxt != "") {
-
-				subEspecialidadeOBJ = new Especialidade(subEspecialidadeTxt, false);
-			}
+			createEspecialidadeIfNotExists();
 
 			updateMedico();
 
@@ -70,13 +62,34 @@ public class FormularioMedicoEditController implements Initializable {
 		}
 	}
 
+	private void createEspecialidadeIfNotExists() {
+
+		String especialidadeTxt = txtEspecialidade.getText();
+		String subEspecialidadeTxt = txtSubEspecialidade.getText();
+
+		boolean notEspecialidadeAlreadyRegistered = !EspecialidadeDAO.specialtyAlreadyRegistered(especialidadeTxt);
+		boolean notSubEspecialidadeAlreadyRegistered = !EspecialidadeDAO
+				.specialtyAlreadyRegistered(subEspecialidadeTxt);
+
+		if (notEspecialidadeAlreadyRegistered) {
+
+			Especialidade especialidade = new Especialidade(especialidadeTxt, true);
+		}
+
+		if (notSubEspecialidadeAlreadyRegistered) {
+
+			Especialidade subEspecialidade = new Especialidade(subEspecialidadeTxt, false);
+		}
+
+	}
+
 	private void updateMedico() {
-		
+
 		String name = txtNome.getText();
 		String especialidadeTxt = txtEspecialidade.getText();
 		String subEspecialidadeTxt = txtSubEspecialidade.getText();
 		String horaDisponivelConsulta = txtHoraConsulta.getText();
-		
+
 		medicoSelecionado.setNome(name);
 		medicoSelecionado.setNomeEspecialidadePrincipal(especialidadeTxt);
 		medicoSelecionado.setNomeSubEspecialidade(subEspecialidadeTxt);
@@ -85,7 +98,6 @@ public class FormularioMedicoEditController implements Initializable {
 		MedicoDAO.updateDoctor(medicoSelecionado);
 
 	}
-
 
 	public void closeScreen() {
 
