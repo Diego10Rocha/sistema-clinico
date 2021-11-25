@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.AgendaConsultaDAO;
@@ -57,6 +58,23 @@ public class GerenciadorConsulta {
 				AgendaConsultaDAO.deleteAgendaConsulta(agendaCadastrada);
 			}
 		}
+
+	}
+
+	public static List<Consulta> getHistoryConsultasPaciente(String CPF_Target) {
+
+		List<Consulta> consultasCadastradas = ConsultaDAO.getConsultas();
+		List<Consulta> historyConsultasPaciente = new ArrayList<>();
+
+		for (Consulta consultaCadastrada : consultasCadastradas) {
+
+			if (consultaCadastrada.getCPF_paciente().equals(CPF_Target)) {
+
+				historyConsultasPaciente.add(consultaCadastrada);
+			}
+		}
+
+		return historyConsultasPaciente;
 
 	}
 }
