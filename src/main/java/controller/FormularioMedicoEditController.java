@@ -71,12 +71,14 @@ public class FormularioMedicoEditController implements Initializable {
 		boolean notSubEspecialidadeAlreadyRegistered = !EspecialidadeDAO
 				.specialtyAlreadyRegistered(subEspecialidadeTxt);
 
+		boolean notNameSubEspecialidadeEmpty = !subEspecialidadeTxt.equals("");
+
 		if (notEspecialidadeAlreadyRegistered) {
 
 			Especialidade especialidade = new Especialidade(especialidadeTxt, true);
 		}
 
-		if (notSubEspecialidadeAlreadyRegistered) {
+		if (notSubEspecialidadeAlreadyRegistered && notNameSubEspecialidadeEmpty) {
 
 			Especialidade subEspecialidade = new Especialidade(subEspecialidadeTxt, false);
 		}

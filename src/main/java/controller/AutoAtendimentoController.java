@@ -25,22 +25,21 @@ public class AutoAtendimentoController implements Initializable {
 
 	@FXML
 	private Button btnMarcarConsulta;
-	
+
 	private static AgendaConsulta consultaSelecionada;
-	
+
 	private ScreenManager screenManager = new ScreenManager();
 
 	private ObservableList<AgendaConsulta> obsConsultas;
-	
+
 	private MessageAlert msg = new MessageAlert();
 
 	@FXML
 	void openScreenRequestCPF(ActionEvent event) throws IOException {
-		
+
 		consultaSelecionada = lvConsultas.getSelectionModel().getSelectedItem();
 
 		if (consultaSelecionada == null) {
-			
 
 			msg.showMessage("Por Favor selecione uma Consulta primeiro!", AlertType.WARNING);
 
@@ -49,7 +48,6 @@ public class AutoAtendimentoController implements Initializable {
 		else {
 
 			screenManager.openNewScreen("RequestCPF", "Requisição CPF");
-
 
 		}
 	}
@@ -71,7 +69,7 @@ public class AutoAtendimentoController implements Initializable {
 	}
 
 	public static AgendaConsulta getConsultaSelecionada() {
-		
+
 		return consultaSelecionada;
 	}
 

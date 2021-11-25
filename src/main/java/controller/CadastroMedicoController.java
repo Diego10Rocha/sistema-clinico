@@ -1,7 +1,7 @@
 package controller;
 
+import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
-import dao.RecepcionistaDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Especialidade;
 import model.Medico;
-import model.Recepcionista;
 
 public class CadastroMedicoController {
 
@@ -78,13 +77,7 @@ public class CadastroMedicoController {
 				String subEspecialidadeTxt = txtSubEspecialidade.getText();
 				String horaDisponivelConsulta = txtHoraConsulta.getText();
 
-				Especialidade especialidadeOBJ = new Especialidade(especialidadeTxt, true);
-				Especialidade subEspecialidadeOBJ = null;
-
-				if (subEspecialidadeTxt != "") {
-
-					subEspecialidadeOBJ = new Especialidade(subEspecialidadeTxt, false);
-				}
+				createEspecialidadeIfNotExists();
 
 				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeTxt, subEspecialidadeTxt,
 						horaDisponivelConsulta);
@@ -94,6 +87,29 @@ public class CadastroMedicoController {
 				closeScreen();
 			}
 		}
+	}
+
+	private void createEspecialidadeIfNotExists() {
+
+		String especialidadeTxt = txtEspecialidade.getText();
+		String subEspecialidadeTxt = txtSubEspecialidade.getText();
+
+		boolean notEspecialidadeAlreadyRegistered = !EspecialidadeDAO.specialtyAlreadyRegistered(especialidadeTxt);
+		boolean notSubEspecialidadeAlreadyRegistered = !EspecialidadeDAO
+				.specialtyAlreadyRegistered(subEspecialidadeTxt);
+		
+		boolean notNameSubEspecialidadeEmpty = !subEspecialidadeTxt.equals("");
+
+		if (notEspecialidadeAlreadyRegistered) {
+
+			Especialidade especialidade = new Especialidade(especialidadeTxt, true);
+		}
+
+		if (notSubEspecialidadeAlreadyRegistered && notNameSubEspecialidadeEmpty) {
+
+			Especialidade subEspecialidade = new Especialidade(subEspecialidadeTxt, false);
+		}
+
 	}
 
 	private void closeScreen() {
