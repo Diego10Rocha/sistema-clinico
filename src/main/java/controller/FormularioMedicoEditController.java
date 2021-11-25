@@ -140,7 +140,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 	private void loadInfoMedico() {
 
-		txtNome.setText(medicoSelecionado.getSenha());
+		txtNome.setText(medicoSelecionado.getNome());
 		txtEspecialidade.setText(medicoSelecionado.getEspecialidadePrincipal().getNome());
 		txtHoraConsulta.setText(medicoSelecionado.getHoraDisponivelConsulta());
 
