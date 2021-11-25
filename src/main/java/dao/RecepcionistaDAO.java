@@ -30,7 +30,7 @@ public class RecepcionistaDAO {
 			}
 
 			connectionFile.writer(receptionist);
-			
+
 			return true;
 
 		} catch (Exception e) {
@@ -41,13 +41,27 @@ public class RecepcionistaDAO {
 		return false;
 	}
 
-	public static boolean updateReceptionist(Recepcionista receptionist, Recepcionista receptionistOld) {
+	public static boolean updateReceptionist(Recepcionista newReceptionist) {
+		
+		boolean isUpdated = false;
+		boolean isOldReceptionistRegistered;
 
 		List<Recepcionista> receptionists = getReceptionists();
 
-		receptionists.set(receptionists.indexOf(receptionistOld), receptionist);
+		isOldReceptionistRegistered = cpfAlreadyRegistered(newReceptionist.getCPF());
 
-		return connectionFile.reWriter(receptionists, PATH_CADASTROS_RECPCIONISTA);
+		if (isOldReceptionistRegistered) {
+
+			Recepcionista oldReceptionist = findByCPF(newReceptionist.getCPF());
+
+			receptionists.remove(oldReceptionist);
+
+			receptionists.add(newReceptionist);
+
+			connectionFile.reWriter(receptionists, PATH_CADASTROS_RECPCIONISTA);
+		}
+
+		return isUpdated;
 	}
 
 	public static boolean deleteReceptionist(Recepcionista receptionist) {
@@ -69,14 +83,14 @@ public class RecepcionistaDAO {
 	}
 
 	public static boolean cpfAlreadyRegistered(String cpf) {
-		
+
 		Recepcionista temp = findUserRegister.findUser(cpf);
 
 		return temp != null;
 	}
 
 	public static Recepcionista findByCPF(String cpf) {
-		
+
 		return findUserRegister.findUser(cpf);
 	}
 }

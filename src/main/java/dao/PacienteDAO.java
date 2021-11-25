@@ -41,13 +41,27 @@ public class PacienteDAO {
 
 	}
 
-	public static boolean updatePatient(Paciente patient, Paciente patientOld) {
+	public static boolean updatePatient(Paciente newPatient) {
+
+		boolean isUpdated = false;
+		boolean isOldPatientRegistered;
 
 		List<Paciente> patients = getPatients();
 
-		patients.set(patients.indexOf(patientOld), patient);
+		isOldPatientRegistered = cpfAlreadyRegistered(newPatient.getCPF());
 
-		return connectionFile.reWriter(patients, PATH_CADASTROS_PACIENTE);
+		if (isOldPatientRegistered) {
+
+			Paciente oldPatient = findByCPF(newPatient.getCPF());
+
+			patients.remove(oldPatient);
+
+			patients.add(newPatient);
+
+			connectionFile.reWriter(patients, PATH_CADASTROS_PACIENTE);
+		}
+
+		return isUpdated;
 	}
 
 	public static boolean deletePatient(Paciente paciente) {
@@ -69,13 +83,13 @@ public class PacienteDAO {
 	}
 
 	public static boolean cpfAlreadyRegistered(String cpf) {
-		
+
 		Paciente temp = findUserRegister.findUser(cpf);
 		return temp != null;
 	}
-	
+
 	public static Paciente findByCPF(String cpf) {
-		
+
 		return findUserRegister.findUser(cpf);
 	}
 }

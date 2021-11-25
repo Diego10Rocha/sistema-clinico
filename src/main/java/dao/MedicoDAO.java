@@ -42,17 +42,31 @@ public class MedicoDAO {
 
 	}
 
-	public static boolean updateDoctor(Medico doctor, Medico doctorOld) {
+	public static boolean updateDoctor(Medico newDoctor) {
+
+		boolean isUpdated = false;
+		boolean isOldDoctorRegistered;
 
 		List<Medico> doctors = getDoctors();
 
-		doctors.set(doctors.indexOf(doctorOld), doctor);
+		isOldDoctorRegistered = cpfAlreadyRegistered(newDoctor.getCPF());
 
-		return connectionFile.reWriter(doctors, PATH_CADASTROS_MEDICO);
+		if (isOldDoctorRegistered) {
+
+			Medico oldDoctor = findByCPF(newDoctor.getCPF());
+
+			doctors.remove(oldDoctor);
+
+			doctors.add(newDoctor);
+
+			connectionFile.reWriter(doctors, PATH_CADASTROS_MEDICO);
+		}
+
+		return isUpdated;
 	}
 
 	public static boolean deleteMedico(Medico doctor) {
-		
+
 		boolean isDeletado;
 
 		List<Medico> doctors = getDoctors();
@@ -65,19 +79,19 @@ public class MedicoDAO {
 	}
 
 	public static Medico login(String cpf, String senha) {
-		
+
 		return findUserRegister.findUser(cpf, senha);
 	}
 
 	public static boolean cpfAlreadyRegistered(String cpf) {
-		
+
 		Medico temp = findUserRegister.findUser(cpf);
 
 		return temp != null;
 	}
 
 	public static Medico findByCPF(String cpf) {
-		
+
 		return findUserRegister.findUser(cpf);
 	}
 }

@@ -8,9 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Especialidade;
@@ -62,9 +62,7 @@ public class FormularioMedicoEditController implements Initializable {
 				subEspecialidadeOBJ = new Especialidade(subEspecialidadeTxt, false);
 			}
 
-			Medico newMedico = createNewMedicoEdit();
-
-			updateMedico(newMedico);
+			updateMedico();
 
 			msgAlert.showMessage("Edição Realizada com sucesso", AlertType.INFORMATION);
 
@@ -72,31 +70,22 @@ public class FormularioMedicoEditController implements Initializable {
 		}
 	}
 
-	private void updateMedico(Medico newMedico) {
-
-		MedicoDAO.updateDoctor(newMedico, medicoSelecionado);
-
-	}
-
-	private Medico createNewMedicoEdit() {
-
+	private void updateMedico() {
+		
 		String name = txtNome.getText();
 		String especialidadeTxt = txtEspecialidade.getText();
 		String subEspecialidadeTxt = txtSubEspecialidade.getText();
 		String horaDisponivelConsulta = txtHoraConsulta.getText();
+		
+		medicoSelecionado.setNome(name);
+		medicoSelecionado.setNomeEspecialidadePrincipal(especialidadeTxt);
+		medicoSelecionado.setNomeSubEspecialidade(subEspecialidadeTxt);
+		medicoSelecionado.setHoraDisponivelConsulta(horaDisponivelConsulta);
 
-		Medico newMedico = new Medico(medicoSelecionado.getCRM());
+		MedicoDAO.updateDoctor(medicoSelecionado);
 
-		newMedico.setCPF(medicoSelecionado.getCPF());
-		newMedico.setCPFs_pacientes(medicoSelecionado.getCPFs_pacientes());
-		newMedico.setHoraDisponivelConsulta(horaDisponivelConsulta);
-		newMedico.setNome(name);
-		newMedico.setNomeEspecialidadePrincipal(especialidadeTxt);
-		newMedico.setNomeSubEspecialidade(subEspecialidadeTxt);
-		newMedico.setSenha(medicoSelecionado.getSenha());
-
-		return newMedico;
 	}
+
 
 	public void closeScreen() {
 

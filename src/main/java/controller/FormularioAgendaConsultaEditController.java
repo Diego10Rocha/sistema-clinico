@@ -9,15 +9,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import message.MessageAlert;
 import model.AgendaConsulta;
-import model.Especialidade;
-import model.Medico;
 
 public class FormularioAgendaConsultaEditController implements Initializable {
 
@@ -54,9 +52,7 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 
 		else {
 
-			AgendaConsulta newAgenda = createNewAgendaEdit();
-
-			updateAgenda(newAgenda);
+			updateAgenda();
 
 			msgAlert.showMessage("Edição Realizada com sucesso", AlertType.INFORMATION);
 
@@ -95,20 +91,15 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 		return txtDataConsulta.getEditor().getText().equals("");
 	}
 
-	private AgendaConsulta createNewAgendaEdit() {
-		
+	private void updateAgenda() {
+
 		String data = txtDataConsulta.getEditor().getText();
 		String hora = txtHoraConsulta.getText();
-		String CPF_Medico = agendaSelecionada.getCPF_medico();
-		
-		AgendaConsulta newAgenda = new AgendaConsulta(data, hora, CPF_Medico);
-				
-		return newAgenda;
-	}
 
-	private void updateAgenda(AgendaConsulta newAgenda) {
-		
-		AgendaConsultaDAO.updateAgenda(newAgenda, agendaSelecionada);
+		agendaSelecionada.setData(data);
+		agendaSelecionada.setHora(hora);
+
+		AgendaConsultaDAO.updateAgenda(agendaSelecionada);
 
 	}
 
