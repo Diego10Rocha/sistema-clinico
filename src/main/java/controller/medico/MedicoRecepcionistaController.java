@@ -12,10 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.GerenciadorConsulta;
 import model.Medico;
@@ -57,9 +56,7 @@ public class MedicoRecepcionistaController implements Initializable, EventHandle
 	@FXML
 	void closeScreen(ActionEvent event) {
 
-		Stage stage = (Stage) btnVoltar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 	}
 
 	@FXML
@@ -108,7 +105,7 @@ public class MedicoRecepcionistaController implements Initializable, EventHandle
 			if (GerenciadorConsulta.hasConsultaRealizada(medicoSelecionado.getCPF())) {
 
 				msg.showMessage("Falha! Este médico possui consultas realizadas no sistema.", AlertType.WARNING);
-				
+
 				return;
 			}
 
@@ -117,9 +114,9 @@ public class MedicoRecepcionistaController implements Initializable, EventHandle
 				GerenciadorConsulta.removeAllConsultaContainsCPF(medicoSelecionado.getCPF());
 				GerenciadorConsulta.removeAllConsultaAgendaContainsCPF(medicoSelecionado.getCPF());
 			}
-			
+
 			MedicoDAO.deleteMedico(medicoSelecionado);
-			
+
 			loadMedicos();
 		}
 	}

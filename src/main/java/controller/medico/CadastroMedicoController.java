@@ -9,10 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Especialidade;
 import model.Medico;
+import screenManager.ScreenManager;
 
 public class CadastroMedicoController {
 
@@ -44,16 +44,15 @@ public class CadastroMedicoController {
 	private TextField txtHoraConsulta;
 
 	private MessageAlert msgAlert = new MessageAlert();
-	
+
 	@FXML
-    private Button btnVoltar;
+	private Button btnVoltar;
 
-    @FXML
-    void closeScreen(ActionEvent event) {
-    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
+	@FXML
+	void closeScreen(ActionEvent event) {
 
-		stage.close();
-    }
+		ScreenManager.closeScreen(btnVoltar);
+	}
 
 	@FXML
 	void cadastrarMedico(ActionEvent event) {
@@ -107,7 +106,7 @@ public class CadastroMedicoController {
 		boolean notEspecialidadeAlreadyRegistered = !EspecialidadeDAO.specialtyAlreadyRegistered(especialidadeTxt);
 		boolean notSubEspecialidadeAlreadyRegistered = !EspecialidadeDAO
 				.specialtyAlreadyRegistered(subEspecialidadeTxt);
-		
+
 		boolean notNameSubEspecialidadeEmpty = !subEspecialidadeTxt.equals("");
 
 		if (notEspecialidadeAlreadyRegistered) {
@@ -124,9 +123,7 @@ public class CadastroMedicoController {
 
 	private void closeScreen() {
 
-		Stage stage = (Stage) btnCadastrar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 
 	}
 

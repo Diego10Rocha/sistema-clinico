@@ -32,7 +32,7 @@ public class MainScreenController implements Initializable {
 	@FXML
 	void closeScreen(ActionEvent event) {
 
-		screenManager.closeScreen(menuItemSair);
+		ScreenManager.closeScreen(menuItemSair);
 	}
 
 	@FXML
@@ -56,6 +56,7 @@ public class MainScreenController implements Initializable {
 
 	@FXML
 	void showSobreSistema(ActionEvent event) throws IOException {
+
 		screenManager.openNewScreen("SobreScreen", "About");
 	}
 

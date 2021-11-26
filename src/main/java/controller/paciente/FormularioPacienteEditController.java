@@ -8,13 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Paciente;
+import screenManager.ScreenManager;
 
 public class FormularioPacienteEditController implements Initializable {
 
@@ -66,9 +66,7 @@ public class FormularioPacienteEditController implements Initializable {
 
 	public void closeScreen() {
 
-		Stage stage = (Stage) btnSalvar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnCancelar);
 	}
 
 	private boolean isAnyCampoEmBranco() {

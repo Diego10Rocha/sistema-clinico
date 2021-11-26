@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import message.MessageAlert;
@@ -34,16 +33,15 @@ public class AutoAtendimentoController implements Initializable {
 	private ObservableList<AgendaConsulta> obsConsultas;
 
 	private MessageAlert msg = new MessageAlert();
-	
+
 	@FXML
-    private Button btnVoltar;
+	private Button btnVoltar;
 
-    @FXML
-    void closeScreen(ActionEvent event) {
-    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
+	@FXML
+	void closeScreen(ActionEvent event) {
 
-		stage.close();
-    }
+		ScreenManager.closeScreen(btnVoltar);
+	}
 
 	@FXML
 	void openScreenRequestCPF(ActionEvent event) throws IOException {

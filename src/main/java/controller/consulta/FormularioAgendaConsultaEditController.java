@@ -14,9 +14,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.AgendaConsulta;
+import screenManager.ScreenManager;
 
 public class FormularioAgendaConsultaEditController implements Initializable {
 
@@ -119,9 +119,7 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 
 	public void closeScreen() {
 
-		Stage stage = (Stage) btnVoltar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 
 	}
 
