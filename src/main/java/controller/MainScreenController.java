@@ -7,55 +7,58 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import screenManager.ScreenManager;
 
 public class MainScreenController implements Initializable {
 
 	@FXML
-	private Menu menuArquivo;
+	private Button menuItemAutoAtendimento;
 
 	@FXML
-	private MenuItem menuItemAutoAtendimento;
+	private Button menuItemLogin;
 
 	@FXML
-	private MenuItem menuItemLogin;
+	private Button menuItemCadastroRecepcionista;
 
 	@FXML
-	private MenuItem menuItemCadastroRecepcionista;
-
-	@FXML
-	private Menu menuSobre;
-
-	@FXML
-	private MenuItem menuItemSobre;
+	private Button menuItemSobre;
 	
 	private ScreenManager screenManager = new ScreenManager();
+	
+	@FXML
+    private Button menuItemSair;
+
+    @FXML
+    void closeScreen(ActionEvent event) {
+    	Stage stage = (Stage) menuItemSair.getScene().getWindow();
+
+		stage.close();
+    }
 
 	@FXML
 	void openFormularioScreenCadastroRecepcionista(ActionEvent event) throws IOException {
 		
-		screenManager.openNewScreen("FormularioCadastroRecepcionista", "Cadastro recepcionista");
-		
+		screenManager.openNewScreen("recepcionista/FormularioCadastroRecepcionista", "Cadastro recepcionista");
 		
 	}
 
 	@FXML
 	void openScreenAutoAtendimento(ActionEvent event) throws IOException {
 		
-		screenManager.openNewScreen("AutoAtendimentoScreen", "Autoatendimento");
+		screenManager.openNewScreen("paciente/AutoAtendimentoScreen", "Autoatendimento");
 	}
 
 	@FXML
 	void openScreenLogin(ActionEvent event) throws IOException {
 		
-		screenManager.openNewScreen("LoginScreen", "Login");
+		screenManager.openNewScreen("login/LoginScreen", "Login");
 	}
 
 	@FXML
-	void showSobreSistema(ActionEvent event) {
-
+	void showSobreSistema(ActionEvent event) throws IOException {
+		screenManager.openNewScreen("SobreScreen", "About");
 	}
 
 	@Override

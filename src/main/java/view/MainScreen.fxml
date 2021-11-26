@@ -1,36 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
    <children>
-      <HBox alignment="CENTER" layoutY="109.0" prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="109.0">
+      <HBox alignment="CENTER" layoutY="115.0" prefHeight="214.0" prefWidth="600.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="115.0">
          <children>
-            <MenuBar style="-fx-background-color: white;">
-              <menus>
-                <Menu fx:id="menuArquivo" mnemonicParsing="false" text="Arquivo">
-                  <items>
-                    <MenuItem fx:id="menuItemAutoAtendimento" mnemonicParsing="false" onAction="#openScreenAutoAtendimento" text="AutoAtendimento" />
-                        <MenuItem fx:id="menuItemLogin" mnemonicParsing="false" onAction="#openScreenLogin" text="Login" />
-                        <MenuItem fx:id="menuItemCadastroRecepcionista" mnemonicParsing="false" onAction="#openFormularioScreenCadastroRecepcionista" text="Cadastro Recepcionista" />
-                  </items>
-                </Menu>
-                <Menu fx:id="menuSobre" mnemonicParsing="false" text="Sobre">
-                  <items>
-                    <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#showSobreSistema" text="Sistema" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
+            <VBox alignment="TOP_CENTER" prefHeight="214.0" prefWidth="202.0">
+               <children>
+                  <Button fx:id="menuItemAutoAtendimento" mnemonicParsing="false" onAction="#openScreenAutoAtendimento" prefHeight="30.0" prefWidth="206.0" style="-fx-background-color: white;" text="Auto-Atendimento">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="menuItemLogin" mnemonicParsing="false" onAction="#openScreenLogin" prefHeight="30.0" prefWidth="206.0" style="-fx-background-color: white;" text="Login">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="menuItemCadastroRecepcionista" mnemonicParsing="false" onAction="#openFormularioScreenCadastroRecepcionista" prefHeight="30.0" prefWidth="203.0" style="-fx-background-color: white;" text="Cadastrar Recepcionista">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="menuItemSobre" mnemonicParsing="false" onAction="#showSobreSistema" prefHeight="30.0" prefWidth="207.0" style="-fx-background-color: white;" text="Sobre">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="menuItemSair" mnemonicParsing="false" onAction="#closeScreen" prefHeight="30.0" prefWidth="202.0" style="-fx-background-color: white;" text="Sair">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="29.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+      <HBox alignment="CENTER" layoutY="29.0" prefHeight="86.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
          <children>
             <Text fill="#f5efef" strokeType="OUTSIDE" strokeWidth="0.0" text="NaClin">
                <font>
