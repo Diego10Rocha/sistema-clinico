@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import login.Login;
 import resultLoginTry.ResultLoginTry;
 import screenManager.ScreenManager;
@@ -34,9 +33,8 @@ public class LoginController {
 
 	@FXML
 	void closeScreen(ActionEvent event) {
-		Stage stage = (Stage) btnVoltar.getScene().getWindow();
-
-		stage.close();
+		
+		ScreenManager.closeScreen(btnVoltar);
 	}
 
 	@FXML

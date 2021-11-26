@@ -132,6 +132,7 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 		}
 
 		else {
+
 			msg.showMessage("Por Favor selecione uma Especialidade primeiro!", AlertType.WARNING);
 		}
 

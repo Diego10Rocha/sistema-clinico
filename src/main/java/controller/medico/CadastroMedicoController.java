@@ -59,9 +59,7 @@ public class CadastroMedicoController {
 
 		txtMessageCPF_Cadastrado.setText("");
 
-		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
-
-		if (isAnyCampoEmBranco) {
+		if (isAnyCampoEmBranco()) {
 
 			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 		}
@@ -79,23 +77,30 @@ public class CadastroMedicoController {
 
 			else {
 
-				String name = txtNome.getText();
-				String password = txtSenha.getText();
-				String CRM = txtCRM.getText();
-				String especialidadeTxt = txtEspecialidade.getText();
-				String subEspecialidadeTxt = txtSubEspecialidade.getText();
-				String horaDisponivelConsulta = txtHoraConsulta.getText();
-
-				createEspecialidadeIfNotExists();
-
-				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeTxt, subEspecialidadeTxt,
-						horaDisponivelConsulta);
+				createNewMedico();
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
 				closeScreen();
 			}
 		}
+	}
+
+	private void createNewMedico() {
+
+		String CPF = txtCPF.getText();
+		String name = txtNome.getText();
+		String password = txtSenha.getText();
+		String CRM = txtCRM.getText();
+		String especialidadeTxt = txtEspecialidade.getText();
+		String subEspecialidadeTxt = txtSubEspecialidade.getText();
+		String horaDisponivelConsulta = txtHoraConsulta.getText();
+
+		createEspecialidadeIfNotExists();
+
+		Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeTxt, subEspecialidadeTxt,
+				horaDisponivelConsulta);
+
 	}
 
 	private void createEspecialidadeIfNotExists() {

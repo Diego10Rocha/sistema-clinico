@@ -37,7 +37,7 @@ public class FormularioCadastroEspecialidadeController {
 			if (EspecialidadeDAO.specialtyAlreadyRegistered(txtNome.getText())) {
 
 				txtMessageEspecialidade_Cadastrada.setText("Especialidade Já Cadastrada.");
-
+				
 			}
 
 			else {
