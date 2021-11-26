@@ -1,16 +1,13 @@
 package controller;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import screenManager.ScreenManager;
 
-public class MainScreenController implements Initializable {
+public class MainScreenController {
 
 	@FXML
 	private Button menuItemAutoAtendimento;
@@ -58,12 +55,6 @@ public class MainScreenController implements Initializable {
 	void showSobreSistema(ActionEvent event) throws IOException {
 
 		screenManager.openNewScreen("SobreScreen", "About");
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
