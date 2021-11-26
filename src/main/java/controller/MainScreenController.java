@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import screenManager.ScreenManager;
 
 public class MainScreenController implements Initializable {
@@ -33,9 +32,7 @@ public class MainScreenController implements Initializable {
 	@FXML
 	void closeScreen(ActionEvent event) {
 
-		Stage stage = (Stage) menuItemSair.getScene().getWindow();
-
-		stage.close();
+		screenManager.closeScreen(menuItemSair);
 	}
 
 	@FXML

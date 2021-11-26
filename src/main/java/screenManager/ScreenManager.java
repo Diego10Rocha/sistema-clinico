@@ -56,7 +56,7 @@ public class ScreenManager {
         
     }
 	
-	public void closeScreen(Button buttonClose) {
+	public static void closeScreen(Button buttonClose) {
 		
 		Stage stage = (Stage) buttonClose.getScene().getWindow();
 
