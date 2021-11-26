@@ -53,9 +53,15 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 
 		else {
 
-			updateAgenda();
+			boolean isUpdateSuccess = updateAgenda();
 
-			msgAlert.showMessage("Edição Realizada com sucesso", AlertType.INFORMATION);
+			if (isUpdateSuccess)
+
+				msgAlert.showMessage("Edição Realizada com sucesso", AlertType.INFORMATION);
+
+			else
+
+				msgAlert.showMessage("Agenda já cadastrada!", AlertType.WARNING);
 
 			closeScreen();
 		}
@@ -92,7 +98,7 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 		return txtDataConsulta.getEditor().getText().equals("");
 	}
 
-	private void updateAgenda() {
+	private boolean updateAgenda() {
 
 		String data = txtDataConsulta.getEditor().getText();
 		String hora = txtHoraConsulta.getText();
@@ -100,7 +106,7 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 		agendaSelecionada.setData(data);
 		agendaSelecionada.setHora(hora);
 
-		AgendaConsultaDAO.updateAgenda(agendaSelecionada);
+		return AgendaConsultaDAO.updateAgenda(agendaSelecionada);
 
 	}
 
