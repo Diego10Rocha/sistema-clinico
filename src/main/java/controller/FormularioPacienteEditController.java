@@ -44,9 +44,7 @@ public class FormularioPacienteEditController implements Initializable {
 
 		else {
 
-			Paciente newPaciente = createNewPaciente();
-
-			updatePaciente(newPaciente);
+			updatePaciente();
 
 			msgAlert.showMessage("Edição Realizado com sucesso", AlertType.INFORMATION);
 
@@ -54,25 +52,16 @@ public class FormularioPacienteEditController implements Initializable {
 		}
 	}
 
-	private void updatePaciente(Paciente newPaciente) {
-
-		PacienteDAO.updatePatient(newPaciente, pacienteSelecionado);
-
-	}
-
-	private Paciente createNewPaciente() {
+	private void updatePaciente() {
 
 		String name = txtNome.getText();
 		String dataNascimento = txtDataNascimento.getEditor().getText();
 
-		Paciente newPaciente = new Paciente();
+		pacienteSelecionado.setNome(name);
+		pacienteSelecionado.setDATA_NASCIMENTO(dataNascimento);
 
-		newPaciente.setNome(name);
-		newPaciente.setDATA_NASCIMENTO(dataNascimento);
-		newPaciente.setCPF(pacienteSelecionado.getCPF());
-		newPaciente.setProntuario(pacienteSelecionado.getProntuario());
+		PacienteDAO.updatePatient(pacienteSelecionado);
 
-		return newPaciente;
 	}
 
 	public void closeScreen() {

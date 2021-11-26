@@ -13,7 +13,8 @@ public class AgendaConsultaDAO {
 
 	public static List<AgendaConsulta> getAgendasConsulta() {
 
-		List<AgendaConsulta> agendasConsulta = connectionFile.readFile(PATH_CADASTROS_AGENDA_CONSULTA, AgendaConsulta[].class);
+		List<AgendaConsulta> agendasConsulta = connectionFile.readFile(PATH_CADASTROS_AGENDA_CONSULTA,
+				AgendaConsulta[].class);
 
 		return agendasConsulta;
 	}
@@ -40,13 +41,45 @@ public class AgendaConsultaDAO {
 
 	}
 
-	public static boolean updateAgenda(AgendaConsulta newAgenda, AgendaConsulta oldAgenda) {
+	public static boolean updateAgenda(AgendaConsulta newAgenda) {
+
+		boolean isUpdated = false;
+		boolean isOldAgendaRegistered;
 
 		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
 
-		agendasConsulta.set(agendasConsulta.indexOf(oldAgenda), newAgenda);
+		isOldAgendaRegistered = isCPF_MedicoAgendaAlreadyRegistered(newAgenda.getCPF_medico());
 
-		return connectionFile.reWriter(agendasConsulta, PATH_CADASTROS_AGENDA_CONSULTA);
+		if (isOldAgendaRegistered) {
+
+			AgendaConsulta oldAgendaConsulta = findByCPF_Medico(newAgenda.getCPF_medico());
+
+			agendasConsulta.remove(oldAgendaConsulta);
+
+			agendasConsulta.add(newAgenda);
+
+			connectionFile.reWriter(agendasConsulta, PATH_CADASTROS_AGENDA_CONSULTA);
+		}
+
+		return isUpdated;
+	}
+
+	private static AgendaConsulta findByCPF_Medico(String CPF_medico) {
+
+		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
+
+		Optional<AgendaConsulta> agendaFound = agendasConsulta.stream().filter(agenda -> agenda.getCPF_medico().equals(CPF_medico)).findFirst();
+
+		return agendaFound.isPresent() ? agendaFound.get() : null;
+	}
+
+	private static boolean isCPF_MedicoAgendaAlreadyRegistered(String CPF_Medico_Target) {
+
+		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
+
+		return agendasConsulta.stream().filter(agenda -> agenda.getCPF_medico().equals(CPF_Medico_Target)).findFirst()
+				.isPresent();
+
 	}
 
 	public static boolean deleteAgendaConsulta(AgendaConsulta agendaConsulta) throws Exception {
@@ -54,7 +87,6 @@ public class AgendaConsultaDAO {
 		boolean isDeletada;
 
 		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
-
 
 		isDeletada = agendasConsulta.remove(agendaConsulta);
 

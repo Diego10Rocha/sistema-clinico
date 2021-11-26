@@ -58,19 +58,22 @@ public class SistemaClinico {
 		 * System.out.println(resultLogin.getValue());
 		 */
 		/*
-		System.out.println("\nEspecialidades: \n");
+		 * System.out.println("\nEspecialidades: \n");
+		 * 
+		 * if (EspecialidadeDAO.insertSpecialty(new Especialidade("Pediatra", false))) {
+		 * System.out.println("a"); } List<Especialidade> especialidades =
+		 * EspecialidadeDAO.getSpecialties(); especialidades.forEach(especialidade -> {
+		 * System.out.println(especialidade.getNome()); });
+		 */
 
-		if (EspecialidadeDAO.insertSpecialty(new Especialidade("Pediatra", false))) {
-			System.out.println("a");
-		}
-		List<Especialidade> especialidades = EspecialidadeDAO.getSpecialties();
-		especialidades.forEach(especialidade -> {
-			System.out.println(especialidade.getNome());
-		});*/
-		
-		AgendaConsulta agenda = new AgendaConsulta("23/11/2021", "15:30", "133.756.333.57");
-		
-		AgendaConsultaDAO.insertAgendaConsulta(agenda);
+		Paciente paciente = PacienteDAO.getPatients().get(0);
+
+		paciente.setNome("Ana");
+		paciente.setDATA_NASCIMENTO("2000/12/03");
+
+		PacienteDAO.updatePatient(paciente);
+
+		System.out.println(paciente.getNome());
 
 	}
 }

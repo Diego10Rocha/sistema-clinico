@@ -3,14 +3,15 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Especialidade;
@@ -51,20 +52,9 @@ public class FormularioMedicoEditController implements Initializable {
 
 		else {
 
-			String especialidadeTxt = txtEspecialidade.getText();
-			String subEspecialidadeTxt = txtSubEspecialidade.getText();
-			
-			Especialidade especialidadeOBJ = new Especialidade(especialidadeTxt, true);
-			Especialidade subEspecialidadeOBJ = null;
+			createEspecialidadeIfNotExists();
 
-			if (subEspecialidadeTxt != "") {
-
-				subEspecialidadeOBJ = new Especialidade(subEspecialidadeTxt, false);
-			}
-
-			Medico newMedico = createNewMedicoEdit();
-
-			updateMedico(newMedico);
+			updateMedico();
 
 			msgAlert.showMessage("Edição Realizada com sucesso", AlertType.INFORMATION);
 
@@ -72,30 +62,43 @@ public class FormularioMedicoEditController implements Initializable {
 		}
 	}
 
-	private void updateMedico(Medico newMedico) {
+	private void createEspecialidadeIfNotExists() {
 
-		MedicoDAO.updateDoctor(newMedico, medicoSelecionado);
+		String especialidadeTxt = txtEspecialidade.getText();
+		String subEspecialidadeTxt = txtSubEspecialidade.getText();
+
+		boolean notEspecialidadeAlreadyRegistered = !EspecialidadeDAO.specialtyAlreadyRegistered(especialidadeTxt);
+		boolean notSubEspecialidadeAlreadyRegistered = !EspecialidadeDAO
+				.specialtyAlreadyRegistered(subEspecialidadeTxt);
+
+		boolean notNameSubEspecialidadeEmpty = !subEspecialidadeTxt.equals("");
+
+		if (notEspecialidadeAlreadyRegistered) {
+
+			Especialidade especialidade = new Especialidade(especialidadeTxt, true);
+		}
+
+		if (notSubEspecialidadeAlreadyRegistered && notNameSubEspecialidadeEmpty) {
+
+			Especialidade subEspecialidade = new Especialidade(subEspecialidadeTxt, false);
+		}
 
 	}
 
-	private Medico createNewMedicoEdit() {
+	private void updateMedico() {
 
 		String name = txtNome.getText();
 		String especialidadeTxt = txtEspecialidade.getText();
 		String subEspecialidadeTxt = txtSubEspecialidade.getText();
 		String horaDisponivelConsulta = txtHoraConsulta.getText();
 
-		Medico newMedico = new Medico(medicoSelecionado.getCRM());
+		medicoSelecionado.setNome(name);
+		medicoSelecionado.setNomeEspecialidadePrincipal(especialidadeTxt);
+		medicoSelecionado.setNomeSubEspecialidade(subEspecialidadeTxt);
+		medicoSelecionado.setHoraDisponivelConsulta(horaDisponivelConsulta);
 
-		newMedico.setCPF(medicoSelecionado.getCPF());
-		newMedico.setCPFs_pacientes(medicoSelecionado.getCPFs_pacientes());
-		newMedico.setHoraDisponivelConsulta(horaDisponivelConsulta);
-		newMedico.setNome(name);
-		newMedico.setNomeEspecialidadePrincipal(especialidadeTxt);
-		newMedico.setNomeSubEspecialidade(subEspecialidadeTxt);
-		newMedico.setSenha(medicoSelecionado.getSenha());
+		MedicoDAO.updateDoctor(medicoSelecionado);
 
-		return newMedico;
 	}
 
 	public void closeScreen() {
@@ -151,7 +154,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 	private void loadInfoMedico() {
 
-		txtNome.setText(medicoSelecionado.getSenha());
+		txtNome.setText(medicoSelecionado.getNome());
 		txtEspecialidade.setText(medicoSelecionado.getEspecialidadePrincipal().getNome());
 		txtHoraConsulta.setText(medicoSelecionado.getHoraDisponivelConsulta());
 
