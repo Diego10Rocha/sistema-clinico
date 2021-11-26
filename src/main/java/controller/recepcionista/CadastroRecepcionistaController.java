@@ -65,16 +65,25 @@ public class CadastroRecepcionistaController {
 
 			else {
 
-				String name = txtNome.getText();
-				String password = txtSenha.getText();
+				createNewRecepcionista();
 
-				Recepcionista newRecepcionista = new Recepcionista(name, CPF, password);
+				
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
 				closeScreen();
 			}
 		}
+
+	}
+
+	private void createNewRecepcionista() {
+		
+		String CPF = txtCPF.getText();
+		String name = txtNome.getText();
+		String password = txtSenha.getText();
+
+		Recepcionista newRecepcionista = new Recepcionista(name, CPF, password);
 
 	}
 
