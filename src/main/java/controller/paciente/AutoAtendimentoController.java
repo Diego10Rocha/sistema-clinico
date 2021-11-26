@@ -56,7 +56,7 @@ public class AutoAtendimentoController implements Initializable {
 
 		else {
 
-			screenManager.openNewScreen("RequestCPF", "Requisição CPF");
+			screenManager.openNewScreen("consulta/RequestCPF", "Requisição CPF");
 
 		}
 	}

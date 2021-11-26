@@ -42,9 +42,12 @@ public class RequestCPFController {
 
 				msg.showMessage("A consulta já foi marcada.", AlertType.WARNING);
 
-			else
+			else {
+
+				ConsultaDAO.insertConsulta(newConsulta);
 
 				msg.showMessage("Consulta marcada com Sucesso", AlertType.INFORMATION);
+			}
 
 		}
 
