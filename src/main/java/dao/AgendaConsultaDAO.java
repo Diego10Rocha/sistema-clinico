@@ -43,32 +43,41 @@ public class AgendaConsultaDAO {
 
 	public static boolean updateAgenda(AgendaConsulta newAgenda) {
 
-		boolean isUpdated = false;
-		boolean isOldAgendaRegistered;
+		boolean isNewAlreadyRegistered = agendaConsultaAlreadyRegistered(newAgenda);
 
-		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
+		if (isNewAlreadyRegistered)
 
-		isOldAgendaRegistered = isCPF_MedicoAgendaAlreadyRegistered(newAgenda.getCPF_medico());
+			return false;
 
-		if (isOldAgendaRegistered) {
+		else {
 
-			AgendaConsulta oldAgendaConsulta = findByCPF_Medico(newAgenda.getCPF_medico());
+			List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
 
-			agendasConsulta.remove(oldAgendaConsulta);
+			boolean isOldAgendaRegistered = isCPF_MedicoAgendaAlreadyRegistered(newAgenda.getCPF_medico());
 
-			agendasConsulta.add(newAgenda);
+			if (isOldAgendaRegistered) {
 
-			connectionFile.reWriter(agendasConsulta, PATH_CADASTROS_AGENDA_CONSULTA);
+				AgendaConsulta oldAgendaConsulta = findByCPF_Medico(newAgenda.getCPF_medico());
+
+				agendasConsulta.remove(oldAgendaConsulta);
+
+				agendasConsulta.add(newAgenda);
+
+				connectionFile.reWriter(agendasConsulta, PATH_CADASTROS_AGENDA_CONSULTA);
+
+				return true;
+			}
+
+			return false;
 		}
-
-		return isUpdated;
 	}
 
 	private static AgendaConsulta findByCPF_Medico(String CPF_medico) {
 
 		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
 
-		Optional<AgendaConsulta> agendaFound = agendasConsulta.stream().filter(agenda -> agenda.getCPF_medico().equals(CPF_medico)).findFirst();
+		Optional<AgendaConsulta> agendaFound = agendasConsulta.stream()
+				.filter(agenda -> agenda.getCPF_medico().equals(CPF_medico)).findFirst();
 
 		return agendaFound.isPresent() ? agendaFound.get() : null;
 	}
