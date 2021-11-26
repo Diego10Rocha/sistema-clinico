@@ -38,9 +38,7 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 
 	public void salvarAgendaEdit() {
 
-		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
-
-		if (isAnyCampoEmBranco) {
+		if (isAnyCampoEmBranco()) {
 
 			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 
