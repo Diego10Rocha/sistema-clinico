@@ -1,5 +1,6 @@
 package controller.medico;
 
+import Factory.UserFactory;
 import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import javafx.event.ActionEvent;
@@ -77,30 +78,16 @@ public class CadastroMedicoController {
 
 			else {
 
-				createNewMedico();
+				createEspecialidadeIfNotExists();
+
+				UserFactory.createMedico(txtNome.getText(), txtSenha.getText(), CPF, txtCRM.getText(),
+						txtEspecialidade.getText(), txtSubEspecialidade.getText(), txtHoraConsulta.getText());
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
 				closeScreen();
 			}
 		}
-	}
-
-	private void createNewMedico() {
-
-		String CPF = txtCPF.getText();
-		String name = txtNome.getText();
-		String password = txtSenha.getText();
-		String CRM = txtCRM.getText();
-		String especialidadeTxt = txtEspecialidade.getText();
-		String subEspecialidadeTxt = txtSubEspecialidade.getText();
-		String horaDisponivelConsulta = txtHoraConsulta.getText();
-
-		createEspecialidadeIfNotExists();
-
-		Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeTxt, subEspecialidadeTxt,
-				horaDisponivelConsulta);
-
 	}
 
 	private void createEspecialidadeIfNotExists() {

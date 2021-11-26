@@ -23,4 +23,5 @@ public class UserFactory {
 		Recepcionista newRecepcionista = new Recepcionista(name, CPF, password);
 
 	}
+	
 }

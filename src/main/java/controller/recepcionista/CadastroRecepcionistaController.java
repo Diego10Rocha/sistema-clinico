@@ -1,5 +1,6 @@
 package controller.recepcionista;
 
+import Factory.UserFactory;
 import dao.RecepcionistaDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +10,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import message.MessageAlert;
-import model.Recepcionista;
 import screenManager.ScreenManager;
 
 public class CadastroRecepcionistaController {
@@ -65,25 +65,13 @@ public class CadastroRecepcionistaController {
 
 			else {
 
-				createNewRecepcionista();
-
-				
+				UserFactory.createRecepcionista(txtNome.getText(), CPF, txtSenha.getText());
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
 				closeScreen();
 			}
 		}
-
-	}
-
-	private void createNewRecepcionista() {
-		
-		String CPF = txtCPF.getText();
-		String name = txtNome.getText();
-		String password = txtSenha.getText();
-
-		Recepcionista newRecepcionista = new Recepcionista(name, CPF, password);
 
 	}
 

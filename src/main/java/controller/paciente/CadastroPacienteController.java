@@ -1,5 +1,6 @@
 package controller.paciente;
 
+import Factory.UserFactory;
 import dao.PacienteDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +10,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import message.MessageAlert;
-import model.Paciente;
 import screenManager.ScreenManager;
 
 public class CadastroPacienteController {
@@ -65,23 +65,13 @@ public class CadastroPacienteController {
 
 			else {
 
-				createNewPaciente();
+				UserFactory.createPaciente(txtNome.getText(), CPF, txtDataNascimento.getEditor().getText());
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
 				closeScreen();
 			}
 		}
-
-	}
-
-	private void createNewPaciente() {
-
-		String CPF = txtCPF.getText();
-		String name = txtNome.getText();
-		String dataNascimento = txtDataNascimento.getEditor().getText();
-
-		Paciente newPaciente = new Paciente(name, CPF, dataNascimento);
 
 	}
 
