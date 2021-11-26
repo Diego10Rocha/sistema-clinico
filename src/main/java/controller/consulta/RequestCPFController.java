@@ -34,26 +34,38 @@ public class RequestCPFController {
 
 		if (isPacienteCadastrado) {
 
-			String CPF_Medico = consultaSelecionada.getCPF_medico();
-			String horaConsulta = consultaSelecionada.getHora();
-			String dataConsulta = consultaSelecionada.getData();
-			String CPF_Paciente = txtCPF.getText();
+			Consulta newConsulta = createNewConsulta();
 
-			Consulta newConsulta = new Consulta(dataConsulta, horaConsulta, CPF_Medico, CPF_Paciente);
+			boolean ConsultaAlreadyMarcada = ConsultaDAO.consultaAlreadyRegistered(newConsulta);
 
-			ConsultaDAO.insertConsulta(newConsulta);
+			if (ConsultaAlreadyMarcada)
 
-			msg.showMessage("Consulta marcada com Sucesso", AlertType.INFORMATION);
+				msg.showMessage("A consulta já foi marcada.", AlertType.WARNING);
+
+			else
+
+				msg.showMessage("Consulta marcada com Sucesso", AlertType.INFORMATION);
 
 		}
 
 		else {
 
 			msg.showMessage("CPF não cadastrado!", AlertType.WARNING);
-			;
+
 		}
 
 		closeScreen();
+
+	}
+
+	private Consulta createNewConsulta() {
+
+		String CPF_Medico = consultaSelecionada.getCPF_medico();
+		String horaConsulta = consultaSelecionada.getHora();
+		String dataConsulta = consultaSelecionada.getData();
+		String CPF_Paciente = txtCPF.getText();
+
+		return new Consulta(dataConsulta, horaConsulta, CPF_Medico, CPF_Paciente);
 
 	}
 
