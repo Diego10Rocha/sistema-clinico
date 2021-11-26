@@ -24,35 +24,36 @@ public class MainScreenController implements Initializable {
 
 	@FXML
 	private Button menuItemSobre;
-	
-	private ScreenManager screenManager = new ScreenManager();
-	
-	@FXML
-    private Button menuItemSair;
 
-    @FXML
-    void closeScreen(ActionEvent event) {
-    	Stage stage = (Stage) menuItemSair.getScene().getWindow();
+	private ScreenManager screenManager = new ScreenManager();
+
+	@FXML
+	private Button menuItemSair;
+
+	@FXML
+	void closeScreen(ActionEvent event) {
+
+		Stage stage = (Stage) menuItemSair.getScene().getWindow();
 
 		stage.close();
-    }
+	}
 
 	@FXML
 	void openFormularioScreenCadastroRecepcionista(ActionEvent event) throws IOException {
-		
+
 		screenManager.openNewScreen("recepcionista/FormularioCadastroRecepcionista", "Cadastro recepcionista");
-		
+
 	}
 
 	@FXML
 	void openScreenAutoAtendimento(ActionEvent event) throws IOException {
-		
+
 		screenManager.openNewScreen("paciente/AutoAtendimentoScreen", "Autoatendimento");
 	}
 
 	@FXML
 	void openScreenLogin(ActionEvent event) throws IOException {
-		
+
 		screenManager.openNewScreen("login/LoginScreen", "Login");
 	}
 
