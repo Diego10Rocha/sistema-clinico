@@ -65,16 +65,23 @@ public class CadastroPacienteController {
 
 			else {
 
-				String name = txtNome.getText();
-				String dataNascimento = txtDataNascimento.getEditor().getText();
-
-				Paciente newPaciente = new Paciente(name, CPF, dataNascimento);
+				createNewPaciente();
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
 				closeScreen();
 			}
 		}
+
+	}
+
+	private void createNewPaciente() {
+
+		String CPF = txtCPF.getText();
+		String name = txtNome.getText();
+		String dataNascimento = txtDataNascimento.getEditor().getText();
+
+		Paciente newPaciente = new Paciente(name, CPF, dataNascimento);
 
 	}
 
