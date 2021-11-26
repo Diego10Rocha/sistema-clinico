@@ -54,13 +54,7 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 		else {
 
-			Medico medicoSelecionado = lvMedicos.getSelectionModel().getSelectedItem();
-
-			String dataConsulta = txtDataConsulta.getEditor().getText();
-			String horaConsulta = medicoSelecionado.getHoraDisponivelConsulta();
-			String CPF_MedicoConsulta = medicoSelecionado.getCPF();
-
-			AgendaConsulta newAgenda = new AgendaConsulta(dataConsulta, horaConsulta, CPF_MedicoConsulta);
+			AgendaConsulta newAgenda = createNewAgenda();
 
 			if (AgendaConsultaDAO.insertAgendaConsulta(newAgenda)) {
 
@@ -74,6 +68,17 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 			closeScreen();
 		}
+	}
+
+	private AgendaConsulta createNewAgenda() {
+
+		Medico medicoSelecionado = lvMedicos.getSelectionModel().getSelectedItem();
+
+		String dataConsulta = txtDataConsulta.getEditor().getText();
+		String horaConsulta = medicoSelecionado.getHoraDisponivelConsulta();
+		String CPF_MedicoConsulta = medicoSelecionado.getCPF();
+
+		return new AgendaConsulta(dataConsulta, horaConsulta, CPF_MedicoConsulta);
 	}
 
 	public boolean isDataInvalida() {
