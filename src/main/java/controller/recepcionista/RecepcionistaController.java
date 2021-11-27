@@ -4,49 +4,39 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Menu;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import screenManager.ScreenManager;
 
 public class RecepcionistaController {
 
 	@FXML
-	private Menu menuCadastro;
+    private MenuButton menuCadastro;
 
-	@FXML
-	private Menu menuPacientes;
+    @FXML
+    private MenuItem menuItemCadastroMedico;
 
-	@FXML
-	private MenuItem menuItemVerPacientes;
+    @FXML
+    private MenuItem menuItemCadastroPaciente;
 
-	@FXML
-	private MenuItem menuItemCadastroRecepcionista;
+    @FXML
+    private MenuItem menuItemCadastroRecepcionista;
 
-	@FXML
-	private MenuItem menuItemCadastroMedico;
+    @FXML
+    private Button menuItemAgendaConsultas;
 
-	@FXML
-	private MenuItem menuItemCadastroPaciente;
+    @FXML
+    private Button menuItemVerMedicos;
 
-	@FXML
-	private MenuItem menuItemAgendaConsultas;
+    @FXML
+    private Button menuItemVerPacientes;
 
-	@FXML
-	private MenuItem menuItemVerMedicos;
-	@FXML
-	private MenuItem menuItemVerEspecialidades;
+    @FXML
+    private Button menuItemVerEspecialidades;
 
-	@FXML
-	private Menu menuConsulta;
-
-	@FXML
-	private Menu menuMedicos;
-
-	@FXML
-	private Menu menuEspecialidades;
-
-	@FXML
-	private Menu menuSair;
+    @FXML
+    private Button btnSair;
 
 	private ScreenManager screenManager = new ScreenManager();
 
@@ -100,7 +90,7 @@ public class RecepcionistaController {
 	@FXML
 	void sair(ActionEvent event) {
 
-		System.out.println("a");
+		ScreenManager.closeScreen(btnSair);
 
 	}
 
