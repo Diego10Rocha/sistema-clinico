@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import login.Login;
 import resultLoginTry.ResultLoginTry;
 import screenManager.ScreenManager;
@@ -28,16 +27,15 @@ public class LoginController {
 	private Text txtMessageCPF;
 	@FXML
 	private Text txtMessageSenha;
-	
+
 	@FXML
-    private Button btnVoltar;
+	private Button btnVoltar;
 
-    @FXML
-    void closeScreen(ActionEvent event) {
-    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
-
-		stage.close();
-    }
+	@FXML
+	void closeScreen(ActionEvent event) {
+		
+		ScreenManager.closeScreen(btnVoltar);
+	}
 
 	@FXML
 	void makeLogin(ActionEvent event) throws IOException {
@@ -58,35 +56,33 @@ public class LoginController {
 		}
 
 		else if (resultLoginTryLogin.getValue().equals("FAIL_CPF")) {
-			
+
 			txtMessageCPF.setText("CPF Inválido.");
 		}
 
 		else
-			txtMessageSenha.setText("Senha incorreta.");;
+			txtMessageSenha.setText("Senha incorreta.");
 
 	}
 
 	private void closeScreen() {
 
-		Stage stage = (Stage) btnEntrar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 
 	}
 
 	private void openSpecificScrenLoginUser() throws IOException {
-		
+
 		InstanceType instanceTypeRecepcionista = InstanceType.RECEPCIONISTA;
-		
+
 		ScreenManager screenManager = new ScreenManager();
-		
-		if(Login.getInstanceCpfWasRegistered().equals(instanceTypeRecepcionista)) {
-			
+
+		if (Login.getInstanceCpfWasRegistered().equals(instanceTypeRecepcionista)) {
+
 			screenManager.openNewScreen("recepcionista/RecepcionistaScreen", "Recepcionista");
 		}
-		
-		else 	
+
+		else
 			screenManager.openNewScreen("medico/MedicoScreen", "Medico");
 
 	}

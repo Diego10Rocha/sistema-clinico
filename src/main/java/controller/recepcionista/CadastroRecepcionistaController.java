@@ -1,16 +1,16 @@
 package controller.recepcionista;
 
+import Factory.UserFactory;
 import dao.RecepcionistaDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import message.MessageAlert;
-import model.Recepcionista;
+import screenManager.ScreenManager;
 
 public class CadastroRecepcionistaController {
 
@@ -25,27 +25,26 @@ public class CadastroRecepcionistaController {
 
 	@FXML
 	private TextField txtNome;
-	
+
 	@FXML
-    private Text txtMessageCPF_Cadastrado;
+	private Text txtMessageCPF_Cadastrado;
 
 	private MessageAlert msgAlert = new MessageAlert();
-	
+
 	@FXML
-    private Button btnVoltar;
+	private Button btnVoltar;
 
-    @FXML
-    void closeScreen(ActionEvent event) {
-    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
+	@FXML
+	void closeScreen(ActionEvent event) {
 
-		stage.close();
-    }
+		ScreenManager.closeScreen(btnVoltar);
+	}
 
 	@FXML
 	void cadastrarRecepcionista(ActionEvent event) {
-		
+
 		txtMessageCPF_Cadastrado.setText("");
-		
+
 		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
 
 		if (isAnyCampoEmBranco) {
@@ -54,7 +53,7 @@ public class CadastroRecepcionistaController {
 		}
 
 		else {
-			
+
 			String CPF = txtCPF.getText();
 
 			boolean isCpfAlreadyRegistered = RecepcionistaDAO.cpfAlreadyRegistered(CPF);
@@ -66,13 +65,10 @@ public class CadastroRecepcionistaController {
 
 			else {
 
-				String name = txtNome.getText();
-				String password = txtSenha.getText();
+				UserFactory.createRecepcionista(txtNome.getText(), CPF, txtSenha.getText());
 
-				Recepcionista newRecepcionista = new Recepcionista(name, CPF, password);
-				
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
-				
+
 				closeScreen();
 			}
 		}
@@ -80,11 +76,9 @@ public class CadastroRecepcionistaController {
 	}
 
 	private void closeScreen() {
-		
-		Stage stage = (Stage) btnCadastrar.getScene().getWindow();
-    	
-    	stage.close();
-		
+
+		ScreenManager.closeScreen(btnVoltar);
+
 	}
 
 	private boolean isAnyCampoEmBranco() {

@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import dao.MedicoDAO;
 import dao.PacienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,10 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.GerenciadorConsulta;
 import model.Paciente;
@@ -58,9 +56,7 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 	@FXML
 	void closeScreen(ActionEvent event) {
 
-		Stage stage = (Stage) btnVoltar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 	}
 
 	@FXML
@@ -109,7 +105,7 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 			if (GerenciadorConsulta.hasConsultaRealizada(pacienteSelecionado.getCPF())) {
 
 				msg.showMessage("Falha! Este Paciente possui consultas realizadas no sistema.", AlertType.WARNING);
-				
+
 				return;
 			}
 
@@ -119,7 +115,7 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 			}
 
 			PacienteDAO.deletePatient(pacienteSelecionado);
-			
+
 			loadPacientes();
 		}
 	}

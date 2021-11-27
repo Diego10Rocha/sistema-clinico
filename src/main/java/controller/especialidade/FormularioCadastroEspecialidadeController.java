@@ -4,13 +4,13 @@ import dao.EspecialidadeDAO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Especialidade;
+import screenManager.ScreenManager;
 
 public class FormularioCadastroEspecialidadeController {
 
@@ -37,7 +37,7 @@ public class FormularioCadastroEspecialidadeController {
 			if (EspecialidadeDAO.specialtyAlreadyRegistered(txtNome.getText())) {
 
 				txtMessageEspecialidade_Cadastrada.setText("Especialidade Já Cadastrada.");
-
+				
 			}
 
 			else {
@@ -59,9 +59,7 @@ public class FormularioCadastroEspecialidadeController {
 
 	public void closeScreen() {
 
-		Stage stage = (Stage) btnCadastrar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnCancelar);
 	}
 
 	public void addButtonsListener(EventHandler<ActionEvent> listener) {

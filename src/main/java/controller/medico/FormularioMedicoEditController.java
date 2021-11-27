@@ -12,10 +12,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Especialidade;
 import model.Medico;
+import screenManager.ScreenManager;
 
 public class FormularioMedicoEditController implements Initializable {
 
@@ -103,9 +103,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 	public void closeScreen() {
 
-		Stage stage = (Stage) btnSalvar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnCancelar);
 	}
 
 	private boolean isAnyCampoEmBranco() {

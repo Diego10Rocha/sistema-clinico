@@ -7,7 +7,7 @@ import file.ConnectionFile;
 import model.Consulta;
 
 public class ConsultaDAO {
-	
+
 	private static final String PATH_CADASTROS_CONSULTA = "Arquivos/Consultas.json";
 	private static ConnectionFile connectionFile = new ConnectionFile();
 
@@ -54,7 +54,6 @@ public class ConsultaDAO {
 		boolean isDeletada;
 
 		List<Consulta> consultas = getConsultas();
-	
 
 		if (consulta.isRealizada())
 			throw new Exception("A consulta possui medico(s)  e paciente(s) associado(s)");
@@ -84,7 +83,7 @@ public class ConsultaDAO {
 	private static Optional<Consulta> findConsulta(Consulta consultaTarget) {
 
 		List<Consulta> consultas = getConsultas();
-		
+
 		return consultas.stream().filter(consulta -> consulta.equals(consultaTarget)).findFirst();
 	}
 

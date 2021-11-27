@@ -15,52 +15,41 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 
 /**
  * Classe controladora da tela de informa��es do projeto
+ * 
  * @author Diego Cerqueira e Joanderson Santos
  * @since 2021
  */
-public class SobreController implements Initializable{
+public class SobreController {
 
-    /**
-     * Evento que abre o reposit�rio do c�digo no github
-     * @param event
-     */
-    @FXML
-    void openRepository(ActionEvent event) {
-    	
-    	try {
-    		
+	/**
+	 * Evento que abre o reposit�rio do c�digo no github
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void openRepository(ActionEvent event) {
+
+		try {
+
 			URI uri = new URI("https://github.com/Diego10Rocha/sistema-clinico");
-			
+
 			Desktop.getDesktop().browse(uri);
-			
+
 		} catch (URISyntaxException e) {
-			
+
 			e.printStackTrace();
-			
+
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 
-    }
-
-	/**
-	 * Metodo da interface Initializable
-	 * @param url
-	 * @param rb
-	 */
-	@Override
-	public void initialize(URL url, ResourceBundle rb) {
-		
 	}
 
 }

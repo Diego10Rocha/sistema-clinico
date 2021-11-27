@@ -1,16 +1,16 @@
 package controller.paciente;
 
+import Factory.UserFactory;
 import dao.PacienteDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import message.MessageAlert;
-import model.Paciente;
+import screenManager.ScreenManager;
 
 public class CadastroPacienteController {
 
@@ -30,16 +30,15 @@ public class CadastroPacienteController {
 	private TextField txtCPF;
 
 	private MessageAlert msgAlert = new MessageAlert();
-	
+
 	@FXML
-    private Button btnVoltar;
+	private Button btnVoltar;
 
-    @FXML
-    void closeScreen(ActionEvent event) {
-    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
+	@FXML
+	void closeScreen(ActionEvent event) {
 
-		stage.close();
-    }
+		ScreenManager.closeScreen(btnVoltar);
+	}
 
 	@FXML
 	void cadastrarPaciente(ActionEvent event) {
@@ -66,10 +65,7 @@ public class CadastroPacienteController {
 
 			else {
 
-				String name = txtNome.getText();
-				String dataNascimento = txtDataNascimento.getEditor().getText();
-
-				Paciente newPaciente = new Paciente(name, CPF, dataNascimento);
+				UserFactory.createPaciente(txtNome.getText(), CPF, txtDataNascimento.getEditor().getText());
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
@@ -80,10 +76,8 @@ public class CadastroPacienteController {
 	}
 
 	private void closeScreen() {
-		
-		Stage stage = (Stage) btnCadastrar.getScene().getWindow();
 
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 
 	}
 

@@ -14,9 +14,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.AgendaConsulta;
+import screenManager.ScreenManager;
 
 public class FormularioAgendaConsultaEditController implements Initializable {
 
@@ -38,9 +38,7 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 
 	public void salvarAgendaEdit() {
 
-		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
-
-		if (isAnyCampoEmBranco) {
+		if (isAnyCampoEmBranco()) {
 
 			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 
@@ -53,9 +51,15 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 
 		else {
 
-			updateAgenda();
+			boolean isUpdateSuccess = updateAgenda();
 
-			msgAlert.showMessage("Edição Realizada com sucesso", AlertType.INFORMATION);
+			if (isUpdateSuccess)
+
+				msgAlert.showMessage("Edição Realizada com sucesso", AlertType.INFORMATION);
+
+			else
+
+				msgAlert.showMessage("Agenda já cadastrada!", AlertType.WARNING);
 
 			closeScreen();
 		}
@@ -92,7 +96,7 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 		return txtDataConsulta.getEditor().getText().equals("");
 	}
 
-	private void updateAgenda() {
+	private boolean updateAgenda() {
 
 		String data = txtDataConsulta.getEditor().getText();
 		String hora = txtHoraConsulta.getText();
@@ -100,7 +104,7 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 		agendaSelecionada.setData(data);
 		agendaSelecionada.setHora(hora);
 
-		AgendaConsultaDAO.updateAgenda(agendaSelecionada);
+		return AgendaConsultaDAO.updateAgenda(agendaSelecionada);
 
 	}
 
@@ -119,9 +123,7 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 
 	public void closeScreen() {
 
-		Stage stage = (Stage) btnVoltar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 
 	}
 

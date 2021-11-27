@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Especialidade;
 import screenManager.ScreenManager;
@@ -60,9 +59,7 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 	@FXML
 	void closeScreen(ActionEvent event) {
 
-		Stage stage = (Stage) btnVoltar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 	}
 
 	@FXML
@@ -135,6 +132,7 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 		}
 
 		else {
+
 			msg.showMessage("Por Favor selecione uma Especialidade primeiro!", AlertType.WARNING);
 		}
 
@@ -178,7 +176,6 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 		else if (event.getSource() == formularioEspecialidadeEdit.getBtnCancelar()) {
 
 			formularioEspecialidadeEdit.closeScreen();
-			;
 
 		}
 

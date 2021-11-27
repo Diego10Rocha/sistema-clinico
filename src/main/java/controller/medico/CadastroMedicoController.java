@@ -1,5 +1,6 @@
 package controller.medico;
 
+import Factory.UserFactory;
 import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import javafx.event.ActionEvent;
@@ -9,10 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.Especialidade;
 import model.Medico;
+import screenManager.ScreenManager;
 
 public class CadastroMedicoController {
 
@@ -44,25 +45,22 @@ public class CadastroMedicoController {
 	private TextField txtHoraConsulta;
 
 	private MessageAlert msgAlert = new MessageAlert();
-	
+
 	@FXML
-    private Button btnVoltar;
+	private Button btnVoltar;
 
-    @FXML
-    void closeScreen(ActionEvent event) {
-    	Stage stage = (Stage) btnVoltar.getScene().getWindow();
+	@FXML
+	void closeScreen(ActionEvent event) {
 
-		stage.close();
-    }
+		ScreenManager.closeScreen(btnVoltar);
+	}
 
 	@FXML
 	void cadastrarMedico(ActionEvent event) {
 
 		txtMessageCPF_Cadastrado.setText("");
 
-		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
-
-		if (isAnyCampoEmBranco) {
+		if (isAnyCampoEmBranco()) {
 
 			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 		}
@@ -80,17 +78,10 @@ public class CadastroMedicoController {
 
 			else {
 
-				String name = txtNome.getText();
-				String password = txtSenha.getText();
-				String CRM = txtCRM.getText();
-				String especialidadeTxt = txtEspecialidade.getText();
-				String subEspecialidadeTxt = txtSubEspecialidade.getText();
-				String horaDisponivelConsulta = txtHoraConsulta.getText();
-
 				createEspecialidadeIfNotExists();
 
-				Medico newMedico = new Medico(name, password, CPF, CRM, especialidadeTxt, subEspecialidadeTxt,
-						horaDisponivelConsulta);
+				UserFactory.createMedico(txtNome.getText(), txtSenha.getText(), CPF, txtCRM.getText(),
+						txtEspecialidade.getText(), txtSubEspecialidade.getText(), txtHoraConsulta.getText());
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
@@ -107,7 +98,7 @@ public class CadastroMedicoController {
 		boolean notEspecialidadeAlreadyRegistered = !EspecialidadeDAO.specialtyAlreadyRegistered(especialidadeTxt);
 		boolean notSubEspecialidadeAlreadyRegistered = !EspecialidadeDAO
 				.specialtyAlreadyRegistered(subEspecialidadeTxt);
-		
+
 		boolean notNameSubEspecialidadeEmpty = !subEspecialidadeTxt.equals("");
 
 		if (notEspecialidadeAlreadyRegistered) {
@@ -124,9 +115,7 @@ public class CadastroMedicoController {
 
 	private void closeScreen() {
 
-		Stage stage = (Stage) btnCadastrar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 
 	}
 

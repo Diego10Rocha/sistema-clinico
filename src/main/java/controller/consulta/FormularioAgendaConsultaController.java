@@ -13,14 +13,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import message.MessageAlert;
 import model.AgendaConsulta;
 import model.Medico;
+import screenManager.ScreenManager;
 
 public class FormularioAgendaConsultaController implements Initializable {
 
@@ -54,13 +54,7 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 		else {
 
-			Medico medicoSelecionado = lvMedicos.getSelectionModel().getSelectedItem();
-
-			String dataConsulta = txtDataConsulta.getEditor().getText();
-			String horaConsulta = medicoSelecionado.getHoraDisponivelConsulta();
-			String CPF_MedicoConsulta = medicoSelecionado.getCPF();
-
-			AgendaConsulta newAgenda = new AgendaConsulta(dataConsulta, horaConsulta, CPF_MedicoConsulta);
+			AgendaConsulta newAgenda = createNewAgenda();
 
 			if (AgendaConsultaDAO.insertAgendaConsulta(newAgenda)) {
 
@@ -74,6 +68,17 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 			closeScreen();
 		}
+	}
+
+	private AgendaConsulta createNewAgenda() {
+
+		Medico medicoSelecionado = lvMedicos.getSelectionModel().getSelectedItem();
+
+		String dataConsulta = txtDataConsulta.getEditor().getText();
+		String horaConsulta = medicoSelecionado.getHoraDisponivelConsulta();
+		String CPF_MedicoConsulta = medicoSelecionado.getCPF();
+
+		return new AgendaConsulta(dataConsulta, horaConsulta, CPF_MedicoConsulta);
 	}
 
 	public boolean isDataInvalida() {
@@ -153,9 +158,7 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 	public void closeScreen() {
 
-		Stage stage = (Stage) btnVoltar.getScene().getWindow();
-
-		stage.close();
+		ScreenManager.closeScreen(btnVoltar);
 
 	}
 
