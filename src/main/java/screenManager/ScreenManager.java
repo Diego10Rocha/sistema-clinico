@@ -37,7 +37,7 @@ public class ScreenManager {
 	 * @param title t�tulo da tela.
 	 * @throws IOException caso o caminho esteja errado, ou a tela n�o exista.
 	 */
-	
+
 	public void openNewScreen(String path, String title) throws IOException{
                 
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -50,7 +50,7 @@ public class ScreenManager {
     
         stage.setScene(new Scene(p));
         stage.setTitle(title);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.initModality(Modality.APPLICATION_MODAL);
         
         Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");

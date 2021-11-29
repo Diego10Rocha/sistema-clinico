@@ -103,14 +103,14 @@ public class Medico extends Usuario {
 	@Override
 	public String toString() {
 
-		String subEspecialidade = "NÃ£o detÃ©m.";
+		String subEspecialidade = "Não detém.";
 
 		if (this.getSubEspecialidade() != null)
 			subEspecialidade = this.getSubEspecialidade().getNome();
 
 		return "Nome: " + this.getNome() + "\n" + "CRM:  " + this.getCRM() + "\n" + "Especialidade: "
 				+ this.getEspecialidadePrincipal().getNome() + "\n" + "SubEspecialidade: " + subEspecialidade + "\n"
-				+ "Hora disponÃ­vel para consultas: " + this.getHoraDisponivelConsulta();
+				+ "Hora disponível para consultas: " + this.getHoraDisponivelConsulta();
 	}
 
 }

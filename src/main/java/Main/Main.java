@@ -31,7 +31,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-    	
+    
     	FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/MainScreen.fxml"));
         Parent root = loader.load();
         
@@ -40,7 +40,7 @@ public class Main extends Application {
         
         stage.setTitle("MainScreen");
         //stage.setMaximized(true);
-        stage.setResizable(false);
+        stage.setResizable(true);
         Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
 
         stage.getIcons().add(image);

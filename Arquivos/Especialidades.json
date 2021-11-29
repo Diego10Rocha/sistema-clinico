@@ -1,1 +1,1 @@
-[{"nome":"EcoCardiografia","principal":false},{"nome":"Cardiologia","principal":true},{"nome":"Escocardiologia","principal":false},{"nome":"Ecocardiologia","principal":false},{"nome":"NeuroCard","principal":true},{"nome":"EcoCardiologia","principal":false},{"nome":"Ginecologia","principal":true},{"nome":"Pediatra","principal":false}]
+[{"id":1,"nome":"Cardiologia","principal":true}]
