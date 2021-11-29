@@ -45,7 +45,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 		if (isAnyObrigatorioCampoEmBranco()) {
 
-			msgAlert.showMessage("Por Favor preencha todos os campos obrigatÃ³rios!", AlertType.WARNING);
+			msgAlert.showMessage("Por Favor preencha todos os campos obrigatórios!", AlertType.WARNING);
 		}
 
 		else {
@@ -60,7 +60,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 				updateMedicoComSubespecialidade();
 
-			msgAlert.showMessage("EdiÃ§Ã£o Realizada com sucesso", AlertType.INFORMATION);
+			msgAlert.showMessage("Edição Realizada com sucesso", AlertType.INFORMATION);
 
 			closeScreen();
 		}
