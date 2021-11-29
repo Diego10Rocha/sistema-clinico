@@ -25,8 +25,10 @@ public class EspecialidadeDAO {
 
 			if (specialtyAlreadyRegistered(specialty.getNome())) {
 
-				throw new Exception("Especialidade já cadastrada");
+				throw new Exception("Especialidade jÃ¡ cadastrada");
 			}
+
+			setId(specialty);
 
 			connectionFile.writer(specialty);
 
@@ -41,13 +43,37 @@ public class EspecialidadeDAO {
 
 	}
 
-	public static boolean updateSpecialty(Especialidade specialty, Especialidade specialtyOld) {
+	private static void setId(Especialidade specialty) {
 
-		List<Especialidade> specialties = getSpecialties();
+		int id = countSpecialty() + 1;
 
-		specialties.set(specialties.indexOf(specialtyOld), specialty);
+		specialty.setId(id);
+	}
 
-		return connectionFile.reWriter(specialties, PATH_CADASTROS_ESPECIALIDADE);
+	public static int countSpecialty() {
+
+		return getSpecialties().size();
+
+	}
+
+	public static boolean updateSpecialty(Especialidade newSpecialty) {
+
+		boolean isUpdated = false;
+
+		List<Especialidade> specialtys = getSpecialties();
+
+		Especialidade oldSpecialty = findById(newSpecialty.getId());
+
+		if (oldSpecialty != null) {
+
+			specialtys.remove(oldSpecialty);
+
+			specialtys.add(newSpecialty);
+
+			connectionFile.reWriter(specialtys, PATH_CADASTROS_ESPECIALIDADE);
+		}
+
+		return isUpdated;
 	}
 
 	public static boolean deleteSpecialty(Especialidade specialty) throws Exception {
@@ -92,6 +118,16 @@ public class EspecialidadeDAO {
 
 		Optional<Especialidade> specialtie = specialties.stream()
 				.filter(specialtieRecord -> specialtieRecord.getNome().equals(name)).findFirst();
+
+		return specialtie.isPresent() ? specialtie.get() : null;
+	}
+
+	public static Especialidade findById(int id) {
+
+		List<Especialidade> specialties = getSpecialties();
+
+		Optional<Especialidade> specialtie = specialties.stream()
+				.filter(specialtieRecord -> specialtieRecord.getId() == id).findFirst();
 
 		return specialtie.isPresent() ? specialtie.get() : null;
 	}
