@@ -1,7 +1,7 @@
 package controller.recepcionista;
 
-import Factory.UserFactory;
 import dao.RecepcionistaDAO;
+import factory.UserFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
