@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import message.MessageAlert;
 import model.AgendaConsulta;
 import model.Medico;
@@ -29,6 +30,12 @@ public class FormularioAgendaConsultaController implements Initializable {
 
 	@FXML
 	private DatePicker txtDataConsulta;
+	
+	@FXML
+    private TextField txtHoraConsulta;
+
+    @FXML
+    private TextField txtMinutoConsulta;
 
 	@FXML
 	private Button btnCadastrar;
@@ -75,7 +82,7 @@ public class FormularioAgendaConsultaController implements Initializable {
 		Medico medicoSelecionado = lvMedicos.getSelectionModel().getSelectedItem();
 
 		String dataConsulta = txtDataConsulta.getEditor().getText();
-		String horaConsulta = medicoSelecionado.getHoraDisponivelConsulta();
+		String horaConsulta = txtHoraConsulta.getText()+":"+txtMinutoConsulta.getText();
 		String CPF_MedicoConsulta = medicoSelecionado.getCPF();
 
 		return new AgendaConsulta(dataConsulta, horaConsulta, CPF_MedicoConsulta);

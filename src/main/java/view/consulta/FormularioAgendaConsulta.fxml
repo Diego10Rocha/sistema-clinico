@@ -5,13 +5,14 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consulta.FormularioAgendaConsultaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consulta.FormularioAgendaConsultaController">
    <children>
       <HBox alignment="CENTER" layoutX="194.0" prefHeight="73.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -32,40 +33,92 @@
          </children>
       </HBox>
       <ListView fx:id="lvMedicos" layoutX="6.0" layoutY="138.0" prefHeight="323.0" prefWidth="600.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" />
-      <HBox alignment="CENTER_LEFT" layoutY="470.0" prefHeight="32.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <VBox layoutX="6.0" layoutY="465.0" prefHeight="117.0" prefWidth="588.0">
          <children>
-            <Label text="Data " textFill="WHITE">
-               <HBox.margin>
-                  <Insets left="6.0" right="145.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
+            <HBox prefHeight="106.0" prefWidth="581.0">
+               <children>
+                  <VBox prefHeight="90.0" prefWidth="335.0">
+                     <children>
+                        <Label text="Data " textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <DatePicker fx:id="txtDataConsulta" prefHeight="25.0" prefWidth="156.0">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="592.0" layoutY="10.0" prefHeight="90.0" prefWidth="337.0">
+                     <children>
+                        <HBox prefHeight="77.0" prefWidth="295.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Hora(s)" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtHoraConsulta" prefHeight="25.0" prefWidth="49.0">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Minuto(s)" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtMinutoConsulta" prefHeight="25.0" prefWidth="52.0">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="43.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="btnCadastrar" mnemonicParsing="false" style="-fx-background-color: white;" text="Cadastrar">
+                     <HBox.margin>
+                        <Insets left="6.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnVoltar" mnemonicParsing="false" style="-fx-background-color: white;" text="Voltar">
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutY="502.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <DatePicker fx:id="txtDataConsulta" prefHeight="25.0" prefWidth="270.0">
-               <HBox.margin>
-                  <Insets left="6.0" />
-               </HBox.margin>
-            </DatePicker>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="545.0" prefHeight="43.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button fx:id="btnCadastrar" mnemonicParsing="false" style="-fx-background-color: white;" text="Cadastrar">
-               <HBox.margin>
-                  <Insets left="6.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btnVoltar" mnemonicParsing="false" style="-fx-background-color: white;" text="Voltar">
-               <HBox.margin>
-                  <Insets left="60.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
+      </VBox>
    </children>
 </AnchorPane>

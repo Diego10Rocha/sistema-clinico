@@ -15,6 +15,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -39,6 +40,10 @@ public class Main extends Application {
         
         stage.setTitle("MainScreen");
         //stage.setMaximized(true);
+        stage.setResizable(false);
+        Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
+
+        stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
     }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.medico.MedicoController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="89.0" prefWidth="600.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NaClin">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="192.0" layoutY="85.0" prefHeight="245.0" prefWidth="212.0">
+         <children>
+            <Button fx:id="btnConsulta" mnemonicParsing="false" onAction="#openScreenAtendimento" prefHeight="25.0" prefWidth="212.0" text="Consultas">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="229.0" text="Sair">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

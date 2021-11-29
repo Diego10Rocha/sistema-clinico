@@ -16,6 +16,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -49,7 +50,13 @@ public class ScreenManager {
     
         stage.setScene(new Scene(p));
         stage.setTitle(title);
+        stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
+        
+        Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
+
+        stage.getIcons().add(image);
+        
         stage.show();
         
         this.currentController = controller;

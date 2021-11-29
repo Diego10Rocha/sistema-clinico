@@ -24,6 +24,14 @@ public class RequestCPFController {
 	private AgendaConsulta consultaSelecionada = AutoAtendimentoController.getConsultaSelecionada();
 
 	private MessageAlert msg = new MessageAlert();
+	
+	@FXML
+    private Button btnVoltar;
+
+    @FXML
+    void closeScreen(ActionEvent event) {
+    	ScreenManager.closeScreen(btnVoltar);
+    }
 
 	@FXML
 	void marcar(ActionEvent event) {

@@ -1,9 +1,10 @@
 package controller.consulta;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import controller.recepcionista.ConsultaRecepcionistaController;
 import dao.AgendaConsultaDAO;
 import date.MyDate;
 import javafx.event.ActionEvent;
@@ -159,6 +160,9 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 
 	private void loadInfoMedico() {
 
+		txtDataConsulta.setValue(LocalDate.parse(agendaSelecionada.getData(), 
+									DateTimeFormatter.ofPattern("dd/MM/uuuu"))
+								);
 		txtHoraConsulta.setText(agendaSelecionada.getHora());
 
 	}

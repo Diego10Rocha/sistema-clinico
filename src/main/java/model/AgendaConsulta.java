@@ -1,8 +1,11 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import dao.MedicoDAO;
 
-public class AgendaConsulta {
+public class AgendaConsulta implements Comparable<AgendaConsulta>{
 
 	private String data;
 	private String hora;
@@ -62,6 +65,30 @@ public class AgendaConsulta {
 
 		return "Data: " + this.getData() + "\n" + "Hora: " + this.getHora() + "\n" + "Médico: " + medico.getNome()
 				+ "\n" + "Especialidade: " + medico.getEspecialidadePrincipal().getNome();
+	}
+
+	@Override
+	public int compareTo(AgendaConsulta compare) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		if (LocalDate.parse(this.data, formatter).isBefore(LocalDate.parse(compare.getData(), formatter))) { 
+			return -1;
+		} else if (LocalDate.parse(this.data, formatter).isAfter(LocalDate.parse(compare.getData(), formatter))) { 
+			return 1; 
+		} else {
+			if (Integer.parseInt(this.hora.substring(0, 2)) < Integer.parseInt(compare.getHora().substring(0, 2))) { 
+				return -1;
+			} else if (Integer.parseInt(this.hora.substring(0, 2)) > Integer.parseInt(compare.getHora().substring(0, 2))) { 
+				return 1; 
+			} else {
+				if (Integer.parseInt(this.hora.substring(3, 5)) < Integer.parseInt(compare.getHora().substring(3, 5))) { 
+					return -1;
+				} else if (Integer.parseInt(this.hora.substring(0, 2)) > Integer.parseInt(compare.getHora().substring(3, 5))) { 
+					return 1; 
+				}
+			}
+			return 0; 
+		}
+		
 	}
 
 }

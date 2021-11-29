@@ -1,12 +1,11 @@
-package controller.recepcionista;
+package controller.consulta;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import controller.consulta.FormularioAgendaConsultaController;
-import controller.consulta.FormularioAgendaConsultaEditController;
 import dao.AgendaConsultaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,7 +60,7 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	@FXML
 	void openScreenRequestCPF(ActionEvent event) throws IOException {
 
-		screenManager.openNewScreen("consulta/RequestCPF", "Marcação Consulta");
+		screenManager.openNewScreen("consulta/RequestCPF", "Marcação de Consulta");
 	}
 
 	@FXML
@@ -144,7 +143,9 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	private void loadConsultas() {
 
 		List<AgendaConsulta> agendasConsultaCadastradas = AgendaConsultaDAO.getAgendasConsulta();
+		Collections.sort(agendasConsultaCadastradas);
 		obsConsultas = FXCollections.observableArrayList(agendasConsultaCadastradas);
+		
 
 		lvConsultas.setItems(obsConsultas);
 
