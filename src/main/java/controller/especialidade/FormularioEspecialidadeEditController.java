@@ -40,17 +40,14 @@ public class FormularioEspecialidadeEditController implements Initializable {
 
 			if (EspecialidadeDAO.specialtyAlreadyRegistered(txtNome.getText())) {
 
-				txtMessageEspecialidade_Cadastrada.setText("Especialidade Já Cadastrada.");
+				txtMessageEspecialidade_Cadastrada.setText("Especialidade JÃ¡ Cadastrada.");
 			}
 
 			else {
 
-				Especialidade newEspecialidade = new Especialidade();
+				especialidadeSelecionada.setNome(txtNome.getText());
 
-				newEspecialidade.setNome(txtNome.getText());
-				newEspecialidade.setPrincipal(false);
-
-				EspecialidadeDAO.updateSpecialty(newEspecialidade, especialidadeSelecionada);
+				EspecialidadeDAO.updateSpecialty(especialidadeSelecionada);
 
 				closeScreen();
 
