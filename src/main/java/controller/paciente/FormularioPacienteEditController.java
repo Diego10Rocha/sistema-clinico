@@ -35,9 +35,7 @@ public class FormularioPacienteEditController implements Initializable {
 
 	public void salvarPacienteEdit() {
 
-		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
-
-		if (isAnyCampoEmBranco) {
+		if (isAnyCampoEmBranco()) {
 
 			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 		}
@@ -50,6 +48,18 @@ public class FormularioPacienteEditController implements Initializable {
 
 			closeScreen();
 		}
+	}
+
+	private boolean isAnyCampoEmBranco() {
+
+		boolean anyCampoEmBranco = false;
+
+		if (txtNome.getText().equals(" ") || txtDataNascimento.getEditor().getText().equals("")) {
+
+			anyCampoEmBranco = true;
+		}
+
+		return anyCampoEmBranco;
 	}
 
 	private void updatePaciente() {
@@ -67,18 +77,6 @@ public class FormularioPacienteEditController implements Initializable {
 	public void closeScreen() {
 
 		ScreenManager.closeScreen(btnCancelar);
-	}
-
-	private boolean isAnyCampoEmBranco() {
-
-		boolean anyCampoEmBranco = false;
-
-		if (txtNome.getText().equals(" ") || txtDataNascimento.getEditor().getText().equals("")) {
-
-			anyCampoEmBranco = true;
-		}
-
-		return anyCampoEmBranco;
 	}
 
 	public void addButtonsListener(EventHandler<ActionEvent> listener) {
