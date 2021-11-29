@@ -1,6 +1,7 @@
 package controller.especialidade;
 
 import dao.EspecialidadeDAO;
+import factory.EspecialidadeFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import message.MessageAlert;
-import model.Especialidade;
 import screenManager.ScreenManager;
 
 public class FormularioCadastroEspecialidadeController {
@@ -36,13 +36,13 @@ public class FormularioCadastroEspecialidadeController {
 
 			if (EspecialidadeDAO.specialtyAlreadyRegistered(txtNome.getText())) {
 
-				txtMessageEspecialidade_Cadastrada.setText("Especialidade Já Cadastrada.");
-				
+				txtMessageEspecialidade_Cadastrada.setText("Especialidade JÃ¡ Cadastrada.");
+
 			}
 
 			else {
 
-				Especialidade newEspecialidade = new Especialidade(txtNome.getText(), false);
+				EspecialidadeFactory.createEspecialidade(txtNome.getText(), false);
 
 				msg.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
