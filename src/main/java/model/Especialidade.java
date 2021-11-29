@@ -4,11 +4,12 @@ import dao.EspecialidadeDAO;
 
 public class Especialidade {
 
+	private int id;
 	private String nome;
 	private boolean principal;// true - principal; false - subespecialidade
-	
+
 	public Especialidade() {
-		
+
 	}
 
 	public Especialidade(String nome, boolean principal) {
@@ -33,6 +34,14 @@ public class Especialidade {
 		this.principal = principal;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 
@@ -42,12 +51,8 @@ public class Especialidade {
 
 			Especialidade especialidadeASerComparada = (Especialidade) obj;
 
-			String nomeEspecialidadeASerComparada = especialidadeASerComparada.getNome();
-			boolean principalEspecialidadeASerComparada = especialidadeASerComparada.isPrincipal();
+			if (especialidadeASerComparada.getId() == this.getId())
 
-			if (nomeEspecialidadeASerComparada.equals(this.getNome())
-					&& principalEspecialidadeASerComparada == this.isPrincipal())
-				
 				objIsEqual = true;
 
 		}
