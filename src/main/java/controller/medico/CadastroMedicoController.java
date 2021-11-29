@@ -59,11 +59,11 @@ public class CadastroMedicoController {
 
 		if (isAnyObrigatorioCampoEmBranco())
 
-			msgAlert.showMessage("Por Favor preencha todos os campos obrigatÃ³rios!", AlertType.WARNING);
+			msgAlert.showMessage("Por Favor preencha todos os campos obrigatórios!", AlertType.WARNING);
 
 		else if (isCpfAlreadyRegistered())
 
-			txtMessageCPF_Cadastrado.setText("CPF JÃ¡ cadastrado.");
+			txtMessageCPF_Cadastrado.setText("CPF Já cadastrado.");
 
 		else {
 
