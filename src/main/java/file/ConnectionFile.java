@@ -5,50 +5,36 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import instanceType.InstanceType;
-import model.AgendaConsulta;
-import model.Consulta;
-import model.Especialidade;
-import model.Medico;
-import model.Paciente;
-import model.Recepcionista;
-
-public class ConnectionFile {
+public class ConnectionFile<T> {
 
 	private Gson gson = new Gson();
+	private final String PATH;
+	private final Class<T[]> type;
 
-	private final String PATH_CADASTROS_PACIENTE = "Arquivos/Pacientes.json";
-	private final String PATH_CADASTROS_MEDICO = "Arquivos/Medicos.json";
-	private final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/Recepcionistas.json";
-	private final String PATH_CADASTROS_ESPECIALIDADE = "Arquivos/Especialidades.json";
-	private final String PATH_CADASTROS_PRONTUARIO = "Arquivos/Prontuarios.json";
-	private static final String PATH_CADASTROS_CONSULTA = "Arquivos/Consultas.json";
-	private static final String PATH_CADASTROS_AGENDA_CONSULTA = "Arquivos/AgendaConsulta.json";
+	public ConnectionFile(Class<T[]> type, String PATH) {
 
-	public ConnectionFile() {
+		this.type = type;
+		this.PATH = PATH;
 
 	}
 
-	public boolean writer(Object obj) {
-
-		String pathToWriter = getPath(obj);
+	public boolean writer(T obj) {
 
 		String json;
-		List<Object> cadastros = readFile(pathToWriter);
+
+		List<T> cadastros = readFile();
 
 		cadastros.add(obj);
-		
-		File file = new File( pathToWriter );
-		
-		if(!file.exists())
+
+		File file = new File(PATH);
+
+		if (!file.exists())
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
@@ -56,7 +42,7 @@ public class ConnectionFile {
 				e.printStackTrace();
 			}
 
-		try (FileWriter writer = new FileWriter(pathToWriter)) {
+		try (FileWriter writer = new FileWriter(PATH)) {
 
 			json = gson.toJson(cadastros);
 			System.out.println(json);
@@ -71,13 +57,13 @@ public class ConnectionFile {
 
 	}
 
-	public boolean reWriter(Object obj, String path) {
+	public boolean reWriter(List<T> objs) {
 
 		String json;
 
-		try (FileWriter writer = new FileWriter(path)) {
+		try (FileWriter writer = new FileWriter(PATH)) {
 
-			json = gson.toJson(obj);
+			json = gson.toJson(objs);
 
 			writer.write(json);
 
@@ -90,132 +76,11 @@ public class ConnectionFile {
 
 	}
 
-	public String getPath(Object obj) {
+	public List<T> readFile() {
 
-		String path;
+		File file = new File(PATH);
 
-		InstanceType instanceTypeObj = getInstanceType(obj);
-
-		if (instanceTypeObj == InstanceType.PACIENTE) {
-
-			path = PATH_CADASTROS_PACIENTE;
-		}
-
-		else if (instanceTypeObj == InstanceType.MEDICO) {
-
-			path = PATH_CADASTROS_MEDICO;
-		}
-
-		else if (instanceTypeObj == InstanceType.RECEPCIONISTA) {
-
-			path = PATH_CADASTROS_RECPCIONISTA;
-		}
-
-		else if (instanceTypeObj == InstanceType.ESPECIALIDADE) {
-
-			path = PATH_CADASTROS_ESPECIALIDADE;
-		}
-
-		else if (instanceTypeObj == InstanceType.CONSULTA) {
-
-			path = PATH_CADASTROS_CONSULTA;
-
-		}
-		
-		else if (instanceTypeObj == InstanceType.AGENDA_CONSULTA) {
-
-			path = PATH_CADASTROS_AGENDA_CONSULTA;
-
-		}
-		
-		else {
-			
-			path = PATH_CADASTROS_PRONTUARIO;
-		}
-		
-		return path;
-
-
-	}
-
-	private InstanceType getInstanceType(Object obj) {
-
-		InstanceType instanceTypeObj = null;
-
-		if (obj instanceof Paciente) {
-
-			instanceTypeObj = InstanceType.PACIENTE;
-		}
-
-		else if (obj instanceof Medico) {
-
-			instanceTypeObj = InstanceType.MEDICO;
-		}
-
-		else if (obj instanceof Recepcionista) {
-
-			instanceTypeObj = InstanceType.RECEPCIONISTA;
-		}
-
-		else if (obj instanceof Especialidade) {
-
-			instanceTypeObj = InstanceType.ESPECIALIDADE;
-		}
-
-		else if (obj instanceof Consulta) {
-
-			instanceTypeObj = InstanceType.CONSULTA;
-		}
-		
-		else if (obj instanceof AgendaConsulta) {
-
-			instanceTypeObj = InstanceType.AGENDA_CONSULTA;
-		}
-
-		else
-			instanceTypeObj = InstanceType.PRONTUARIO;
-
-		return instanceTypeObj;
-	}
-
-	public List<Object> readFile(String path) {
-
-		List<Object> cadastrosFromJson = new ArrayList<>();
-		
-		File file = new File( path );
-		
-		if(!file.exists())
-			try {
-				file.createNewFile();
-				return new ArrayList<Object>();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-
-			Type typeList = new TypeToken<ArrayList<Object>>() {
-			}.getType();
-
-			cadastrosFromJson = gson.fromJson(br, typeList);
-			
-			if(cadastrosFromJson == null)
-				return new ArrayList<Object>();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-
-		return cadastrosFromJson;
-	}
-
-	public <T> List<T> readFile(String path, Class<T[]> type) {
-		
-		File file = new File( path );
-		
-		if(!file.exists())
+		if (!file.exists())
 			try {
 				file.createNewFile();
 				return new ArrayList<T>();
@@ -224,11 +89,11 @@ public class ConnectionFile {
 				e.printStackTrace();
 			}
 
-		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {
 
 			T[] arrayCadastrosFromJson = gson.fromJson(br, type);
-			
-			if(arrayCadastrosFromJson == null)
+
+			if (arrayCadastrosFromJson == null)
 				return new ArrayList<T>();
 
 			return new ArrayList<T>(Arrays.asList(arrayCadastrosFromJson));

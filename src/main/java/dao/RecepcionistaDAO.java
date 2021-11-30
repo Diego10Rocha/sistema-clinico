@@ -10,12 +10,12 @@ public class RecepcionistaDAO {
 
 	private static FindUserRegister<Recepcionista> findUserRegister = new FindUserRegister<>(Recepcionista[].class,
 			"Arquivos/Recepcionistas.json");
-	private static final String PATH_CADASTROS_RECPCIONISTA = "Arquivos/Recepcionistas.json";
-	private static ConnectionFile connectionFile = new ConnectionFile();
+	private static ConnectionFile<Recepcionista> connectionFile = new ConnectionFile<>(Recepcionista[].class,
+			"Arquivos/Recepcionistas.json");
 
 	public static List<Recepcionista> getReceptionists() {
 
-		List<Recepcionista> receptionists = connectionFile.readFile(PATH_CADASTROS_RECPCIONISTA, Recepcionista[].class);
+		List<Recepcionista> receptionists = connectionFile.readFile();
 
 		return receptionists;
 	}
@@ -42,7 +42,7 @@ public class RecepcionistaDAO {
 	}
 
 	public static boolean updateReceptionist(Recepcionista newReceptionist) {
-		
+
 		boolean isUpdated = false;
 		boolean isOldReceptionistRegistered;
 
@@ -58,7 +58,7 @@ public class RecepcionistaDAO {
 
 			receptionists.add(newReceptionist);
 
-			connectionFile.reWriter(receptionists, PATH_CADASTROS_RECPCIONISTA);
+			connectionFile.reWriter(receptionists);
 		}
 
 		return isUpdated;
@@ -72,7 +72,7 @@ public class RecepcionistaDAO {
 
 		isDeletado = receptionists.remove(receptionist);
 
-		connectionFile.reWriter(receptionists, PATH_CADASTROS_RECPCIONISTA);
+		connectionFile.reWriter(receptionists);
 
 		return isDeletado;
 	}

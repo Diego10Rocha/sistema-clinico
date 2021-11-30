@@ -7,17 +7,17 @@ import file.ConnectionFile;
 import model.Prontuario;
 
 public class ProntuarioDAO {
-	
-	private static final String PATH_CADASTROS_PRONTUARIO = "Arquivos/Prontuarios.json";
-	private static ConnectionFile connectionFile = new ConnectionFile();
-	
+
+	private static ConnectionFile<Prontuario> connectionFile = new ConnectionFile<>(Prontuario[].class,
+			"Arquivos/Prontuarios.json");
+
 	public static List<Prontuario> getMedicalRecords() {
 
-		List<Prontuario> medicalRecords = connectionFile.readFile(PATH_CADASTROS_PRONTUARIO, Prontuario[].class);
+		List<Prontuario> medicalRecords = connectionFile.readFile();
 
 		return medicalRecords;
 	}
-	
+
 	public static boolean insertMedicalRecord(Prontuario medicalRecord) {
 
 		try {
@@ -27,6 +27,7 @@ public class ProntuarioDAO {
 			return true;
 
 		} catch (Exception e) {
+
 			System.out.println(e.getMessage());
 		}
 
@@ -40,7 +41,7 @@ public class ProntuarioDAO {
 
 		medicalRecords.set(medicalRecords.indexOf(medicalRecordOld), medicalRecord);
 
-		return connectionFile.reWriter(medicalRecords, PATH_CADASTROS_PRONTUARIO);
+		return connectionFile.reWriter(medicalRecords);
 	}
 
 	public static boolean deleteMedicalRecord(Prontuario medicalRecord) {
@@ -51,19 +52,19 @@ public class ProntuarioDAO {
 
 		isDeletado = medicalRecords.remove(medicalRecord);
 
-		connectionFile.reWriter(medicalRecords, PATH_CADASTROS_PRONTUARIO);
+		connectionFile.reWriter(medicalRecords);
 
 		return isDeletado;
 	}
-	
+
 	public Prontuario find(String CPF_PACIENTE) {
-		
+
 		List<Prontuario> medicalRecords = getMedicalRecords();
-		
+
 		Optional<Prontuario> medicalRecordFound = medicalRecords.stream()
 				.filter(medicalRecord -> medicalRecord.getCPF_PACIENTE().equals(CPF_PACIENTE)).findFirst();
-		
-		return medicalRecordFound.isPresent()? medicalRecordFound.get() : null;
+
+		return medicalRecordFound.isPresent() ? medicalRecordFound.get() : null;
 	}
 
 }

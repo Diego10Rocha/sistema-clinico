@@ -8,13 +8,12 @@ import model.AgendaConsulta;
 
 public class AgendaConsultaDAO {
 
-	private static final String PATH_CADASTROS_AGENDA_CONSULTA = "Arquivos/AgendaConsulta.json";
-	private static ConnectionFile connectionFile = new ConnectionFile();
+	private static ConnectionFile<AgendaConsulta> connectionFile = new ConnectionFile<>(AgendaConsulta[].class,
+			"Arquivos/AgendaConsulta.json");
 
 	public static List<AgendaConsulta> getAgendasConsulta() {
 
-		List<AgendaConsulta> agendasConsulta = connectionFile.readFile(PATH_CADASTROS_AGENDA_CONSULTA,
-				AgendaConsulta[].class);
+		List<AgendaConsulta> agendasConsulta = connectionFile.readFile();
 
 		return agendasConsulta;
 	}
@@ -63,7 +62,7 @@ public class AgendaConsultaDAO {
 
 				agendasConsulta.add(newAgenda);
 
-				connectionFile.reWriter(agendasConsulta, PATH_CADASTROS_AGENDA_CONSULTA);
+				connectionFile.reWriter(agendasConsulta);
 
 				return true;
 			}
@@ -99,7 +98,7 @@ public class AgendaConsultaDAO {
 
 		isDeletada = agendasConsulta.remove(agendaConsulta);
 
-		connectionFile.reWriter(agendasConsulta, PATH_CADASTROS_AGENDA_CONSULTA);
+		connectionFile.reWriter(agendasConsulta);
 
 		return isDeletada;
 	}
