@@ -45,12 +45,9 @@ public class FormularioEspecialidadeEditController implements Initializable {
 
 			else {
 
-				Especialidade newEspecialidade = new Especialidade();
+				especialidadeSelecionada.setNome(txtNome.getText());
 
-				newEspecialidade.setNome(txtNome.getText());
-				newEspecialidade.setPrincipal(false);
-
-				EspecialidadeDAO.updateSpecialty(newEspecialidade, especialidadeSelecionada);
+				EspecialidadeDAO.updateSpecialty(especialidadeSelecionada);
 
 				closeScreen();
 

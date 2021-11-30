@@ -1,8 +1,7 @@
 package controller.medico;
 
-import Factory.UserFactory;
-import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
+import factory.UserFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -11,8 +10,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import message.MessageAlert;
-import model.Especialidade;
-import model.Medico;
 import screenManager.ScreenManager;
 
 public class CadastroMedicoController {
@@ -60,56 +57,62 @@ public class CadastroMedicoController {
 
 		txtMessageCPF_Cadastrado.setText("");
 
-		if (isAnyCampoEmBranco()) {
+		if (isAnyObrigatorioCampoEmBranco())
 
-			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
-		}
+			msgAlert.showMessage("Por Favor preencha todos os campos obrigatórios!", AlertType.WARNING);
+
+		else if (isCpfAlreadyRegistered())
+
+			txtMessageCPF_Cadastrado.setText("CPF Já cadastrado.");
 
 		else {
 
-			String CPF = txtCPF.getText();
+			boolean notSubEspecialidadeAdd = txtSubEspecialidade.getText().equals("");
 
-			boolean isCpfAlreadyRegistered = MedicoDAO.cpfAlreadyRegistered(CPF);
+			if (notSubEspecialidadeAdd)
 
-			if (isCpfAlreadyRegistered) {
+				createMedicoSemSubEspecialidade();
 
-				txtMessageCPF_Cadastrado.setText("CPF Já cadastrado.");
-			}
+			else
 
-			else {
+				createMedicoComSubEspecialidade();
 
-				createEspecialidadeIfNotExists();
+			msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
-				UserFactory.createMedico(txtNome.getText(), txtSenha.getText(), CPF, txtCRM.getText(),
-						txtEspecialidade.getText(), txtSubEspecialidade.getText(), txtHoraConsulta.getText());
-
-				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
-
-				closeScreen();
-			}
+			closeScreen();
 		}
 	}
 
-	private void createEspecialidadeIfNotExists() {
+	private boolean isAnyObrigatorioCampoEmBranco() {
 
-		String especialidadeTxt = txtEspecialidade.getText();
-		String subEspecialidadeTxt = txtSubEspecialidade.getText();
+		boolean anyObrigatorioCampoEmBranco = false;
 
-		boolean notEspecialidadeAlreadyRegistered = !EspecialidadeDAO.specialtyAlreadyRegistered(especialidadeTxt);
-		boolean notSubEspecialidadeAlreadyRegistered = !EspecialidadeDAO
-				.specialtyAlreadyRegistered(subEspecialidadeTxt);
+		if (txtCPF.getText().equals("") || txtNome.getText().equals(" ") || txtSenha.getText().equals("")
+				|| txtCRM.getText().equals("") || txtEspecialidade.getText().equals("")
+				|| txtHoraConsulta.getText().equals("")) {
 
-		boolean notNameSubEspecialidadeEmpty = !subEspecialidadeTxt.equals("");
-
-		if (notEspecialidadeAlreadyRegistered) {
-
-			Especialidade especialidade = new Especialidade(especialidadeTxt, true);
+			anyObrigatorioCampoEmBranco = true;
 		}
 
-		if (notSubEspecialidadeAlreadyRegistered && notNameSubEspecialidadeEmpty) {
+		return anyObrigatorioCampoEmBranco;
+	}
 
-			Especialidade subEspecialidade = new Especialidade(subEspecialidadeTxt, false);
-		}
+	private boolean isCpfAlreadyRegistered() {
+
+		return MedicoDAO.cpfAlreadyRegistered(txtCPF.getText());
+	}
+
+	private void createMedicoSemSubEspecialidade() {
+
+		UserFactory.createMedico(txtNome.getText(), txtSenha.getText(), txtCPF.getText(), txtCRM.getText(),
+				txtEspecialidade.getText(), txtHoraConsulta.getText());
+
+	}
+
+	private void createMedicoComSubEspecialidade() {
+
+		UserFactory.createMedico(txtNome.getText(), txtSenha.getText(), txtCPF.getText(), txtCRM.getText(),
+				txtEspecialidade.getText(), txtSubEspecialidade.getText(), txtHoraConsulta.getText());
 
 	}
 
@@ -119,17 +122,4 @@ public class CadastroMedicoController {
 
 	}
 
-	private boolean isAnyCampoEmBranco() {
-
-		boolean anyCampoEmBranco = false;
-
-		if (txtCPF.getText().equals("") || txtNome.getText().equals(" ") || txtSenha.getText().equals("")
-				|| txtCRM.getText().equals("") || txtEspecialidade.getText().equals("")
-				|| txtHoraConsulta.getText().equals("")) {
-
-			anyCampoEmBranco = true;
-		}
-
-		return anyCampoEmBranco;
-	}
 }

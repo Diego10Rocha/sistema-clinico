@@ -1,7 +1,7 @@
 package controller.paciente;
 
-import Factory.UserFactory;
 import dao.PacienteDAO;
+import factory.UserFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -45,27 +45,24 @@ public class CadastroPacienteController {
 
 		txtMessageCPF_Cadastrado.setText("");
 
-		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
-
-		if (isAnyCampoEmBranco) {
+		if (isAnyCampoEmBranco()) {
 
 			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 		}
 
 		else {
 
-			String CPF = txtCPF.getText();
-
-			boolean isCpfAlreadyRegistered = PacienteDAO.cpfAlreadyRegistered(CPF);
-
-			if (isCpfAlreadyRegistered) {
+			if (isCpfAlreadyRegistered()) {
 
 				txtMessageCPF_Cadastrado.setText("CPF Já cadastrado.");
 			}
 
 			else {
 
-				UserFactory.createPaciente(txtNome.getText(), CPF, txtDataNascimento.getEditor().getText());
+				UserFactory.createPaciente(
+						txtNome.getText(), 
+						txtCPF.getText(),
+						txtDataNascimento.getEditor().getText());
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
@@ -73,6 +70,11 @@ public class CadastroPacienteController {
 			}
 		}
 
+	}
+
+	private boolean isCpfAlreadyRegistered() {
+
+		return PacienteDAO.cpfAlreadyRegistered(txtCPF.getText());
 	}
 
 	private void closeScreen() {

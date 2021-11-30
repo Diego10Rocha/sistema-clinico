@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
+import factory.EspecialidadeFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,7 +14,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import message.MessageAlert;
-import model.Especialidade;
 import model.Medico;
 import screenManager.ScreenManager;
 
@@ -43,18 +43,22 @@ public class FormularioMedicoEditController implements Initializable {
 
 	public void salvarMedicoEdit() {
 
-		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
+		if (isAnyObrigatorioCampoEmBranco()) {
 
-		if (isAnyCampoEmBranco) {
-
-			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
+			msgAlert.showMessage("Por Favor preencha todos os campos obrigatórios!", AlertType.WARNING);
 		}
 
 		else {
 
-			createEspecialidadeIfNotExists();
+			boolean notSubEspecialidadeAdd = txtSubEspecialidade.getText().equals("");
 
-			updateMedico();
+			if (notSubEspecialidadeAdd)
+
+				updateSemSubEspecialidadeMedico();
+
+			else
+
+				updateMedicoComSubespecialidade();
 
 			msgAlert.showMessage("Edição Realizada com sucesso", AlertType.INFORMATION);
 
@@ -62,39 +66,52 @@ public class FormularioMedicoEditController implements Initializable {
 		}
 	}
 
-	private void createEspecialidadeIfNotExists() {
+	private boolean isAnyObrigatorioCampoEmBranco() {
 
-		String especialidadeTxt = txtEspecialidade.getText();
-		String subEspecialidadeTxt = txtSubEspecialidade.getText();
+		boolean anyObrigatorioCampoEmBranco = false;
 
-		boolean notEspecialidadeAlreadyRegistered = !EspecialidadeDAO.specialtyAlreadyRegistered(especialidadeTxt);
-		boolean notSubEspecialidadeAlreadyRegistered = !EspecialidadeDAO
-				.specialtyAlreadyRegistered(subEspecialidadeTxt);
+		if (txtNome.getText().equals(" ") || txtEspecialidade.getText().equals("")
+				|| txtHoraConsulta.getText().equals("")) {
 
-		boolean notNameSubEspecialidadeEmpty = !subEspecialidadeTxt.equals("");
-
-		if (notEspecialidadeAlreadyRegistered) {
-
-			Especialidade especialidade = new Especialidade(especialidadeTxt, true);
+			anyObrigatorioCampoEmBranco = true;
 		}
 
-		if (notSubEspecialidadeAlreadyRegistered && notNameSubEspecialidadeEmpty) {
-
-			Especialidade subEspecialidade = new Especialidade(subEspecialidadeTxt, false);
-		}
+		return anyObrigatorioCampoEmBranco;
 
 	}
 
-	private void updateMedico() {
+	private void updateSemSubEspecialidadeMedico() {
+
+		String name = txtNome.getText();
+		String especialidadeTxt = txtEspecialidade.getText();
+		String horaDisponivelConsulta = txtHoraConsulta.getText();
+
+		EspecialidadeFactory.createEspecialidade(especialidadeTxt, true);
+
+		int idEspecialidadePrincipal = EspecialidadeDAO.findByName(especialidadeTxt).getId();
+
+		medicoSelecionado.setNome(name);
+		medicoSelecionado.setID_EspecialidadePrincipal(idEspecialidadePrincipal);
+		medicoSelecionado.setHoraDisponivelConsulta(horaDisponivelConsulta);
+
+		MedicoDAO.updateDoctor(medicoSelecionado);
+	}
+
+	private void updateMedicoComSubespecialidade() {
 
 		String name = txtNome.getText();
 		String especialidadeTxt = txtEspecialidade.getText();
 		String subEspecialidadeTxt = txtSubEspecialidade.getText();
 		String horaDisponivelConsulta = txtHoraConsulta.getText();
 
+		EspecialidadeFactory.createEspecialidade(especialidadeTxt, subEspecialidadeTxt);
+
+		int idEspecialidadePrincipal = EspecialidadeDAO.findByName(especialidadeTxt).getId();
+		int idSubEspecialidade = EspecialidadeDAO.findByName(subEspecialidadeTxt).getId();
+
 		medicoSelecionado.setNome(name);
-		medicoSelecionado.setNomeEspecialidadePrincipal(especialidadeTxt);
-		medicoSelecionado.setNomeSubEspecialidade(subEspecialidadeTxt);
+		medicoSelecionado.setID_EspecialidadePrincipal(idEspecialidadePrincipal);
+		medicoSelecionado.setID_SubEspecialidade(idSubEspecialidade);
 		medicoSelecionado.setHoraDisponivelConsulta(horaDisponivelConsulta);
 
 		MedicoDAO.updateDoctor(medicoSelecionado);
@@ -104,20 +121,6 @@ public class FormularioMedicoEditController implements Initializable {
 	public void closeScreen() {
 
 		ScreenManager.closeScreen(btnCancelar);
-	}
-
-	private boolean isAnyCampoEmBranco() {
-
-		boolean anyCampoEmBranco = false;
-
-		if (txtNome.getText().equals(" ") || txtEspecialidade.getText().equals("")
-				|| txtHoraConsulta.getText().equals("")) {
-
-			anyCampoEmBranco = true;
-		}
-
-		return anyCampoEmBranco;
-
 	}
 
 	public void addButtonsListener(EventHandler<ActionEvent> listener) {

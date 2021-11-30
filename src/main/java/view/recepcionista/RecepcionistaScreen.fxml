@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.recepcionista.RecepcionistaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.recepcionista.RecepcionistaController">
    <children>
       <HBox alignment="CENTER" layoutY="1.0" prefHeight="92.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -21,7 +21,7 @@
             </Text>
          </children>
       </HBox>
-      <VBox layoutX="182.0" layoutY="101.0" prefHeight="260.0" prefWidth="236.0">
+      <VBox alignment="CENTER" layoutX="182.0" layoutY="101.0" prefHeight="260.0" prefWidth="236.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <MenuButton fx:id="menuCadastro" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: white;" text="                Cadastrar Usuário">
               <items>
@@ -36,7 +36,7 @@
                   <Font size="14.0" />
                </font>
             </MenuButton>
-            <Button fx:id="menuItemAgendaConsultas" mnemonicParsing="false" onAction="#openScreenConsultaRecepcionista" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: white;" text="Consultas">
+            <Button fx:id="menuItemAgendaConsultas" mnemonicParsing="false" onAction="#openScreenConsultaRecepcionista" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: white;" text="Consultas">
                <VBox.margin>
                   <Insets bottom="8.0" top="8.0" />
                </VBox.margin>
@@ -44,7 +44,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="menuItemVerMedicos" mnemonicParsing="false" onAction="#openScreenMedicosCadastrados" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: white;" text="Medicos">
+            <Button fx:id="menuItemVerMedicos" mnemonicParsing="false" onAction="#openScreenMedicosCadastrados" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: white;" text="Medicos">
                <VBox.margin>
                   <Insets bottom="8.0" top="8.0" />
                </VBox.margin>
@@ -52,7 +52,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="menuItemVerPacientes" mnemonicParsing="false" onAction="#openScreenPacientesCadastrados" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: white;" text="Pacientes">
+            <Button fx:id="menuItemVerPacientes" mnemonicParsing="false" onAction="#openScreenPacientesCadastrados" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: white;" text="Pacientes">
                <VBox.margin>
                   <Insets bottom="8.0" top="8.0" />
                </VBox.margin>
@@ -60,7 +60,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="menuItemVerEspecialidades" mnemonicParsing="false" onAction="#openScreenEspecialidades" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: white;" text="Especialidades">
+            <Button fx:id="menuItemVerEspecialidades" mnemonicParsing="false" onAction="#openScreenEspecialidades" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: white;" text="Especialidades">
                <VBox.margin>
                   <Insets bottom="8.0" top="8.0" />
                </VBox.margin>
@@ -68,7 +68,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: white;" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: white;" text="Sair">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>

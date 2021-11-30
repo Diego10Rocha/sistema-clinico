@@ -1,7 +1,7 @@
 package controller.recepcionista;
 
-import Factory.UserFactory;
 import dao.RecepcionistaDAO;
+import factory.UserFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -45,39 +45,27 @@ public class CadastroRecepcionistaController {
 
 		txtMessageCPF_Cadastrado.setText("");
 
-		boolean isAnyCampoEmBranco = isAnyCampoEmBranco();
-
-		if (isAnyCampoEmBranco) {
+		if (isAnyCampoEmBranco()) {
 
 			msgAlert.showMessage("Por Favor preencha todos os campos!", AlertType.WARNING);
 		}
 
 		else {
 
-			String CPF = txtCPF.getText();
+			if (isCpfAlreadyRegistered()) {
 
-			boolean isCpfAlreadyRegistered = RecepcionistaDAO.cpfAlreadyRegistered(CPF);
-
-			if (isCpfAlreadyRegistered) {
-
-				txtMessageCPF_Cadastrado.setText("CPF Já cadastrado.");
+				txtMessageCPF_Cadastrado.setText("CPF JÃ¡ cadastrado.");
 			}
 
 			else {
 
-				UserFactory.createRecepcionista(txtNome.getText(), CPF, txtSenha.getText());
+				UserFactory.createRecepcionista(txtNome.getText(), txtCPF.getText(), txtSenha.getText());
 
 				msgAlert.showMessage("Cadastro Realizado com sucesso", AlertType.INFORMATION);
 
 				closeScreen();
 			}
 		}
-
-	}
-
-	private void closeScreen() {
-
-		ScreenManager.closeScreen(btnVoltar);
 
 	}
 
@@ -91,6 +79,17 @@ public class CadastroRecepcionistaController {
 		}
 
 		return anyCampoEmBranco;
+	}
+
+	private boolean isCpfAlreadyRegistered() {
+
+		return RecepcionistaDAO.cpfAlreadyRegistered(txtCPF.getText());
+	}
+
+	private void closeScreen() {
+
+		ScreenManager.closeScreen(btnVoltar);
+
 	}
 
 }
