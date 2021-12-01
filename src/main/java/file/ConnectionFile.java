@@ -1,7 +1,6 @@
 package file;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,16 +30,6 @@ public class ConnectionFile<T> {
 		List<T> cadastros = readFile();
 
 		cadastros.add(obj);
-
-		File file = new File(PATH);
-
-		if (!file.exists())
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
 		try (FileWriter writer = new FileWriter(PATH)) {
 
@@ -78,22 +67,12 @@ public class ConnectionFile<T> {
 
 	public List<T> readFile() {
 
-		File file = new File(PATH);
-
-		if (!file.exists())
-			try {
-				file.createNewFile();
-				return new ArrayList<T>();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 		try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {
 
 			T[] arrayCadastrosFromJson = gson.fromJson(br, type);
 
 			if (arrayCadastrosFromJson == null)
+				
 				return new ArrayList<T>();
 
 			return new ArrayList<T>(Arrays.asList(arrayCadastrosFromJson));
