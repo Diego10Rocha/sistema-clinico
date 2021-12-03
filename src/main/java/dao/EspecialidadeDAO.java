@@ -9,12 +9,12 @@ import model.Medico;
 
 public class EspecialidadeDAO {
 
-	private static final String PATH_CADASTROS_ESPECIALIDADE = "Arquivos/Especialidades.json";
-	private static ConnectionFile connectionFile = new ConnectionFile();
+	private static ConnectionFile<Especialidade> connectionFile = new ConnectionFile<>(Especialidade[].class,
+			"Arquivos/Especialidades.json");
 
 	public static List<Especialidade> getSpecialties() {
 
-		List<Especialidade> specialties = connectionFile.readFile(PATH_CADASTROS_ESPECIALIDADE, Especialidade[].class);
+		List<Especialidade> specialties = connectionFile.readFile();
 
 		return specialties;
 	}
@@ -25,7 +25,7 @@ public class EspecialidadeDAO {
 
 			if (specialtyAlreadyRegistered(specialty.getNome())) {
 
-				throw new Exception("Especialidade jÃ¡ cadastrada");
+				throw new Exception("Especialidade já cadastrada");
 			}
 
 			setId(specialty);
@@ -70,7 +70,7 @@ public class EspecialidadeDAO {
 
 			specialtys.add(newSpecialty);
 
-			connectionFile.reWriter(specialtys, PATH_CADASTROS_ESPECIALIDADE);
+			connectionFile.reWriter(specialtys);
 		}
 
 		return isUpdated;
@@ -92,7 +92,7 @@ public class EspecialidadeDAO {
 
 		isDeletada = specialties.remove(specialty);
 
-		connectionFile.reWriter(specialties, PATH_CADASTROS_ESPECIALIDADE);
+		connectionFile.reWriter(specialties);
 
 		return isDeletada;
 	}

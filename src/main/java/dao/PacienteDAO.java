@@ -10,12 +10,12 @@ public class PacienteDAO {
 
 	private static FindUserRegister<Paciente> findUserRegister = new FindUserRegister<>(Paciente[].class,
 			"Arquivos/Pacientes.json");
-	private static final String PATH_CADASTROS_PACIENTE = "Arquivos/Pacientes.json";
-	private static ConnectionFile connectionFile = new ConnectionFile();
+	private static ConnectionFile<Paciente> connectionFile = new ConnectionFile<>(Paciente[].class,
+			"Arquivos/Pacientes.json");
 
 	public static List<Paciente> getPatients() {
 
-		List<Paciente> patients = connectionFile.readFile(PATH_CADASTROS_PACIENTE, Paciente[].class);
+		List<Paciente> patients = connectionFile.readFile();
 
 		return patients;
 	}
@@ -58,7 +58,7 @@ public class PacienteDAO {
 
 			patients.add(newPatient);
 
-			connectionFile.reWriter(patients, PATH_CADASTROS_PACIENTE);
+			connectionFile.reWriter(patients);
 		}
 
 		return isUpdated;
@@ -72,7 +72,7 @@ public class PacienteDAO {
 
 		isDeletado = patients.remove(paciente);
 
-		connectionFile.reWriter(patients, PATH_CADASTROS_PACIENTE);
+		connectionFile.reWriter(patients);
 
 		return isDeletado;
 	}

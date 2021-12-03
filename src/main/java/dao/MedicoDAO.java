@@ -10,12 +10,12 @@ public class MedicoDAO {
 
 	private static FindUserRegister<Medico> findUserRegister = new FindUserRegister<>(Medico[].class,
 			"Arquivos/Medicos.json");
-	private static final String PATH_CADASTROS_MEDICO = "Arquivos/Medicos.json";
-	private static ConnectionFile connectionFile = new ConnectionFile();
+	private static ConnectionFile<Medico> connectionFile = new ConnectionFile<>(Medico[].class,
+			"Arquivos/Medicos.json");
 
 	public static List<Medico> getDoctors() {
 
-		List<Medico> doctors = connectionFile.readFile(PATH_CADASTROS_MEDICO, Medico[].class);
+		List<Medico> doctors = connectionFile.readFile();
 
 		return doctors;
 	}
@@ -59,7 +59,7 @@ public class MedicoDAO {
 
 			doctors.add(newDoctor);
 
-			connectionFile.reWriter(doctors, PATH_CADASTROS_MEDICO);
+			connectionFile.reWriter(doctors);
 		}
 
 		return isUpdated;
@@ -73,7 +73,7 @@ public class MedicoDAO {
 
 		isDeletado = doctors.remove(doctor);
 
-		connectionFile.reWriter(doctors, PATH_CADASTROS_MEDICO);
+		connectionFile.reWriter(doctors);
 
 		return isDeletado;
 	}

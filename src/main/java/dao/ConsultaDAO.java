@@ -8,12 +8,12 @@ import model.Consulta;
 
 public class ConsultaDAO {
 
-	private static final String PATH_CADASTROS_CONSULTA = "Arquivos/Consultas.json";
-	private static ConnectionFile connectionFile = new ConnectionFile();
+	private static ConnectionFile<Consulta> connectionFile = new ConnectionFile<>(Consulta[].class,
+			"Arquivos/Consultas.json");
 
 	public static List<Consulta> getConsultas() {
 
-		List<Consulta> consultas = connectionFile.readFile(PATH_CADASTROS_CONSULTA, Consulta[].class);
+		List<Consulta> consultas = connectionFile.readFile();
 
 		return consultas;
 	}
@@ -46,7 +46,7 @@ public class ConsultaDAO {
 
 		consultas.set(consultas.indexOf(consultaOld), newConsulta);
 
-		return connectionFile.reWriter(consultas, PATH_CADASTROS_CONSULTA);
+		return connectionFile.reWriter(consultas);
 	}
 
 	public static boolean deleteConsulta(Consulta consulta) throws Exception {
@@ -60,7 +60,7 @@ public class ConsultaDAO {
 
 		isDeletada = consultas.remove(consulta);
 
-		connectionFile.reWriter(consultas, PATH_CADASTROS_CONSULTA);
+		connectionFile.reWriter(consultas);
 
 		return isDeletada;
 	}

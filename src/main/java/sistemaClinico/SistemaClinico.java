@@ -68,10 +68,7 @@ public class SistemaClinico {
 
 		Paciente paciente = PacienteDAO.getPatients().get(0);
 
-		paciente.setNome("Ana");
-		paciente.setDATA_NASCIMENTO("2000/12/03");
-
-		PacienteDAO.updatePatient(paciente);
+	
 
 		System.out.println(paciente.getNome());
 
