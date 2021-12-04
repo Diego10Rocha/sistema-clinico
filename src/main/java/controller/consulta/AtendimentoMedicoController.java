@@ -60,6 +60,8 @@ public class AtendimentoMedicoController {
 
 		new MessageAlert().showMessage("Consulta realizada com Sucesso!", AlertType.INFORMATION);
 
+		closeScreen();
+
 	}
 
 	private void addPacienteAtendidoToPacientesMedico() {

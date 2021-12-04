@@ -111,9 +111,9 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		atendimentoMedicoController = new AtendimentoMedicoController();
-
 		medicoLogado = MedicoDAO.findByCPF(Login.getCPF_userLogged());
+
+		atendimentoMedicoController = new AtendimentoMedicoController();
 
 		loadConsultas();
 
