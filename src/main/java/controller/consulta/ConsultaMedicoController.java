@@ -126,7 +126,8 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 
 		Collections.sort(consultasMarcadas);
 
-		proximaConsultaAserRealizada = consultasMarcadas.get(0);
+		if (!consultasMarcadas.isEmpty())
+			proximaConsultaAserRealizada = consultasMarcadas.get(0);
 
 		obsConsultas = FXCollections.observableArrayList(consultasMarcadas);
 

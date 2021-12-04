@@ -43,9 +43,9 @@ public class AtendimentoMedicoController {
 	@FXML
 	private TextArea txtTratamentosEfetuados;
 
-	private Medico medicoAtendendo = ConsultaMedicoController.getMedicoLogado();
-	private Paciente pacienteNoAtendimento = ConsultaMedicoController.getProximoPacienteAserAtendido();
-	Consulta consultaDaVez = ConsultaMedicoController.getProximaConsultaAserRealizada();
+	private Medico medicoQueAtendeu;
+	private Paciente pacienteAtendido;
+	Consulta consultaDaVez;
 
 	void closeScreen() {
 
@@ -54,8 +54,8 @@ public class AtendimentoMedicoController {
 
 	void encerrarConsulta() {
 
-		addPacienteAtendidoToPacientesMedico();
 		addProntuarioPaciente();
+		addPacienteAtendidoToPacientesMedico();
 		marcarConsultaComoRealizada();
 
 		new MessageAlert().showMessage("Consulta realizada com Sucesso!", AlertType.INFORMATION);
@@ -66,15 +66,19 @@ public class AtendimentoMedicoController {
 
 	private void addPacienteAtendidoToPacientesMedico() {
 
-		medicoAtendendo.setCPF_Paciente(pacienteNoAtendimento.getCPF());
+		medicoQueAtendeu = ConsultaMedicoController.getMedicoLogado();
 
-		MedicoDAO.updateDoctor(medicoAtendendo);
+		medicoQueAtendeu.setCPF_Paciente(pacienteAtendido.getCPF());
+
+		MedicoDAO.updateDoctor(medicoQueAtendeu);
 
 	}
 
 	private void addProntuarioPaciente() {
 
-		Prontuario newProntuario = new Prontuario(pacienteNoAtendimento.getCPF());
+		pacienteAtendido = ConsultaMedicoController.getProximoPacienteAserAtendido();
+
+		Prontuario newProntuario = new Prontuario(pacienteAtendido.getCPF());
 
 		newProntuario.setAnamnese(txtAnamnese.getText());
 		newProntuario.setDiagnosticosDefinitivos(txtDiagnosticosDefenitivos.getText());
@@ -84,13 +88,15 @@ public class AtendimentoMedicoController {
 
 		ProntuarioDAO.insertMedicalRecord(newProntuario);
 
-		pacienteNoAtendimento.setProntuario(newProntuario);
+		pacienteAtendido.setProntuario(newProntuario);
 
-		PacienteDAO.updatePatient(pacienteNoAtendimento);
+		PacienteDAO.updatePatient(pacienteAtendido);
 
 	}
 
 	private void marcarConsultaComoRealizada() {
+
+		consultaDaVez = ConsultaMedicoController.getProximaConsultaAserRealizada();
 
 		Consulta newConsultaRealizada = new Consulta(consultaDaVez.getData(), consultaDaVez.getData(),
 				consultaDaVez.getCPF_medico(), consultaDaVez.getCPF_paciente());
