@@ -13,6 +13,9 @@ public class MedicoController {
     private Button btnConsulta;
 
     @FXML
+    private Button btnAtenderPaciente;
+    
+    @FXML
     private Button btnSair;
     
     ScreenManager screenManager = new ScreenManager();
@@ -26,6 +29,15 @@ public class MedicoController {
     void openScreenAtendimento(ActionEvent event) {
     	try {
 			screenManager.openNewScreen("medico/AtendimentoMedicoScreen", "Atendimento");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
+    void openScreenConsultas(ActionEvent event) {
+    	try {
+			screenManager.openNewScreen("consulta/ConsultaMedicoScreen", "Atendimento");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

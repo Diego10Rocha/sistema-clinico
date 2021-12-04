@@ -101,11 +101,9 @@ public class FormularioAgendaConsultaEditController implements Initializable {
 
 		String data = txtDataConsulta.getEditor().getText();
 		String hora = txtHoraConsulta.getText();
+		AgendaConsulta newAgenda = new AgendaConsulta(data, hora, agendaSelecionada.getCPF_medico());
 
-		agendaSelecionada.setData(data);
-		agendaSelecionada.setHora(hora);
-
-		return AgendaConsultaDAO.updateAgenda(agendaSelecionada);
+		return AgendaConsultaDAO.updateAgenda(agendaSelecionada, newAgenda);
 
 	}
 

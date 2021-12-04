@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +41,7 @@ public class AgendaConsultaDAO {
 
 	}
 
-	public static boolean updateAgenda(AgendaConsulta newAgenda) {
+	public static boolean updateAgenda(AgendaConsulta oldAgendaConsulta, AgendaConsulta newAgenda) {
 
 		boolean isNewAlreadyRegistered = agendaConsultaAlreadyRegistered(newAgenda);
 
@@ -53,10 +54,8 @@ public class AgendaConsultaDAO {
 			List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
 
 			boolean isOldAgendaRegistered = isCPF_MedicoAgendaAlreadyRegistered(newAgenda.getCPF_medico());
-
+			
 			if (isOldAgendaRegistered) {
-
-				AgendaConsulta oldAgendaConsulta = findByCPF_Medico(newAgenda.getCPF_medico());
 
 				agendasConsulta.remove(oldAgendaConsulta);
 
@@ -71,14 +70,14 @@ public class AgendaConsultaDAO {
 		}
 	}
 
-	private static AgendaConsulta findByCPF_Medico(String CPF_medico) {
+	public static List<AgendaConsulta> findByCPF_Medico(String CPF_medico) {
 
 		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
 
-		Optional<AgendaConsulta> agendaFound = agendasConsulta.stream()
-				.filter(agenda -> agenda.getCPF_medico().equals(CPF_medico)).findFirst();
-
-		return agendaFound.isPresent() ? agendaFound.get() : null;
+		agendasConsulta = agendasConsulta.stream()
+				.filter(agenda -> agenda.getCPF_medico().equals(CPF_medico)).toList();
+		ArrayList<AgendaConsulta> agendas = new ArrayList<>(agendasConsulta);
+		return agendas;
 	}
 
 	private static boolean isCPF_MedicoAgendaAlreadyRegistered(String CPF_Medico_Target) {
