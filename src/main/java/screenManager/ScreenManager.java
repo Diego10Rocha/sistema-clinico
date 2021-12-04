@@ -116,6 +116,8 @@ public class ScreenManager {
 		stage.setScene(scene);
 		stage.show();
 
+		this.currentController = loader.<Object>getController();
+
 	}
 
 	public static void closeScreen(Button buttonClose) {

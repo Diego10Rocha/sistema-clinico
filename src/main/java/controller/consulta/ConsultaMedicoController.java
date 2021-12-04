@@ -12,6 +12,7 @@ import dao.PacienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,7 +26,7 @@ import model.Medico;
 import model.Paciente;
 import screenManager.ScreenManager;
 
-public class ConsultaMedicoController implements Initializable {
+public class ConsultaMedicoController implements Initializable, EventHandler<ActionEvent> {
 
 	@FXML
 	private ListView<Consulta> lvConsultas;
@@ -44,6 +45,8 @@ public class ConsultaMedicoController implements Initializable {
 
 	private static Medico medicoLogado;
 	private static Paciente proximoPacienteAserAtendido;
+	private static Consulta proximaConsultaAserRealizada;
+	private static AtendimentoMedicoController atendimentoMedicoController;
 
 	ScreenManager screenManager = new ScreenManager();
 
@@ -52,7 +55,16 @@ public class ConsultaMedicoController implements Initializable {
 
 		screenManager.openNewScreen("medico/AtendimentoMedico", "Atendimento", false, true);
 
-		setProximoPacienteAserAtendido();
+		setReferenciaAtendimentoMedicoController();
+	}
+
+	private void setReferenciaAtendimentoMedicoController() {
+
+		Object currentController = screenManager.getCurrenController();
+
+		atendimentoMedicoController = (AtendimentoMedicoController) currentController;
+
+		atendimentoMedicoController.addButtonsListener(this);
 
 	}
 
@@ -60,14 +72,13 @@ public class ConsultaMedicoController implements Initializable {
 
 		List<Consulta> consultasMarcadas = GerenciadorConsulta
 				.getAllConsultasMarcadasByCPF_Medico(medicoLogado.getCPF());
-		
+
 		Collections.sort(consultasMarcadas);
-		
+
 		String CPF_ProximoPacienteAserAtendido = consultasMarcadas.get(0).getCPF_paciente();
 
 		proximoPacienteAserAtendido = PacienteDAO.findByCPF(CPF_ProximoPacienteAserAtendido);
 
-		System.out.println(proximoPacienteAserAtendido.getNome());
 	}
 
 	@FXML
@@ -100,6 +111,8 @@ public class ConsultaMedicoController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		atendimentoMedicoController = new AtendimentoMedicoController();
+
 		medicoLogado = MedicoDAO.findByCPF(Login.getCPF_userLogged());
 
 		loadConsultas();
@@ -110,8 +123,10 @@ public class ConsultaMedicoController implements Initializable {
 
 		List<Consulta> consultasMarcadas = GerenciadorConsulta
 				.getAllConsultasMarcadasByCPF_Medico(medicoLogado.getCPF());
-		
+
 		Collections.sort(consultasMarcadas);
+
+		proximaConsultaAserRealizada = consultasMarcadas.get(0);
 
 		obsConsultas = FXCollections.observableArrayList(consultasMarcadas);
 
@@ -119,9 +134,49 @@ public class ConsultaMedicoController implements Initializable {
 
 	}
 
+	public static Consulta getProximaConsultaAserRealizada() {
+
+		return proximaConsultaAserRealizada;
+	}
+
 	public static Paciente getProximoPacienteAserAtendido() {
 
+		setProximoPacienteAserAtendido();
+		System.out.println(proximoPacienteAserAtendido);
 		return proximoPacienteAserAtendido;
+	}
+
+	public static Medico getMedicoLogado() {
+
+		return medicoLogado;
+	}
+
+	@Override
+	public void handle(ActionEvent event) {
+
+		if (event.getSource() == atendimentoMedicoController.getBtnSalvar()) {
+
+			atendimentoMedicoController.encerrarConsulta();
+
+			loadConsultas();
+
+		}
+
+		else if (event.getSource() == atendimentoMedicoController.getBtnVoltar()) {
+
+			atendimentoMedicoController.closeScreen();
+
+		} else
+
+			try {
+
+				screenManager.openNewScreen("", "Receita");
+
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+
 	}
 
 }
