@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import dao.MedicoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.control.ListView;
 import login.Login;
 import model.Consulta;
 import model.GerenciadorConsulta;
+import model.Medico;
 import screenManager.ScreenManager;
 
 public class ConsultaMedicoController implements Initializable {
@@ -29,7 +31,7 @@ public class ConsultaMedicoController implements Initializable {
 	private Button btnVoltar;
 
 	private ObservableList<Consulta> obsConsultas;
-
+	private static Medico medicoLogado;
 	ScreenManager screenManager = new ScreenManager();
 
 	@FXML
@@ -48,6 +50,8 @@ public class ConsultaMedicoController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		medicoLogado = MedicoDAO.findByCPF(Login.getCPF_userLogged());
+
 		loadConsultas();
 
 	}
@@ -55,7 +59,7 @@ public class ConsultaMedicoController implements Initializable {
 	private void loadConsultas() {
 
 		List<Consulta> consultasMarcadas = GerenciadorConsulta
-				.getAllConsultasMarcadasByCPF_Medico(Login.getCPF_userLogged());
+				.getAllConsultasMarcadasByCPF_Medico(medicoLogado.getCPF());
 
 		obsConsultas = FXCollections.observableArrayList(consultasMarcadas);
 
