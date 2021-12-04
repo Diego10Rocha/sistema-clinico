@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import dao.MedicoDAO;
+import dao.PacienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import login.Login;
 import model.Consulta;
 import model.GerenciadorConsulta;
 import model.Medico;
+import model.Paciente;
 import screenManager.ScreenManager;
 
 public class ConsultaMedicoController implements Initializable {
@@ -31,14 +33,30 @@ public class ConsultaMedicoController implements Initializable {
 	private Button btnVoltar;
 
 	private ObservableList<Consulta> obsConsultas;
+
 	private static Medico medicoLogado;
+	private static Paciente proximoPacienteAserAtendido;
+
 	ScreenManager screenManager = new ScreenManager();
 
 	@FXML
 	void openScreenAtendimentoPaciente(ActionEvent event) throws IOException {
 
 		screenManager.openNewScreen("medico/AtendimentoMedicoScreen", "Atendimento");
+		setProximoPacienteAserAtendido();
 
+	}
+
+	private static void setProximoPacienteAserAtendido() {
+
+		List<Consulta> consultasMarcadas = GerenciadorConsulta
+				.getAllConsultasMarcadasByCPF_Medico(medicoLogado.getCPF());
+
+		String CPF_ProximoPacienteAserAtendido = consultasMarcadas.get(0).getCPF_paciente();
+
+		proximoPacienteAserAtendido = PacienteDAO.findByCPF(CPF_ProximoPacienteAserAtendido);
+
+		System.out.println(proximoPacienteAserAtendido.getNome());
 	}
 
 	@FXML
@@ -65,6 +83,11 @@ public class ConsultaMedicoController implements Initializable {
 
 		lvConsultas.setItems(obsConsultas);
 
+	}
+
+	public static Paciente getProximoPacienteAserAtendido() {
+
+		return proximoPacienteAserAtendido;
 	}
 
 }
