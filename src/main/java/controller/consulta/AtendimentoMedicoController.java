@@ -30,7 +30,7 @@ public class AtendimentoMedicoController {
 
 	@FXML
 	void closeScreen(ActionEvent event) {
-
+		
 	}
 
 	@FXML

@@ -49,7 +49,7 @@ public class ConsultaMedicoController implements Initializable {
 	@FXML
 	void openScreenAtendimentoPaciente(ActionEvent event) throws IOException {
 
-		screenManager.openNewScreen("medico/AtendimentoMedicoScreen", "Atendimento");
+		screenManager.openNewScreen("medico/AtendimentoMedico", "Atendimento", false, true);
 
 		setProximoPacienteAserAtendido();
 

@@ -14,6 +14,7 @@ package screenManager;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -66,7 +67,7 @@ public class ScreenManager {
 		this.currentController = controller;
 
 	}
-	
+
 	public void openNewScreen(String path, String title, boolean isResizable) throws IOException {
 
 		FXMLLoader fxmlLoader = new FXMLLoader();
@@ -94,32 +95,26 @@ public class ScreenManager {
 
 	}
 
-	
 	public void openNewScreen(String path, String title, boolean isResizable, boolean isMaximized) throws IOException {
 
-		FXMLLoader fxmlLoader = new FXMLLoader();
-
-		Pane p = fxmlLoader.load(getClass().getResource("/view/" + path + ".fxml").openStream());
-
-		Object controller = fxmlLoader.getController();
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/" + path + ".fxml"));
+		Parent root = loader.load();
 
 		Stage stage = new Stage();
 
-		stage.setScene(new Scene(p));
+		Scene scene = new Scene(root);
+
 		stage.setTitle(title);
-		stage.setResizable(isResizable);
 		stage.setMaximized(isMaximized);
+		stage.setResizable(isResizable);
 		stage.setMinHeight(400);
 		stage.setMinWidth(600);
-		stage.initModality(Modality.APPLICATION_MODAL);
 
 		Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
 
 		stage.getIcons().add(image);
-
+		stage.setScene(scene);
 		stage.show();
-
-		this.currentController = controller;
 
 	}
 
