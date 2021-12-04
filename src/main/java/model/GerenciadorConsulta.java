@@ -77,4 +77,20 @@ public class GerenciadorConsulta {
 		return historyConsultasPaciente;
 
 	}
+
+	public static List<Consulta> getAllConsultasMarcadasByCPF_Medico(String CPF_MEDICO) {
+
+		List<Consulta> allConsultasMarcadas = new ArrayList<>();
+		List<Consulta> consultasCadastradas = ConsultaDAO.getConsultas();
+
+		for (Consulta consultaCadastrada : consultasCadastradas) {
+
+			if (!consultaCadastrada.isRealizada() && consultaCadastrada.getCPF_medico().equals(CPF_MEDICO)) {
+
+				allConsultasMarcadas.add(consultaCadastrada);
+			}
+		}
+
+		return allConsultasMarcadas;
+	}
 }
