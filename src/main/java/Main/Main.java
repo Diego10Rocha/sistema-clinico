@@ -9,7 +9,7 @@ de outra autoria que não a minha está destacado com uma citação para o autor
 do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
 ******************************************************************************************/
 
-package main;
+package Main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -43,9 +43,9 @@ public class Main extends Application {
         stage.setResizable(true);
         stage.setMinHeight(400);
         stage.setMinWidth(600);
-        Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
+        //Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
 
-        stage.getIcons().add(image);
+      //  stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
     }

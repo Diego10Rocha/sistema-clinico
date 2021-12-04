@@ -65,6 +65,29 @@ public class ConnectionFile<T> {
 
 	}
 
+	public boolean reWriter(T obj) {
+
+		String json;
+
+		try (FileWriter writer = new FileWriter(PATH)) {
+
+			List<T> temp = new ArrayList<>();
+
+			temp.add(obj);
+
+			json = gson.toJson(temp);
+
+			writer.write(json);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		return true;
+
+	}
+
 	public List<T> readFile() {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {
@@ -72,7 +95,7 @@ public class ConnectionFile<T> {
 			T[] arrayCadastrosFromJson = gson.fromJson(br, type);
 
 			if (arrayCadastrosFromJson == null)
-				
+
 				return new ArrayList<T>();
 
 			return new ArrayList<T>(Arrays.asList(arrayCadastrosFromJson));
