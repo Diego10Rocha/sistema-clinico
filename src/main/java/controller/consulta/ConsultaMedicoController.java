@@ -2,11 +2,9 @@ package controller.consulta;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import dao.AgendaConsultaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,32 +13,31 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import login.Login;
-import model.AgendaConsulta;
+import model.Consulta;
+import model.GerenciadorConsulta;
 import screenManager.ScreenManager;
 
 public class ConsultaMedicoController implements Initializable {
 
 	@FXML
-    private ListView<AgendaConsulta> lvConsultas;
+	private ListView<Consulta> lvConsultas;
 
-    @FXML
-    private Button btnAtenderPaciente;
+	@FXML
+	private Button btnAtenderPaciente;
 
-    @FXML
-    private Button btnVoltar;
-    
-    private ObservableList<AgendaConsulta> obsConsultas;
-    
-    ScreenManager screenManager = new ScreenManager();
+	@FXML
+	private Button btnVoltar;
 
-    @FXML
-    void openScreenAtendimentoPaciente(ActionEvent event) {
-    	try {
-			screenManager.openNewScreen("medico/AtendimentoMedicoScreen", "Atendimento");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
+	private ObservableList<Consulta> obsConsultas;
+
+	ScreenManager screenManager = new ScreenManager();
+
+	@FXML
+	void openScreenAtendimentoPaciente(ActionEvent event) throws IOException {
+
+		screenManager.openNewScreen("medico/AtendimentoMedicoScreen", "Atendimento");
+
+	}
 
 	@FXML
 	void closeScreen(ActionEvent event) {
@@ -50,18 +47,20 @@ public class ConsultaMedicoController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
 		loadConsultas();
 
 	}
 
 	private void loadConsultas() {
 
-		List<AgendaConsulta> agendasConsultaCadastradas = AgendaConsultaDAO.findByCPF_Medico(Login.getCPF_userLogged());
-		Collections.sort(agendasConsultaCadastradas);
-		obsConsultas = FXCollections.observableArrayList(agendasConsultaCadastradas);
-		
+		List<Consulta> consultasMarcadas = GerenciadorConsulta
+				.getAllConsultasMarcadasByCPF_Medico(Login.getCPF_userLogged());
+
+		obsConsultas = FXCollections.observableArrayList(consultasMarcadas);
+
 		lvConsultas.setItems(obsConsultas);
 
 	}
-	
+
 }
