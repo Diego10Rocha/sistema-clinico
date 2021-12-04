@@ -66,6 +66,62 @@ public class ScreenManager {
 		this.currentController = controller;
 
 	}
+	
+	public void openNewScreen(String path, String title, boolean isResizable) throws IOException {
+
+		FXMLLoader fxmlLoader = new FXMLLoader();
+
+		Pane p = fxmlLoader.load(getClass().getResource("/view/" + path + ".fxml").openStream());
+
+		Object controller = fxmlLoader.getController();
+
+		Stage stage = new Stage();
+
+		stage.setScene(new Scene(p));
+		stage.setTitle(title);
+		stage.setResizable(isResizable);
+		stage.setMinHeight(400);
+		stage.setMinWidth(600);
+		stage.initModality(Modality.APPLICATION_MODAL);
+
+		Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
+
+		stage.getIcons().add(image);
+
+		stage.show();
+
+		this.currentController = controller;
+
+	}
+
+	
+	public void openNewScreen(String path, String title, boolean isResizable, boolean isMaximized) throws IOException {
+
+		FXMLLoader fxmlLoader = new FXMLLoader();
+
+		Pane p = fxmlLoader.load(getClass().getResource("/view/" + path + ".fxml").openStream());
+
+		Object controller = fxmlLoader.getController();
+
+		Stage stage = new Stage();
+
+		stage.setScene(new Scene(p));
+		stage.setTitle(title);
+		stage.setResizable(isResizable);
+		stage.setMaximized(isMaximized);
+		stage.setMinHeight(400);
+		stage.setMinWidth(600);
+		stage.initModality(Modality.APPLICATION_MODAL);
+
+		Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
+
+		stage.getIcons().add(image);
+
+		stage.show();
+
+		this.currentController = controller;
+
+	}
 
 	public static void closeScreen(Button buttonClose) {
 
