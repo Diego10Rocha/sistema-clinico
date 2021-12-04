@@ -2,6 +2,7 @@ package controller.consulta;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -59,7 +60,9 @@ public class ConsultaMedicoController implements Initializable {
 
 		List<Consulta> consultasMarcadas = GerenciadorConsulta
 				.getAllConsultasMarcadasByCPF_Medico(medicoLogado.getCPF());
-
+		
+		Collections.sort(consultasMarcadas);
+		
 		String CPF_ProximoPacienteAserAtendido = consultasMarcadas.get(0).getCPF_paciente();
 
 		proximoPacienteAserAtendido = PacienteDAO.findByCPF(CPF_ProximoPacienteAserAtendido);
@@ -107,6 +110,8 @@ public class ConsultaMedicoController implements Initializable {
 
 		List<Consulta> consultasMarcadas = GerenciadorConsulta
 				.getAllConsultasMarcadasByCPF_Medico(medicoLogado.getCPF());
+		
+		Collections.sort(consultasMarcadas);
 
 		obsConsultas = FXCollections.observableArrayList(consultasMarcadas);
 
