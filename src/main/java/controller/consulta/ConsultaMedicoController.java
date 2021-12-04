@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import dao.ConsultaDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
 import javafx.collections.FXCollections;
@@ -14,7 +15,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import login.Login;
+import message.MessageAlert;
 import model.Consulta;
 import model.GerenciadorConsulta;
 import model.Medico;
@@ -28,11 +31,15 @@ public class ConsultaMedicoController implements Initializable {
 
 	@FXML
 	private Button btnAtenderPaciente;
+	@FXML
+	private Button btnCancelarConsulta;
 
 	@FXML
 	private Button btnVoltar;
 
 	private ObservableList<Consulta> obsConsultas;
+
+	private MessageAlert msg = new MessageAlert();
 
 	private static Medico medicoLogado;
 	private static Paciente proximoPacienteAserAtendido;
@@ -43,6 +50,7 @@ public class ConsultaMedicoController implements Initializable {
 	void openScreenAtendimentoPaciente(ActionEvent event) throws IOException {
 
 		screenManager.openNewScreen("medico/AtendimentoMedicoScreen", "Atendimento");
+
 		setProximoPacienteAserAtendido();
 
 	}
@@ -57,6 +65,27 @@ public class ConsultaMedicoController implements Initializable {
 		proximoPacienteAserAtendido = PacienteDAO.findByCPF(CPF_ProximoPacienteAserAtendido);
 
 		System.out.println(proximoPacienteAserAtendido.getNome());
+	}
+
+	@FXML
+	void cancelarConsulta(ActionEvent event) throws Exception {
+
+		Consulta consultaSelecionada = lvConsultas.getSelectionModel().getSelectedItem();
+
+		if (consultaSelecionada == null) {
+
+			msg.showMessage("Por Favor selecione uma consulta primeiro!", AlertType.WARNING);
+		}
+
+		else {
+
+			ConsultaDAO.deleteConsulta(consultaSelecionada);
+
+			loadConsultas();
+
+			msg.showMessage("Consulta cancelada com Sucesso", AlertType.INFORMATION);
+
+		}
 	}
 
 	@FXML
