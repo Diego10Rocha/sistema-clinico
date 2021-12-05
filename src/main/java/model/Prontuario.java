@@ -79,9 +79,8 @@ public class Prontuario {
 
 	@Override
 	public String toString() {
-		return "Prontuario [paciente=" + CPF_PACIENTE + ", anamnese=" + anamnese + ", exameFisico=" + exameFisico
-				+ ", hipotesesDiagnosticas=" + hipotesesDiagnosticas + ", diagnosticosDefinitivos="
-				+ diagnosticosDefinitivos + ", tratamentosEfetuados=" + tratamentosEfetuados + "]";
+
+		return getFormularioString();
 	}
 
 	public String getCPF_PACIENTE() {
