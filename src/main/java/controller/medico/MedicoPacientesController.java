@@ -1,19 +1,19 @@
 package controller.medico;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import dao.MedicoDAO;
-import dao.PacienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
 import login.Login;
 import message.MessageAlert;
 import model.Medico;
@@ -42,7 +42,7 @@ public class MedicoPacientesController implements Initializable {
 	}
 
 	@FXML
-	void openScreenProntuariosPacientes(ActionEvent event) {
+	void openScreenProntuariosPacientes(ActionEvent event) throws IOException {
 
 		Paciente pacienteSelecionado = lvPacientes.getSelectionModel().getSelectedItem();
 
@@ -56,7 +56,6 @@ public class MedicoPacientesController implements Initializable {
 
 			screenManager.openNewScreen("paciente/ProntuariosPaciente", "Prontuarios");
 
-			setReferenciaFormularioPacienteEdit();
 
 		}
 	}

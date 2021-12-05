@@ -110,6 +110,8 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 
 		ScreenManager.closeScreen(btnVoltar);
 	}
+	
+
 
 	@FXML
 	void openScreenMedicoPacientes(ActionEvent event) throws IOException {
