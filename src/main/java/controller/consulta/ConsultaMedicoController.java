@@ -53,9 +53,17 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 	@FXML
 	void openScreenAtendimentoPaciente(ActionEvent event) throws IOException {
 
-		screenManager.openNewScreen("medico/AtendimentoMedico", "Atendimento", false, true);
+		if (hasConsultaMarcadaHoje()) {
 
-		setReferenciaAtendimentoMedicoController();
+			screenManager.openNewScreen("medico/AtendimentoMedico", "Atendimento", false, true);
+
+			setReferenciaAtendimentoMedicoController();
+
+		}
+		
+		msg.showMessage("Sem consultas maracadas até o momento", AlertType.INFORMATION);
+
+
 	}
 
 	private void setReferenciaAtendimentoMedicoController() {
