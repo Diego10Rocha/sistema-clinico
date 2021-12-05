@@ -68,19 +68,6 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 
 	}
 
-	private static void setProximoPacienteAserAtendido() {
-
-		List<Consulta> consultasMarcadas = GerenciadorConsulta
-				.getAllConsultasMarcadasByCPF_Medico(medicoLogado.getCPF());
-
-		Collections.sort(consultasMarcadas);
-
-		String CPF_ProximoPacienteAserAtendido = consultasMarcadas.get(0).getCPF_paciente();
-
-		proximoPacienteAserAtendido = PacienteDAO.findByCPF(CPF_ProximoPacienteAserAtendido);
-
-	}
-
 	@FXML
 	void cancelarConsulta(ActionEvent event) throws Exception {
 
@@ -121,29 +108,48 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 
 	private void loadConsultas() {
 
-		List<Consulta> consultasMarcadas = GerenciadorConsulta
-				.getAllConsultasMarcadasByCPF_Medico(medicoLogado.getCPF());
+		List<Consulta> consultasMarcadasHoje = getConsultasMarcadasHoje();
 
-		Collections.sort(consultasMarcadas);
-
-		if (!consultasMarcadas.isEmpty())
-			proximaConsultaAserRealizada = consultasMarcadas.get(0);
-
-		obsConsultas = FXCollections.observableArrayList(consultasMarcadas);
+		obsConsultas = FXCollections.observableArrayList(consultasMarcadasHoje);
 
 		lvConsultas.setItems(obsConsultas);
 
 	}
 
+	private static List<Consulta> getConsultasMarcadasHoje() {
+
+		List<Consulta> consultasMarcadas = GerenciadorConsulta
+				.getConsultasMarcadasHojeByCPF_Medico(medicoLogado.getCPF());
+
+		Collections.sort(consultasMarcadas);
+
+		return consultasMarcadas;
+	}
+
 	public static Consulta getProximaConsultaAserRealizada() {
+
+		if (hasConsultaMarcadaHoje()) {
+
+			proximaConsultaAserRealizada = getConsultasMarcadasHoje().get(0);
+		}
 
 		return proximaConsultaAserRealizada;
 	}
 
+	private static boolean hasConsultaMarcadaHoje() {
+
+		return getConsultasMarcadasHoje().isEmpty();
+	}
+
 	public static Paciente getProximoPacienteAserAtendido() {
 
-		setProximoPacienteAserAtendido();
-		System.out.println(proximoPacienteAserAtendido);
+		if (hasConsultaMarcadaHoje()) {
+
+			String CPF_ProximoPacienteAserAtendido = getProximaConsultaAserRealizada().getCPF_paciente();
+
+			proximoPacienteAserAtendido = PacienteDAO.findByCPF(CPF_ProximoPacienteAserAtendido);
+		}
+
 		return proximoPacienteAserAtendido;
 	}
 

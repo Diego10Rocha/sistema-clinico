@@ -45,7 +45,7 @@ public class AtendimentoMedicoController {
 
 	private Medico medicoQueAtendeu;
 	private Paciente pacienteAtendido;
-	Consulta consultaDaVez;
+	private Consulta consultaDaVez;
 
 	void closeScreen() {
 
