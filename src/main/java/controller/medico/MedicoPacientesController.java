@@ -34,6 +34,7 @@ public class MedicoPacientesController implements Initializable {
 	private Medico medicoQueDetemPacientes;
 	private ObservableList<Paciente> obsPacientes;
 	private ScreenManager screenManager = new ScreenManager();
+	private static Paciente pacienteSelecionado;
 
 	@FXML
 	void closeScreen(ActionEvent event) {
@@ -56,7 +57,6 @@ public class MedicoPacientesController implements Initializable {
 
 			screenManager.openNewScreen("paciente/ProntuariosPaciente", "Prontuarios");
 
-
 		}
 	}
 
@@ -76,6 +76,11 @@ public class MedicoPacientesController implements Initializable {
 		obsPacientes = FXCollections.observableArrayList(medicoPacientes);
 
 		lvPacientes.setItems(obsPacientes);
+	}
+
+	public static Paciente getPacienteSelecionado() {
+
+		return pacienteSelecionado;
 	}
 
 }
