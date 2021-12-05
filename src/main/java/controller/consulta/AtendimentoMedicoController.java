@@ -55,22 +55,12 @@ public class AtendimentoMedicoController {
 	void encerrarConsulta() {
 
 		addProntuarioPaciente();
-		addPacienteAtendidoToPacientesMedico();
+		addPacienteAtendidoComoPacienteMedicoQueAtendeu();
 		marcarConsultaComoRealizada();
 
 		new MessageAlert().showMessage("Consulta realizada com Sucesso!", AlertType.INFORMATION);
 
 		closeScreen();
-
-	}
-
-	private void addPacienteAtendidoToPacientesMedico() {
-
-		medicoQueAtendeu = ConsultaMedicoController.getMedicoLogado();
-
-		medicoQueAtendeu.setCPF_Paciente(pacienteAtendido.getCPF());
-
-		MedicoDAO.updateDoctor(medicoQueAtendeu);
 
 	}
 
@@ -91,6 +81,16 @@ public class AtendimentoMedicoController {
 		pacienteAtendido.setProntuario(newProntuario);
 
 		PacienteDAO.updatePatient(pacienteAtendido);
+
+	}
+
+	private void addPacienteAtendidoComoPacienteMedicoQueAtendeu() {
+
+		medicoQueAtendeu = ConsultaMedicoController.getMedicoLogado();
+
+		medicoQueAtendeu.setCPF_Paciente(pacienteAtendido.getCPF());
+
+		MedicoDAO.updateDoctor(medicoQueAtendeu);
 
 	}
 
