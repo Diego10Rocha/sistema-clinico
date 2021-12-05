@@ -42,8 +42,8 @@ public class Paciente extends Usuario {
 		return this.prontuarios;
 	}
 
-	public void setProntuario(Prontuario prontuario) {
-		
+	public void addProntuario(Prontuario prontuario) {
+
 		this.prontuarios.add(prontuario);
 	}
 

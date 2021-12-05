@@ -78,7 +78,7 @@ public class AtendimentoMedicoController {
 
 		ProntuarioDAO.insertMedicalRecord(newProntuario);
 
-		pacienteAtendido.setProntuario(newProntuario);
+		pacienteAtendido.addProntuario(newProntuario);
 
 		PacienteDAO.updatePatient(pacienteAtendido);
 
