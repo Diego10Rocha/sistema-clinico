@@ -1,6 +1,5 @@
 package controller.consulta;
 
-import controller.paciente.AutoAtendimentoController;
 import dao.ConsultaDAO;
 import dao.PacienteDAO;
 import javafx.event.ActionEvent;
@@ -20,8 +19,8 @@ public class RequestCPFController {
 
 	@FXML
 	private Button btnMarcarConsulta;
-
-	private AgendaConsulta consultaSelecionada = AutoAtendimentoController.getConsultaSelecionada();
+	private AgendaConsulta consultaSelecionada;
+	//private AgendaConsulta consultaSelecionada = AutoAtendimentoController.getConsultaSelecionada();
 
 	private MessageAlert msg = new MessageAlert();
 	
@@ -85,4 +84,16 @@ public class RequestCPFController {
 		ScreenManager.closeScreen(btnMarcarConsulta);
 
 	}
+
+	public AgendaConsulta getConsultaSelecionada() {
+		return consultaSelecionada;
+	}
+
+	public void setConsultaSelecionada(AgendaConsulta consultaSelecionada) {
+		this.consultaSelecionada = consultaSelecionada;
+	}
+
+	
+	
+	
 }

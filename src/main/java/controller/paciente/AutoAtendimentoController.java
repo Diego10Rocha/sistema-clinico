@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import controller.consulta.RequestCPFController;
 import dao.AgendaConsultaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +32,7 @@ public class AutoAtendimentoController implements Initializable {
 	private ScreenManager screenManager = new ScreenManager();
 
 	private ObservableList<AgendaConsulta> obsConsultas;
+	private RequestCPFController requestCpfController;
 
 	private MessageAlert msg = new MessageAlert();
 
@@ -57,8 +59,25 @@ public class AutoAtendimentoController implements Initializable {
 		else {
 
 			screenManager.openNewScreen("consulta/RequestCPF", "Requisição CPF");
+			
+			setReferenciaRequestCpfController();
 
 		}
+	}
+
+	private void setReferenciaRequestCpfController() {
+
+		Object currentController = screenManager.getCurrenController();
+
+		requestCpfController = (RequestCPFController) currentController;
+
+		setConsultaSelecionadaToRequestCPFController();
+
+	}
+
+	private void setConsultaSelecionadaToRequestCPFController() {
+
+		requestCpfController.setConsultaSelecionada(consultaSelecionada);
 	}
 
 	private void loadConsultas() {

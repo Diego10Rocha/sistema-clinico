@@ -145,8 +145,8 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 	}
 
 	private static boolean hasConsultaMarcadaHoje() {
-
-		return getConsultasMarcadasHoje().isEmpty();
+		
+		return !getConsultasMarcadasHoje().isEmpty();
 	}
 
 	public static Paciente getProximoPacienteAserAtendido() {
