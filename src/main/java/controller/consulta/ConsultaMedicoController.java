@@ -60,9 +60,10 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 			setReferenciaAtendimentoMedicoController();
 
 		}
-		
-		msg.showMessage("Sem consultas maracadas até o momento", AlertType.INFORMATION);
 
+		else
+
+			msg.showMessage("Sem consultas maracadas até o momento", AlertType.INFORMATION);
 
 	}
 
@@ -145,7 +146,7 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 	}
 
 	private static boolean hasConsultaMarcadaHoje() {
-		
+
 		return !getConsultasMarcadasHoje().isEmpty();
 	}
 

@@ -20,17 +20,17 @@ public class RequestCPFController {
 	@FXML
 	private Button btnMarcarConsulta;
 	private AgendaConsulta consultaSelecionada;
-	//private AgendaConsulta consultaSelecionada = AutoAtendimentoController.getConsultaSelecionada();
 
 	private MessageAlert msg = new MessageAlert();
-	
-	@FXML
-    private Button btnVoltar;
 
-    @FXML
-    void closeScreen(ActionEvent event) {
-    	ScreenManager.closeScreen(btnVoltar);
-    }
+	@FXML
+	private Button btnVoltar;
+
+	@FXML
+	void closeScreen(ActionEvent event) {
+		
+		ScreenManager.closeScreen(btnVoltar);
+	}
 
 	@FXML
 	void marcar(ActionEvent event) {
@@ -93,7 +93,4 @@ public class RequestCPFController {
 		this.consultaSelecionada = consultaSelecionada;
 	}
 
-	
-	
-	
 }
