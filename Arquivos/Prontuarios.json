@@ -1,1 +1,1 @@
-[{"CPF_PACIENTE":"12345","anamnese":"a","exameFisico":"b","hipotesesDiagnosticas":"c","diagnosticosDefinitivos":"d","tratamentosEfetuados":"e"}]
+[{"CPF_PACIENTE":"12345","anamnese":"a","exameFisico":"b","hipotesesDiagnosticas":"c","diagnosticosDefinitivos":"d","tratamentosEfetuados":"e"},{"CPF_PACIENTE":"12345","anamnese":"b","exameFisico":"ccd","hipotesesDiagnosticas":"ddd","diagnosticosDefinitivos":"dd","tratamentosEfetuados":"ddd"}]

@@ -44,6 +44,9 @@ public class Paciente extends Usuario {
 
 	public void addProntuario(Prontuario prontuario) {
 
+		if (this.prontuarios.contains(prontuario))
+			return;
+
 		this.prontuarios.add(prontuario);
 	}
 
