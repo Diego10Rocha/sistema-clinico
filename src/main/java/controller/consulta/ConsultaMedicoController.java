@@ -67,6 +67,11 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 
 	}
 
+	private static boolean hasConsultaMarcadaHoje() {
+
+		return !getConsultasMarcadasHoje().isEmpty();
+	}
+
 	private void setReferenciaAtendimentoMedicoController() {
 
 		Object currentController = screenManager.getCurrenController();
@@ -143,11 +148,6 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 		}
 
 		return proximaConsultaAserRealizada;
-	}
-
-	private static boolean hasConsultaMarcadaHoje() {
-
-		return !getConsultasMarcadasHoje().isEmpty();
 	}
 
 	public static Paciente getProximoPacienteAserAtendido() {
