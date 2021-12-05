@@ -35,8 +35,6 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 	private Button btnAtenderPaciente;
 	@FXML
 	private Button btnCancelarConsulta;
-	@FXML
-	private Button btnPacientes;
 
 	@FXML
 	private Button btnVoltar;
@@ -109,14 +107,6 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 	void closeScreen(ActionEvent event) {
 
 		ScreenManager.closeScreen(btnVoltar);
-	}
-	
-
-
-	@FXML
-	void openScreenMedicoPacientes(ActionEvent event) throws IOException {
-
-		screenManager.openNewScreen("medico/MedicoPacientes", "Pacientes");
 	}
 
 	@Override
