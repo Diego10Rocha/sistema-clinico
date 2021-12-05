@@ -45,7 +45,7 @@ public class MedicoPacientesController implements Initializable {
 	@FXML
 	void openScreenProntuariosPacientes(ActionEvent event) throws IOException {
 
-		Paciente pacienteSelecionado = lvPacientes.getSelectionModel().getSelectedItem();
+		pacienteSelecionado = lvPacientes.getSelectionModel().getSelectedItem();
 
 		if (pacienteSelecionado == null) {
 

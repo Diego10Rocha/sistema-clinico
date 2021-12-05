@@ -1,5 +1,7 @@
 package model;
 
+import dao.PacienteDAO;
+
 public class Prontuario {
 
 	private final String CPF_PACIENTE;
@@ -18,9 +20,10 @@ public class Prontuario {
 	public String getFormularioString() {
 
 		String formularioProntuario;
+		String nomePacienteProntuario = PacienteDAO.findByCPF(CPF_PACIENTE).getNome();
 
-		formularioProntuario = CPF_PACIENTE + " Prontuário" + "\n" + "\n" + "Anamnese: " + "\n" + anamnese + "\n" + "\n"
-				+ "Exame Físico: " + "\n" + exameFisico + "\n" + "\n" + "Hipóteses diagnósticas: " + "\n"
+		formularioProntuario = "Paciente: " + nomePacienteProntuario + "\n" + "\n" + "Anamnese: " + "\n" + anamnese
+				+ "\n" + "\n" + "Exame Físico: " + "\n" + exameFisico + "\n" + "\n" + "Hipóteses diagnósticas: " + "\n"
 				+ hipotesesDiagnosticas + "\n" + "\n" + "Diagnósticos definitivos: " + "\n" + diagnosticosDefinitivos
 				+ "\n" + "\n" + "Tratamentos efetuados: " + "\n" + tratamentosEfetuados + "\n";
 
