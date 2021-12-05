@@ -48,6 +48,7 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	private ObservableList<AgendaConsulta> obsConsultas;
 
 	private static AgendaConsulta agendaSelecionada;
+	private RequestCPFController requestCpfController;
 
 	private MessageAlert msg = new MessageAlert();
 
@@ -60,7 +61,42 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	@FXML
 	void openScreenRequestCPF(ActionEvent event) throws IOException {
 
-		screenManager.openNewScreen("consulta/RequestCPF", "Marcação de Consulta");
+		if (isAgendaNotSelecionada()) {
+
+			msg.showMessage("Por Favor selecione uma Consulta primeiro!", AlertType.WARNING);
+		}
+
+		else {
+
+			screenManager.openNewScreen("consulta/RequestCPF", "Requisição CPF");
+
+			setReferenciaRequestCpfController();
+
+		}
+
+	}
+
+	private boolean isAgendaNotSelecionada() {
+
+		agendaSelecionada = lvConsultas.getSelectionModel().getSelectedItem();
+
+		return agendaSelecionada == null;
+	}
+
+	private void setReferenciaRequestCpfController() {
+
+		Object currentController = screenManager.getCurrenController();
+
+		requestCpfController = (RequestCPFController) currentController;
+
+		setConsultaSelecionadaToRequestCPFController();
+
+	}
+
+	private void setConsultaSelecionadaToRequestCPFController() {
+
+		requestCpfController.setConsultaSelecionada(agendaSelecionada);
+
 	}
 
 	@FXML
@@ -84,9 +120,7 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	@FXML
 	void openScreenFormularioEditConsulta(ActionEvent event) throws IOException {
 
-		agendaSelecionada = lvConsultas.getSelectionModel().getSelectedItem();
-
-		if (agendaSelecionada == null) {
+		if (isAgendaNotSelecionada()) {
 
 			msg.showMessage("Por Favor selecione uma Agenda primeiro!", AlertType.WARNING);
 		}
@@ -113,9 +147,7 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	@FXML
 	void removerConsulta(ActionEvent event) throws Exception {
 
-		agendaSelecionada = lvConsultas.getSelectionModel().getSelectedItem();
-
-		if (agendaSelecionada == null) {
+		if (isAgendaNotSelecionada()) {
 
 			msg.showMessage("Por Favor selecione uma Agenda primeiro!", AlertType.WARNING);
 
@@ -143,9 +175,10 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 	private void loadConsultas() {
 
 		List<AgendaConsulta> agendasConsultaCadastradas = AgendaConsultaDAO.getAgendasConsulta();
+
 		Collections.sort(agendasConsultaCadastradas);
+
 		obsConsultas = FXCollections.observableArrayList(agendasConsultaCadastradas);
-		
 
 		lvConsultas.setItems(obsConsultas);
 
