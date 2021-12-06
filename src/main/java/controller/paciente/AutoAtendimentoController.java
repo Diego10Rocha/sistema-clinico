@@ -2,6 +2,7 @@ package controller.paciente;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -59,7 +60,7 @@ public class AutoAtendimentoController implements Initializable {
 		else {
 
 			screenManager.openNewScreen("consulta/RequestCPF", "Requisição CPF");
-			
+
 			setReferenciaRequestCpfController();
 
 		}
@@ -83,6 +84,9 @@ public class AutoAtendimentoController implements Initializable {
 	private void loadConsultas() {
 
 		List<AgendaConsulta> agendasConsultaCadastradas = AgendaConsultaDAO.getAgendasConsulta();
+
+		Collections.sort(agendasConsultaCadastradas);
+
 		obsConsultas = FXCollections.observableArrayList(agendasConsultaCadastradas);
 
 		lvConsultas.setItems(obsConsultas);
