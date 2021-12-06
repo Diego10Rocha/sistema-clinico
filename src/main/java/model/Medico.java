@@ -62,6 +62,10 @@ public class Medico extends Usuario {
 	}
 
 	public void setCPF_Paciente(String CPF_paciente) {
+
+		if (this.CPFs_pacientes.contains(CPF_paciente))
+			return;
+
 		this.CPFs_pacientes.add(CPF_paciente);
 	}
 

@@ -8,12 +8,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.paciente.PacienteRecepcionistaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="685.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.paciente.PacienteRecepcionistaController">
    <children>
       <ListView fx:id="lvPacientes" layoutX="30.0" layoutY="33.0" prefHeight="323.0" prefWidth="600.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="30.0" />
       <HBox alignment="CENTER" layoutY="396.0" prefHeight="55.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btnRemoverPaciente" mnemonicParsing="false" onAction="#removerPaciente" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: white;" text="Remover">
+            <Button fx:id="btnHistoricoConsulta" mnemonicParsing="false" onAction="#openScreenHistoricoConsulta" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: white;" text="Histórico de Consulta">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="2.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnRemoverPaciente" mnemonicParsing="false" onAction="#removerPaciente" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: white;" text="Remover">
                <font>
                   <Font size="14.0" />
                </font>
@@ -21,7 +29,7 @@
                   <Insets left="12.0" right="12.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnEditarPaciente" mnemonicParsing="false" onAction="#openScreenFormularioEditPaciente" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: white;" text="Editar">
+            <Button fx:id="btnEditarPaciente" mnemonicParsing="false" onAction="#openScreenFormularioEditPaciente" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: white;" text="Editar">
                <font>
                   <Font size="14.0" />
                </font>
@@ -29,17 +37,17 @@
                   <Insets left="12.0" right="12.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#closeScreen" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: white;" text="Voltar">
+            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#closeScreen" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: white;" text="Voltar">
                <font>
                   <Font size="14.0" />
                </font>
                <HBox.margin>
-                  <Insets left="12.0" right="12.0" />
+                  <Insets left="2.0" right="12.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <HBox alignment="TOP_CENTER" layoutX="179.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="TOP_CENTER" layoutX="179.0" prefHeight="30.0" prefWidth="685.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label text="Pacientes" textFill="WHITE">
                <font>

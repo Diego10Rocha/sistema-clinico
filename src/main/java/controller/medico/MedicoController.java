@@ -9,38 +9,35 @@ import screenManager.ScreenManager;
 
 public class MedicoController {
 
-    @FXML
-    private Button btnConsulta;
+	@FXML
+	private Button btnConsulta;
 
-    @FXML
-    private Button btnAtenderPaciente;
-    
-    @FXML
-    private Button btnSair;
-    
-    ScreenManager screenManager = new ScreenManager();
+	@FXML
+	private Button btnPacientes;
 
-    @FXML
-    void exit(ActionEvent event) {
-    	ScreenManager.closeScreen(btnSair);
-    }
+	@FXML
+	private Button btnSair;
 
-    @FXML
-    void openScreenAtendimento(ActionEvent event) {
-    	try {
-			screenManager.openNewScreen("medico/AtendimentoMedicoScreen", "Atendimento");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
-    
-    @FXML
-    void openScreenConsultas(ActionEvent event) {
-    	try {
-			screenManager.openNewScreen("consulta/ConsultaMedicoScreen", "Atendimento");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
+	private ScreenManager screenManager = new ScreenManager();
+
+	@FXML
+	void exit(ActionEvent event) {
+
+		ScreenManager.closeScreen(btnSair);
+	}
+
+	@FXML
+	void openScreenConsultas(ActionEvent event) throws IOException {
+
+		screenManager.openNewScreen("consulta/ConsultaMedicoScreen", "Atendimento");
+
+	}
+
+	@FXML
+	void openScreenMedicoPacientes(ActionEvent event) throws IOException {
+
+		screenManager.openNewScreen("medico/MedicoPacientes", "Pacientes");
+
+	}
 
 }

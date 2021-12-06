@@ -5,6 +5,7 @@ import java.util.List;
 
 import dao.AgendaConsultaDAO;
 import dao.ConsultaDAO;
+import date.MyDate;
 
 public class GerenciadorConsulta {
 
@@ -61,20 +62,84 @@ public class GerenciadorConsulta {
 
 	}
 
-	public static List<Consulta> getHistoryConsultasPaciente(String CPF_Target) {
+	public static List<Consulta> getAllConsultasMarcadasByCPF_Medico(String CPF_MEDICO) {
 
+		List<Consulta> allConsultasMarcadas = new ArrayList<>();
 		List<Consulta> consultasCadastradas = ConsultaDAO.getConsultas();
-		List<Consulta> historyConsultasPaciente = new ArrayList<>();
 
 		for (Consulta consultaCadastrada : consultasCadastradas) {
 
-			if (consultaCadastrada.getCPF_paciente().equals(CPF_Target)) {
+			if (isConsultaNotRealizada(consultaCadastrada) && consultaContainsCPF(consultaCadastrada, CPF_MEDICO)) {
 
-				historyConsultasPaciente.add(consultaCadastrada);
+				allConsultasMarcadas.add(consultaCadastrada);
+			}
+		}
+
+		return allConsultasMarcadas;
+	}
+
+	private static boolean isConsultaNotRealizada(Consulta consultaCadastrada) {
+
+		return !consultaCadastrada.isRealizada();
+	}
+
+	private static boolean consultaContainsCPF(Consulta consultaTarget, String CPF_Target) {
+
+		String cpfMedicoConsulta = consultaTarget.getCPF_medico();
+		String cpfPacienteConsulta = consultaTarget.getCPF_paciente();
+
+		return cpfMedicoConsulta.equals(CPF_Target) || cpfPacienteConsulta.equals(CPF_Target);
+	}
+
+	public static List<Consulta> getConsultasMarcadasHojeByCPF_Medico(String CPF_MEDICO) {
+
+		List<Consulta> allConsultasMarcadas = new ArrayList<>();
+		List<Consulta> consultasCadastradas = ConsultaDAO.getConsultas();
+
+		for (Consulta consultaCadastrada : consultasCadastradas) {
+
+			if (isConsultaNotRealizada(consultaCadastrada) && consultaContainsCPF(consultaCadastrada, CPF_MEDICO)
+					&& isConsultaMarcadaHoje(consultaCadastrada)) {
+
+				allConsultasMarcadas.add(consultaCadastrada);
+			}
+		}
+
+		return allConsultasMarcadas;
+	}
+
+	private static boolean isConsultaMarcadaHoje(Consulta consultaCadastrada) {
+
+		String dataAtual = new MyDate().getCurrentDate();
+		String dataMarcadaConsulta = consultaCadastrada.getData();
+
+		return dataAtual.equals(dataMarcadaConsulta);
+	}
+
+	public static List<HistoricoConsulta> getHistoryConsultasPaciente(String CPF_Paciente) {
+
+		List<Consulta> consultasCadastradas = ConsultaDAO.getConsultas();
+		List<HistoricoConsulta> historyConsultasPaciente = new ArrayList<>();
+
+		HistoricoConsulta historicoConsulta;
+
+		for (Consulta consultaCadastrada : consultasCadastradas) {
+
+			if (isConsultaRealizada(consultaCadastrada) && consultaContainsCPF(consultaCadastrada, CPF_Paciente)) {
+
+				historicoConsulta = new HistoricoConsulta(consultaCadastrada);
+
+				historyConsultasPaciente.add(historicoConsulta);
 			}
 		}
 
 		return historyConsultasPaciente;
 
 	}
+
+	private static boolean isConsultaRealizada(Consulta consultaCadastrada) {
+
+		return consultaCadastrada.isRealizada();
+	}
+
 }

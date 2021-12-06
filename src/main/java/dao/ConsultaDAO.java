@@ -19,14 +19,15 @@ public class ConsultaDAO {
 	}
 
 	public static boolean insertConsulta(Consulta consulta) {
+		System.out.println(consulta.getHora());
 
 		try {
 
 			if (consultaAlreadyRegistered(consulta)) {
 
 				throw new Exception("Consulta já cadastrada");
+				
 			}
-
 			connectionFile.writer(consulta);
 
 			return true;

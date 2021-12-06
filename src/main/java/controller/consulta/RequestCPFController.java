@@ -1,6 +1,5 @@
 package controller.consulta;
 
-import controller.paciente.AutoAtendimentoController;
 import dao.ConsultaDAO;
 import dao.PacienteDAO;
 import javafx.event.ActionEvent;
@@ -20,18 +19,18 @@ public class RequestCPFController {
 
 	@FXML
 	private Button btnMarcarConsulta;
-
-	private AgendaConsulta consultaSelecionada = AutoAtendimentoController.getConsultaSelecionada();
+	private AgendaConsulta consultaSelecionada;
 
 	private MessageAlert msg = new MessageAlert();
-	
-	@FXML
-    private Button btnVoltar;
 
-    @FXML
-    void closeScreen(ActionEvent event) {
-    	ScreenManager.closeScreen(btnVoltar);
-    }
+	@FXML
+	private Button btnVoltar;
+
+	@FXML
+	void closeScreen(ActionEvent event) {
+		
+		ScreenManager.closeScreen(btnVoltar);
+	}
 
 	@FXML
 	void marcar(ActionEvent event) {
@@ -45,13 +44,13 @@ public class RequestCPFController {
 			Consulta newConsulta = createNewConsulta();
 
 			boolean ConsultaAlreadyMarcada = ConsultaDAO.consultaAlreadyRegistered(newConsulta);
-
+			
 			if (ConsultaAlreadyMarcada)
 
 				msg.showMessage("A consulta já foi marcada.", AlertType.WARNING);
 
 			else {
-
+				
 				ConsultaDAO.insertConsulta(newConsulta);
 
 				msg.showMessage("Consulta marcada com Sucesso", AlertType.INFORMATION);
@@ -70,11 +69,12 @@ public class RequestCPFController {
 	}
 
 	private Consulta createNewConsulta() {
-
+		
 		String CPF_Medico = consultaSelecionada.getCPF_medico();
 		String horaConsulta = consultaSelecionada.getHora();
 		String dataConsulta = consultaSelecionada.getData();
 		String CPF_Paciente = txtCPF.getText();
+		
 
 		return new Consulta(dataConsulta, horaConsulta, CPF_Medico, CPF_Paciente);
 
@@ -85,4 +85,13 @@ public class RequestCPFController {
 		ScreenManager.closeScreen(btnMarcarConsulta);
 
 	}
+
+	public AgendaConsulta getConsultaSelecionada() {
+		return consultaSelecionada;
+	}
+
+	public void setConsultaSelecionada(AgendaConsulta consultaSelecionada) {
+		this.consultaSelecionada = consultaSelecionada;
+	}
+
 }

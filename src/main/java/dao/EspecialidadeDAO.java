@@ -12,6 +12,9 @@ public class EspecialidadeDAO {
 	private static ConnectionFile<Especialidade> connectionFile = new ConnectionFile<>(Especialidade[].class,
 			"Arquivos/Especialidades.json");
 
+	private static ConnectionFile<Integer> conAmountSpecialtyAlreadyRegistered = new ConnectionFile<>(Integer[].class,
+			"Arquivos/AmountSpecialtyAlreadyRegistered.json");
+
 	public static List<Especialidade> getSpecialties() {
 
 		List<Especialidade> specialties = connectionFile.readFile();
@@ -45,15 +48,23 @@ public class EspecialidadeDAO {
 
 	private static void setId(Especialidade specialty) {
 
-		int id = countSpecialty() + 1;
+		int id = getId();
 
 		specialty.setId(id);
+
+		updateAmountSpecialtyAlreadyRegistered(id);
 	}
 
-	public static int countSpecialty() {
+	private static int getId() {
 
-		return getSpecialties().size();
+		int amountSpecialtyAlreadyRegistered = conAmountSpecialtyAlreadyRegistered.readFile().get(0);
 
+		return amountSpecialtyAlreadyRegistered + 1;
+	}
+
+	private static void updateAmountSpecialtyAlreadyRegistered(int lastIdRegistered) {
+
+		conAmountSpecialtyAlreadyRegistered.reWriter(lastIdRegistered);
 	}
 
 	public static boolean updateSpecialty(Especialidade newSpecialty) {

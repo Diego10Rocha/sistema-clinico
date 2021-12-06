@@ -1,8 +1,9 @@
 package model;
 
 import dao.PacienteDAO;
+import date.MyDateTime;
 
-public class Consulta {
+public class Consulta implements Comparable<Consulta> {
 
 	private String data;
 	private String hora;
@@ -79,6 +80,12 @@ public class Consulta {
 		}
 
 		return objIsEqual;
+	}
+
+	@Override
+	public int compareTo(Consulta compare) {
+
+		return MyDateTime.compareTo(this.getHora(), compare.getHora());
 	}
 
 }

@@ -9,7 +9,7 @@ de outra autoria que não a minha está destacado com uma citação para o autor
 do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
 ******************************************************************************************/
 
-package main;
+package Main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,39 +20,41 @@ import javafx.stage.Stage;
 
 /**
  * Classe principal do projeto
+ * 
  * @author Diego Cerqueira e Joanderson Santos
  *
  */
 public class Main extends Application {
-    
-    /**
-     * Metodo da interface Application que inicializa a tela principal do projeto
-     * @param stage
-     */
-    @Override
-    public void start(Stage stage) throws Exception {
-    
-    	FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/MainScreen.fxml"));
-        Parent root = loader.load();
-        
-        
-        Scene scene = new Scene(root);
-        
-        stage.setTitle("MainScreen");
-        //stage.setMaximized(true);
-        stage.setResizable(true);
-        stage.setMinHeight(400);
-        stage.setMinWidth(600);
-        Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
 
-        stage.getIcons().add(image);
-        stage.setScene(scene);
-        stage.show();
-    }
+	/**
+	 * Metodo da interface Application que inicializa a tela principal do projeto
+	 * 
+	 * @param stage
+	 */
+	@Override
+	public void start(Stage stage) throws Exception {
 
-   
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/MainScreen.fxml"));
+		Parent root = loader.load();
+
+		Scene scene = new Scene(root);
+
+		stage.setTitle("MainScreen");
+		// stage.setMaximized(true);
+		stage.setResizable(true);
+		stage.setMinHeight(400);
+		stage.setMinWidth(600);
+
+		Image applicationIcon = new Image(getClass().getResourceAsStream("/image/icon.png"));
+
+		stage.getIcons().add(applicationIcon);
+
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 }

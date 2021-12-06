@@ -1,11 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dao.PacienteDAO;
 
 public class Paciente extends Usuario {
 
 	private String DATA_NASCIMENTO;
-	private Prontuario prontuario;
+	private List<Prontuario> prontuarios;
 
 	public Paciente() {
 
@@ -16,7 +19,7 @@ public class Paciente extends Usuario {
 		super(nome, CPF);
 
 		this.DATA_NASCIMENTO = DATA_NASCIMENTO;
-		this.prontuario = new Prontuario(CPF);
+		this.prontuarios = new ArrayList<>();
 
 		PacienteDAO.insertPatient(this);
 	}
@@ -35,12 +38,16 @@ public class Paciente extends Usuario {
 		DATA_NASCIMENTO = dATA_NASCIMENTO;
 	}
 
-	public Prontuario getProntuario() {
-		return prontuario;
+	public List<Prontuario> getProntuarios() {
+		return this.prontuarios;
 	}
 
-	public void setProntuario(Prontuario prontuario) {
-		this.prontuario = prontuario;
+	public void addProntuario(Prontuario prontuario) {
+
+		if (this.prontuarios.contains(prontuario))
+			return;
+
+		this.prontuarios.add(prontuario);
 	}
 
 	@Override

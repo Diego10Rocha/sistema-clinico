@@ -48,7 +48,7 @@ public class MainScreenController {
 	@FXML
 	void openScreenLogin(ActionEvent event) throws IOException {
 
-		screenManager.openNewScreen("login/LoginScreen", "Login");
+		screenManager.openNewScreen("login/LoginScreen", "Login", false);
 	}
 
 	@FXML
