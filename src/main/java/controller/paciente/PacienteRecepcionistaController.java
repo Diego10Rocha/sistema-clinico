@@ -27,6 +27,8 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 
 	@FXML
 	private Button btnRemoverPaciente;
+	@FXML
+	private Button btnHistoricoConsulta;
 
 	@FXML
 	private Button btnEditarPaciente;
@@ -118,6 +120,13 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 
 			loadPacientes();
 		}
+	}
+
+	@FXML
+	void openScreenHistoricoConsulta(ActionEvent event) throws IOException {
+
+		screenManager.openNewScreen("consulta/HistoricoConsulta", "Historico Consulta");
+
 	}
 
 	@Override
