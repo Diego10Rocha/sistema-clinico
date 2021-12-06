@@ -16,7 +16,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="34.0" prefWidth="597.0" text=" O sistema clinico foi desenvolvido pelos alunos Joanderson Santos e Diego Cerqueira,com" textFill="WHITE">
+            <Label prefHeight="34.0" prefWidth="597.0" text=" O sistema clínico foi desenvolvido pelos alunos Joanderson Santos e Diego Cerqueira,com" textFill="WHITE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
