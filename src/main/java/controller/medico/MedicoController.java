@@ -18,7 +18,7 @@ public class MedicoController {
 	@FXML
 	private Button btnSair;
 
-	ScreenManager screenManager = new ScreenManager();
+	private ScreenManager screenManager = new ScreenManager();
 
 	@FXML
 	void exit(ActionEvent event) {

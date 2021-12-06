@@ -1,5 +1,7 @@
 package controller.consulta;
 
+import java.io.IOException;
+
 import dao.ConsultaDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
@@ -46,6 +48,8 @@ public class AtendimentoMedicoController {
 	private Medico medicoQueAtendeu;
 	private Paciente pacienteAtendido;
 	private Consulta consultaDaVez;
+
+	private ScreenManager screenManager = new ScreenManager();
 
 	void closeScreen() {
 
@@ -107,8 +111,9 @@ public class AtendimentoMedicoController {
 
 	}
 
-	void openScreenReceita(ActionEvent event) {
+	void openScreenReceita(ActionEvent event) throws IOException {
 
+		screenManager.openNewScreen("consulta/ReceitaMedica", "Receita");
 	}
 
 	public void addButtonsListener(EventHandler<ActionEvent> listener) {
