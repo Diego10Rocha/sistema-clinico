@@ -186,7 +186,7 @@ public class ConsultaMedicoController implements Initializable, EventHandler<Act
 
 			try {
 
-				screenManager.openNewScreen("", "Receita");
+				atendimentoMedicoController.openScreenReceita();
 
 			} catch (IOException e) {
 

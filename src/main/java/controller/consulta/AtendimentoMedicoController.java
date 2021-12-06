@@ -111,7 +111,7 @@ public class AtendimentoMedicoController {
 
 	}
 
-	void openScreenReceita(ActionEvent event) throws IOException {
+	void openScreenReceita() throws IOException {
 
 		screenManager.openNewScreen("consulta/ReceitaMedica", "Receita");
 	}
