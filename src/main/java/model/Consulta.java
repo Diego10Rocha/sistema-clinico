@@ -11,7 +11,7 @@ public class Consulta implements Comparable<Consulta>{
 	private boolean isRealizada;
 
 	public Consulta(String data, String hora, String CPF_medico, String CPF_paciente) {
-
+		
 		this.data = data;
 		this.hora = hora;
 		this.CPF_medico = CPF_medico;

@@ -98,7 +98,7 @@ public class AtendimentoMedicoController {
 
 		consultaDaVez = ConsultaMedicoController.getProximaConsultaAserRealizada();
 
-		Consulta newConsultaRealizada = new Consulta(consultaDaVez.getData(), consultaDaVez.getData(),
+		Consulta newConsultaRealizada = new Consulta(consultaDaVez.getData(), consultaDaVez.getHora(),
 				consultaDaVez.getCPF_medico(), consultaDaVez.getCPF_paciente());
 
 		newConsultaRealizada.setRealizada(true);

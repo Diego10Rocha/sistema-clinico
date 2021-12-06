@@ -44,13 +44,13 @@ public class RequestCPFController {
 			Consulta newConsulta = createNewConsulta();
 
 			boolean ConsultaAlreadyMarcada = ConsultaDAO.consultaAlreadyRegistered(newConsulta);
-
+			
 			if (ConsultaAlreadyMarcada)
 
 				msg.showMessage("A consulta já foi marcada.", AlertType.WARNING);
 
 			else {
-
+				
 				ConsultaDAO.insertConsulta(newConsulta);
 
 				msg.showMessage("Consulta marcada com Sucesso", AlertType.INFORMATION);
@@ -69,11 +69,12 @@ public class RequestCPFController {
 	}
 
 	private Consulta createNewConsulta() {
-
+		
 		String CPF_Medico = consultaSelecionada.getCPF_medico();
 		String horaConsulta = consultaSelecionada.getHora();
 		String dataConsulta = consultaSelecionada.getData();
 		String CPF_Paciente = txtCPF.getText();
+		
 
 		return new Consulta(dataConsulta, horaConsulta, CPF_Medico, CPF_Paciente);
 
