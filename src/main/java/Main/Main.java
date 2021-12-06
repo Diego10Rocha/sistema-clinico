@@ -44,9 +44,11 @@ public class Main extends Application {
 		stage.setResizable(true);
 		stage.setMinHeight(400);
 		stage.setMinWidth(600);
-		Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
 
-		stage.getIcons().add(image);
+		Image applicationIcon = new Image(getClass().getResourceAsStream("/image/icon.png"));
+
+		stage.getIcons().add(applicationIcon);
+
 		stage.setScene(scene);
 		stage.show();
 	}

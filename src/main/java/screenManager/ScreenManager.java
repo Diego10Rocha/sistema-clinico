@@ -58,9 +58,9 @@ public class ScreenManager {
 		stage.setMinWidth(600);
 		stage.initModality(Modality.APPLICATION_MODAL);
 
-		Image image = new Image("https://cdn.pixabay.com/photo/2017/05/27/22/25/cruz-2349636_960_720.png");
+		Image applicationIcon = new Image(getClass().getResourceAsStream("/image/icon.png"));
 
-		stage.getIcons().add(image);
+		stage.getIcons().add(applicationIcon);
 
 		stage.show();
 
