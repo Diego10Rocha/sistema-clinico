@@ -62,23 +62,6 @@ public class GerenciadorConsulta {
 
 	}
 
-	public static List<Consulta> getHistoryConsultasPaciente(String CPF_Target) {
-
-		List<Consulta> consultasCadastradas = ConsultaDAO.getConsultas();
-		List<Consulta> historyConsultasPaciente = new ArrayList<>();
-
-		for (Consulta consultaCadastrada : consultasCadastradas) {
-
-			if (consultaCadastrada.getCPF_paciente().equals(CPF_Target)) {
-
-				historyConsultasPaciente.add(consultaCadastrada);
-			}
-		}
-
-		return historyConsultasPaciente;
-
-	}
-
 	public static List<Consulta> getAllConsultasMarcadasByCPF_Medico(String CPF_MEDICO) {
 
 		List<Consulta> allConsultasMarcadas = new ArrayList<>();
@@ -131,6 +114,32 @@ public class GerenciadorConsulta {
 		String dataMarcadaConsulta = consultaCadastrada.getData();
 
 		return dataAtual.equals(dataMarcadaConsulta);
+	}
+
+	public static List<HistoricoConsulta> getHistoryConsultasPaciente(String CPF_Paciente) {
+
+		List<Consulta> consultasCadastradas = ConsultaDAO.getConsultas();
+		List<HistoricoConsulta> historyConsultasPaciente = new ArrayList<>();
+
+		HistoricoConsulta historicoConsulta;
+
+		for (Consulta consultaCadastrada : consultasCadastradas) {
+
+			if (isConsultaRealizada(consultaCadastrada) && consultaContainsCPF(consultaCadastrada, CPF_Paciente)) {
+
+				historicoConsulta = new HistoricoConsulta(consultaCadastrada);
+
+				historyConsultasPaciente.add(historicoConsulta);
+			}
+		}
+
+		return historyConsultasPaciente;
+
+	}
+
+	private static boolean isConsultaRealizada(Consulta consultaCadastrada) {
+
+		return consultaCadastrada.isRealizada();
 	}
 
 }
