@@ -25,7 +25,7 @@
       </HBox>
       <HBox alignment="TOP_CENTER" layoutX="179.0" prefHeight="30.0" prefWidth="685.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label text="Histórico de Consultas" textFill="WHITE">
+            <Label text="Histórico de Consulta" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>

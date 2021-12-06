@@ -64,9 +64,7 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 	@FXML
 	void openScreenFormularioEditPaciente(ActionEvent event) throws IOException {
 
-		pacienteSelecionado = lvPacientes.getSelectionModel().getSelectedItem();
-
-		if (pacienteSelecionado == null) {
+		if (isPacienteNotSelecionado()) {
 
 			msg.showMessage("Por Favor selecione um Paciente primeiro!", AlertType.WARNING);
 
@@ -79,6 +77,13 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 			setReferenciaFormularioPacienteEdit();
 
 		}
+	}
+
+	private boolean isPacienteNotSelecionado() {
+
+		pacienteSelecionado = lvPacientes.getSelectionModel().getSelectedItem();
+
+		return pacienteSelecionado == null;
 	}
 
 	private void setReferenciaFormularioPacienteEdit() {
@@ -94,9 +99,7 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 	@FXML
 	void removerPaciente(ActionEvent event) throws Exception {
 
-		pacienteSelecionado = lvPacientes.getSelectionModel().getSelectedItem();
-
-		if (pacienteSelecionado == null) {
+		if (isPacienteNotSelecionado()) {
 
 			msg.showMessage("Por Favor selecione um Paciente primeiro!", AlertType.WARNING);
 
@@ -125,7 +128,14 @@ public class PacienteRecepcionistaController implements Initializable, EventHand
 	@FXML
 	void openScreenHistoricoConsulta(ActionEvent event) throws IOException {
 
-		screenManager.openNewScreen("consulta/HistoricoConsulta", "Historico Consulta");
+		if (isPacienteNotSelecionado()) {
+
+			msg.showMessage("Por Favor selecione um Paciente primeiro!", AlertType.WARNING);
+		}
+
+		else
+
+			screenManager.openNewScreen("consulta/HistoricoConsulta", "Historico Consulta");
 
 	}
 
