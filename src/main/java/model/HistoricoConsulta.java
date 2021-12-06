@@ -30,7 +30,7 @@ public class HistoricoConsulta {
 		String dataConsulta = consulta.getData();
 		String horaConsulta = consulta.getHora();
 
-		return "Data: " + dataConsulta + "/n" + "Hora: " + horaConsulta + "/n" + "Médico(a): "
+		return "Data: " + dataConsulta + "\n" + "Hora: " + horaConsulta + "\n" + "Médico(a): "
 				+ nomeMedicoQueRealizouConsulta;
 	}
 
