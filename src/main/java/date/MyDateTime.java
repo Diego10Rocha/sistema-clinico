@@ -7,8 +7,6 @@ public class MyDateTime {
 		int horaTime1 = parseHora(time1);
 		int horaTime2 = parseHora(time2);
 
-		System.out.println(horaTime1 + "->" + horaTime2);
-
 		if (horaTime1 == horaTime2)
 
 			return compareMinutos(time1, time2);
