@@ -38,7 +38,9 @@ public class ReceitaMedicaController {
 
 		else {
 
-			txtDescricao.setText(txtDescricao.getText() + "Dr(a): " + medicoLogado.getNome());
+			ScreenManager.closeScreen(btnVoltar);
+
+			txtDescricao.setText(txtDescricao.getText() + "\n" + "Dr(a): " + medicoLogado.getNome());
 
 			new MessageAlert().showMessage(txtDescricao.getText(), AlertType.INFORMATION);
 		}
