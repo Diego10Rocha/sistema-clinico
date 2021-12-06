@@ -2,6 +2,7 @@ package model;
 
 import dao.MedicoDAO;
 import date.MyDate;
+import date.MyDateTime;
 
 public class AgendaConsulta implements Comparable<AgendaConsulta> {
 
@@ -78,7 +79,7 @@ public class AgendaConsulta implements Comparable<AgendaConsulta> {
 
 		else {
 
-			int resultCompareToTime = this.getHora().compareTo(compare.getHora());
+			int resultCompareToTime = MyDateTime.compareTo(this.getHora(), compare.getHora());
 
 			if (resultCompareToTime != 0)
 
