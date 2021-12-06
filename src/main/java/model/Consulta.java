@@ -1,8 +1,9 @@
 package model;
 
 import dao.PacienteDAO;
+import date.MyDateTime;
 
-public class Consulta implements Comparable<Consulta>{
+public class Consulta implements Comparable<Consulta> {
 
 	private String data;
 	private String hora;
@@ -11,7 +12,7 @@ public class Consulta implements Comparable<Consulta>{
 	private boolean isRealizada;
 
 	public Consulta(String data, String hora, String CPF_medico, String CPF_paciente) {
-		
+
 		this.data = data;
 		this.hora = hora;
 		this.CPF_medico = CPF_medico;
@@ -84,7 +85,7 @@ public class Consulta implements Comparable<Consulta>{
 	@Override
 	public int compareTo(Consulta compare) {
 
-		return this.getHora().compareTo(compare.getHora());
+		return MyDateTime.compareTo(this.getHora(), compare.getHora());
 	}
 
 }
