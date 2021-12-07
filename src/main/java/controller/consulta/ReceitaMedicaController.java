@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import login.Login;
 import message.MessageAlert;
-import model.Medico;
+import print.Prescription;
 import screenManager.ScreenManager;
 
 public class ReceitaMedicaController {
@@ -20,8 +20,6 @@ public class ReceitaMedicaController {
 	private Button btnVoltar;
 	@FXML
 	private TextArea txtDescricao;
-
-	private Medico medicoLogado = MedicoDAO.findByCPF(Login.getCPF_userLogged());
 
 	@FXML
 	void closeScreen(ActionEvent event) {
@@ -40,9 +38,9 @@ public class ReceitaMedicaController {
 
 			ScreenManager.closeScreen(btnVoltar);
 
-			txtDescricao.setText(txtDescricao.getText() + "\n" + "Dr(a): " + medicoLogado.getNome());
-
 			new MessageAlert().showMessage(txtDescricao.getText(), AlertType.INFORMATION);
+			
+			Prescription.print(txtDescricao.getText(), MedicoDAO.findByCPF(Login.getCPF_userLogged()).getNome());
 		}
 
 	}
