@@ -1,3 +1,14 @@
+/*******************************************************************************
+Autor: Diego Cerqueira e Joanderson Santos
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package controller.especialidade;
 
 import dao.EspecialidadeDAO;
@@ -12,6 +23,12 @@ import javafx.scene.text.Text;
 import message.MessageAlert;
 import screenManager.ScreenManager;
 
+/**
+ * Controller do cadastro de especialidade
+ * 
+ * @author Diego Cerqueira e Joanderson Santos
+ * @since 2021
+ */
 public class FormularioCadastroEspecialidadeController {
 
 	@FXML
@@ -28,6 +45,9 @@ public class FormularioCadastroEspecialidadeController {
 
 	private MessageAlert msg = new MessageAlert();
 
+	/**
+	 * Metodo que cadastra a especialidade
+	 */
 	public void cadastrarEspecialidade() {
 
 		txtMessageEspecialidade_Cadastrada.setText("");
@@ -57,11 +77,18 @@ public class FormularioCadastroEspecialidadeController {
 		}
 	}
 
+	/**
+	 * Metodo de fechar a tela
+	 */
 	public void closeScreen() {
 
 		ScreenManager.closeScreen(btnCancelar);
 	}
 
+	/**
+	 * Metodo que "ouve" os eventos dos botões: btnCadastrar e btnCancelar
+	 * @param listener
+	 */
 	public void addButtonsListener(EventHandler<ActionEvent> listener) {
 
 		btnCadastrar.setOnAction(listener);

@@ -1,3 +1,14 @@
+/*******************************************************************************
+Autor: Diego Cerqueira e Joanderson Santos
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package controller.especialidade;
 
 import java.io.IOException;
@@ -19,6 +30,12 @@ import message.MessageAlert;
 import model.Especialidade;
 import screenManager.ScreenManager;
 
+/**
+ * Controller da tela de especialidade
+ * 
+ * @author Diego Cerqueira e Joanderson Santos
+ * @since 2021
+ */
 public class EspecialidadeController implements Initializable, EventHandler<ActionEvent> {
 
 	@FXML
@@ -47,6 +64,9 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	private ObservableList<Especialidade> obsEspecialidades;
 
+	/**
+	 * Metodo que carrega as especialidades
+	 */
 	public void loadEspecialidades() {
 
 		List<Especialidade> especialidadesCadastradas = EspecialidadeDAO.getSpecialties();
@@ -56,12 +76,21 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 		lvEspecialidades.setItems(obsEspecialidades);
 	}
 
+	/**
+	 * Evento de fechar a tela
+	 * @param event
+	 */
 	@FXML
 	void closeScreen(ActionEvent event) {
 
 		ScreenManager.closeScreen(btnVoltar);
 	}
 
+	/**
+	 * Evento que abre tela de edição de especialidade
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void openScreenFormularioEditEspecialidade(ActionEvent event) throws IOException {
 
@@ -82,6 +111,9 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 		}
 	}
 
+	/**
+	 * Metodo que pega a referência da especialidade a ser editada
+	 */
 	private void setReferenciaFormularioEspecialidadeEdit() {
 
 		Object currentController = screenManager.getCurrenController();
@@ -92,6 +124,11 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	}
 
+	/**
+	 * Evento que abre formulário de cadastro de especialidade
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void openScreenFormularioEspecialidade(ActionEvent event) throws IOException {
 
@@ -101,6 +138,9 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	}
 
+	/**
+	 * Pega a referência do controller do formulário de cadastro
+	 */
 	private void setReferenciaFormularioCadastroEspecialidadeController() {
 
 		Object currentController = screenManager.getCurrenController();
@@ -111,6 +151,10 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	}
 
+	/**
+	 * Evento que remove uma especialidade
+	 * @param event
+	 */
 	@FXML
 	void removerEspecialidade(ActionEvent event) {
 
@@ -138,6 +182,9 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	}
 
+	/**
+	 * Metodo que inicializa a tela com as especialidades
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -148,6 +195,11 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	}
 
+	
+	/**
+	 * Metodo que "ouve" os eventos dos botões do formulário de cadastro: btnCadastrar, btnCancelar;
+	 * e do formulário de edição: btnSalvar e btnCancelar;
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 
@@ -181,6 +233,10 @@ public class EspecialidadeController implements Initializable, EventHandler<Acti
 
 	}
 
+	/**
+	 * Metodo que retorna a especialidade selecionada
+	 * @return Especialidade
+	 */
 	public static Especialidade getEspecialidadeSelecionada() {
 
 		return especialidadeSelecionada;

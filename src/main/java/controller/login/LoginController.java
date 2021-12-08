@@ -1,3 +1,14 @@
+/*******************************************************************************
+Autor: Diego Cerqueira e Joanderson Santos
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package controller.login;
 
 import java.io.IOException;
@@ -13,6 +24,12 @@ import login.Login;
 import resultLoginTry.ResultLoginTry;
 import screenManager.ScreenManager;
 
+/**
+ * Controller do login
+ * 
+ * @author Diego Cerqueira e Joanderson Santos
+ * @since 2021
+ */
 public class LoginController {
 
 	@FXML
@@ -31,12 +48,21 @@ public class LoginController {
 	@FXML
 	private Button btnVoltar;
 
+	/**
+	 * Evento que fecha a tela
+	 * @param event
+	 */
 	@FXML
 	void closeScreen(ActionEvent event) {
 		
 		ScreenManager.closeScreen(btnVoltar);
 	}
 
+	/**
+	 * Metodo que faz a autenticação
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void makeLogin(ActionEvent event) throws IOException {
 
@@ -65,12 +91,19 @@ public class LoginController {
 
 	}
 
+	/**
+	 * Metodo para fechar a tela
+	 */
 	private void closeScreen() {
 
 		ScreenManager.closeScreen(btnVoltar);
 
 	}
 
+	/**
+	 * Metodo que verifica qual o usuário que fez login e redireciona para a sua respectiva tela
+	 * @throws IOException
+	 */
 	private void openSpecificScrenLoginUser() throws IOException {
 
 		InstanceType instanceTypeRecepcionista = InstanceType.RECEPCIONISTA;
