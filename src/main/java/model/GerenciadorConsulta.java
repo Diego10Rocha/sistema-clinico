@@ -26,6 +26,7 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Verifica se uma consulta está marcada para algum paciente
+	 * 
 	 * @param CPF_Target
 	 * @return boolean
 	 */
@@ -43,6 +44,7 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Verifica se uma consulta já foi realizada
+	 * 
 	 * @param CPF_Target
 	 * @return boolean
 	 */
@@ -60,6 +62,7 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Metodo que remove todas as consultas de um medico
+	 * 
 	 * @param CPF_Target
 	 * @throws Exception
 	 */
@@ -80,6 +83,7 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Metodo que remove todas as agendas de um medico
+	 * 
 	 * @param CPF_Target
 	 * @throws Exception
 	 */
@@ -99,6 +103,7 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Retorna todas as consultas marcadas de um medico
+	 * 
 	 * @param CPF_MEDICO
 	 * @return List<Consulta>
 	 */
@@ -120,6 +125,7 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Verifica se uma consulta ainda não foi realizada
+	 * 
 	 * @param consultaCadastrada
 	 * @return boolean
 	 */
@@ -129,7 +135,9 @@ public class GerenciadorConsulta {
 	}
 
 	/**
-	 * Verifica se uma consulta possui um cpf associado, seja ele de um médico ou de um paciente
+	 * Verifica se uma consulta possui um cpf associado, seja ele de um médico ou de
+	 * um paciente
+	 * 
 	 * @param consultaTarget
 	 * @param CPF_Target
 	 * @return boolean
@@ -144,6 +152,7 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Retornas as consultas do dia de um medico
+	 * 
 	 * @param CPF_MEDICO
 	 * @return List<Consulta>
 	 */
@@ -166,6 +175,7 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Verifica se uma consulta foi marcada no dia
+	 * 
 	 * @param consultaCadastrada
 	 * @return boolean
 	 */
@@ -179,6 +189,7 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Retorna o histórico de consultas de um paciente
+	 * 
 	 * @param CPF_Paciente
 	 * @return List<HistoricoConsulta>
 	 */
@@ -205,12 +216,47 @@ public class GerenciadorConsulta {
 
 	/**
 	 * Verifica se uma consulta já foi realizada
+	 * 
 	 * @param consultaCadastrada
 	 * @return boolean
 	 */
 	private static boolean isConsultaRealizada(Consulta consultaCadastrada) {
 
 		return consultaCadastrada.isRealizada();
+	}
+
+	/**
+	 * Obtém todas Agendas Consultas Não marcadas.
+	 * 
+	 * @return agendas consultas não marcadas.
+	 */
+
+	public static List<AgendaConsulta> getAgendasConsultaNaoMarcadas() {
+
+		List<AgendaConsulta> agendasConsultaCadastradas = AgendaConsultaDAO.getAgendasConsulta();
+		List<AgendaConsulta> agendasConsultaNaoMarcadas = new ArrayList<>();
+
+		for (AgendaConsulta agenda : agendasConsultaCadastradas) {
+
+			if (isAgendaNaoMaracda(agenda)) {
+
+				agendasConsultaNaoMarcadas.add(agenda);
+			}
+		}
+
+		return agendasConsultaNaoMarcadas;
+	}
+
+	/**
+	 * Verifica se uma Agenda Consulta não foi marcada.
+	 * 
+	 * @param agenda a ser verificada.
+	 * @return true se a agenda não foi marcada, false caso contrário.
+	 */
+
+	private static boolean isAgendaNaoMaracda(AgendaConsulta agenda) {
+
+		return !agenda.isMarcada();
 	}
 
 }
