@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import message.MessageAlert;
 import model.AgendaConsulta;
+import model.GerenciadorConsulta;
 import screenManager.ScreenManager;
 
 public class ConsultaRecepcionistaController implements Initializable, EventHandler<ActionEvent> {
@@ -90,6 +91,7 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 		requestCpfController = (RequestCPFController) currentController;
 
 		setConsultaSelecionadaToRequestCPFController();
+		setCallerToRequestCPFController();
 
 	}
 
@@ -97,6 +99,11 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 
 		requestCpfController.setConsultaSelecionada(agendaSelecionada);
 
+	}
+
+	private void setCallerToRequestCPFController() {
+
+		requestCpfController.setConsultaRecepcionistaController(this);
 	}
 
 	@FXML
@@ -172,13 +179,13 @@ public class ConsultaRecepcionistaController implements Initializable, EventHand
 
 	}
 
-	private void loadConsultas() {
+	public void loadConsultas() {
 
-		List<AgendaConsulta> agendasConsultaCadastradas = AgendaConsultaDAO.getAgendasConsulta();
+		List<AgendaConsulta> agendasConsultaNaoMarcadas = GerenciadorConsulta.getAgendasConsultaNaoMarcadas();
 
-		Collections.sort(agendasConsultaCadastradas);
+		Collections.sort(agendasConsultaNaoMarcadas);
 
-		obsConsultas = FXCollections.observableArrayList(agendasConsultaCadastradas);
+		obsConsultas = FXCollections.observableArrayList(agendasConsultaNaoMarcadas);
 
 		lvConsultas.setItems(obsConsultas);
 

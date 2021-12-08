@@ -23,10 +23,12 @@ public class AgendaConsulta implements Comparable<AgendaConsulta> {
 
 	private String data;
 	private String hora;
+	private boolean isMarcada;
 	private final String CPF_medico;
 
 	/**
 	 * Construtor da classe
+	 * 
 	 * @param data
 	 * @param hora
 	 * @param CPF_medico
@@ -60,6 +62,7 @@ public class AgendaConsulta implements Comparable<AgendaConsulta> {
 
 	/**
 	 * Sobrescrita do metodo equals da classe <b>Object</>
+	 * 
 	 * @param obj objeto a ser comparado
 	 * @return boolean
 	 */
@@ -74,7 +77,8 @@ public class AgendaConsulta implements Comparable<AgendaConsulta> {
 
 			if (agendaConsultaASerComparada.getData().equals(this.getData())
 					&& agendaConsultaASerComparada.getHora().equals(this.getHora())
-					&& agendaConsultaASerComparada.getCPF_medico().equals(this.getCPF_medico())) {
+					&& agendaConsultaASerComparada.getCPF_medico().equals(this.getCPF_medico())
+					&& agendaConsultaASerComparada.isMarcada() == this.isMarcada()) {
 				objIsEqual = true;
 			}
 
@@ -85,6 +89,7 @@ public class AgendaConsulta implements Comparable<AgendaConsulta> {
 
 	/**
 	 * Retorna dados de um objeto da classe em String
+	 * 
 	 * @return String
 	 */
 	@Override
@@ -97,7 +102,9 @@ public class AgendaConsulta implements Comparable<AgendaConsulta> {
 	}
 
 	/**
-	 * Metodo da interface comparable que define os criterios de ordenação de uma lista de <b>AgendaConsulta</b>
+	 * Metodo da interface comparable que define os criterios de ordenação de uma
+	 * lista de <b>AgendaConsulta</b>
+	 * 
 	 * @param compare objeto a ser comparado
 	 * @return int
 	 */
@@ -123,6 +130,14 @@ public class AgendaConsulta implements Comparable<AgendaConsulta> {
 
 		return 0;
 
+	}
+
+	public boolean isMarcada() {
+		return isMarcada;
+	}
+
+	public void setMarcada(boolean isMarcada) {
+		this.isMarcada = isMarcada;
 	}
 
 }
