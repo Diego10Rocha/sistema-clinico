@@ -136,24 +136,54 @@ public class EspecialidadeDAO {
 	 */
 	public static boolean deleteSpecialty(Especialidade specialty) throws Exception {
 
-		boolean isDeletada;
+        boolean isDeletada;
 
-		List<Especialidade> specialties = getSpecialties();
-		List<Medico> doctors = MedicoDAO.getDoctors();
+        List<Especialidade> specialties = getSpecialties();
 
-		boolean foundAssociation = doctors.stream()
-				.anyMatch(doctor -> doctor.getEspecialidadePrincipal().equals(specialty)
-						|| doctor.getSubEspecialidade().equals(specialty));
+        if (hasDoctorAssociado(specialty)) {
 
-		if (foundAssociation)
-			throw new Exception("A especialidade possui medico(s) associado(s)");
+            throw new Exception("A especialidade possui medico(s) associado(s)");
+        }
 
-		isDeletada = specialties.remove(specialty);
+        isDeletada = specialties.remove(specialty);
 
-		connectionFile.reWriter(specialties);
+        connectionFile.reWriter(specialties);
 
-		return isDeletada;
-	}
+        return isDeletada;
+    }
+
+    private static boolean hasDoctorAssociado(Especialidade specialty) {
+
+        List<Medico> doctors = MedicoDAO.getDoctors();
+
+        for (Medico doctor : doctors) {
+
+            if (hasDoctorEspecialidadePrincipal(specialty, doctor)
+                    || hasDoctorSubEspecialidade(specialty, doctor)) {
+
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
+    private static boolean hasDoctorEspecialidadePrincipal(Especialidade specialty, Medico doctor) {
+
+        return doctor.getEspecialidadePrincipal().equals(specialty);
+
+    }
+
+    private static boolean hasDoctorSubEspecialidade(Especialidade specialty, Medico doctor) {
+
+        if (doctor.getSubEspecialidade() != null)
+
+            return doctor.getSubEspecialidade().equals(specialty);
+
+        return false;
+
+    }
 
 	/**
 	 * Verifica se uma especialidade já está cadastrada
