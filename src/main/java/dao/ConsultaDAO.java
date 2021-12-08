@@ -1,3 +1,14 @@
+/*******************************************************************************
+Autor: Diego Cerqueira e Joanderson Santos
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package dao;
 
 import java.util.List;
@@ -6,11 +17,20 @@ import java.util.Optional;
 import file.ConnectionFile;
 import model.Consulta;
 
+/**
+ * Classe DAO para persistência em arquivo de Consultas
+ * @author Diego Cerqueira e Joanderson Santos
+ * @since 2021
+ */
 public class ConsultaDAO {
 
 	private static ConnectionFile<Consulta> connectionFile = new ConnectionFile<>(Consulta[].class,
 			"Arquivos/Consultas.json");
 
+	/**
+	 * Busca a lista de consultas salvas em arquivo
+	 * @return List<Consulta>
+	 */
 	public static List<Consulta> getConsultas() {
 
 		List<Consulta> consultas = connectionFile.readFile();
@@ -18,6 +38,11 @@ public class ConsultaDAO {
 		return consultas;
 	}
 
+	/**
+	 * Metodo de cadastro de consultas
+	 * @param consulta
+	 * @return boolean
+	 */
 	public static boolean insertConsulta(Consulta consulta) {
 		System.out.println(consulta.getHora());
 
@@ -41,6 +66,12 @@ public class ConsultaDAO {
 
 	}
 
+	/**
+	 * Metodo de atualizar os dados de uma consulta
+	 * @param newConsulta
+	 * @param consultaOld
+	 * @return boolean
+	 */
 	public static boolean updateSpecialty(Consulta newConsulta, Consulta consultaOld) {
 
 		List<Consulta> consultas = getConsultas();
@@ -50,6 +81,12 @@ public class ConsultaDAO {
 		return connectionFile.reWriter(consultas);
 	}
 
+	/**
+	 * Metodo para apagar uma consulta
+	 * @param consulta
+	 * @return boolean
+	 * @throws Exception
+	 */
 	public static boolean deleteConsulta(Consulta consulta) throws Exception {
 
 		boolean isDeletada;
@@ -66,6 +103,11 @@ public class ConsultaDAO {
 		return isDeletada;
 	}
 
+	/**
+	 * Metodo que verifica se uma consulta já está registrada
+	 * @param consulta
+	 * @return boolean
+	 */
 	public static boolean consultaAlreadyRegistered(Consulta consulta) {
 
 		boolean consultaAlreadyRegistered = false;
@@ -81,6 +123,11 @@ public class ConsultaDAO {
 
 	}
 
+	/**
+	 * Metodo que verifica se uma consulta já está registrada e a retorna
+	 * @param consulta
+	 * @return boolean
+	 */
 	private static Optional<Consulta> findConsulta(Consulta consultaTarget) {
 
 		List<Consulta> consultas = getConsultas();

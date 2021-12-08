@@ -1,5 +1,17 @@
+/*******************************************************************************
+Autor: Diego Cerqueira e Joanderson Santos
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package controller.recepcionista;
 
+import dao.MedicoDAO;
 import dao.RecepcionistaDAO;
 import factory.UserFactory;
 import javafx.event.ActionEvent;
@@ -12,6 +24,12 @@ import javafx.scene.text.Text;
 import message.MessageAlert;
 import screenManager.ScreenManager;
 
+/**
+ * Controller do cadastro de recepcionista
+ * 
+ * @author Diego Cerqueira e Joanderson Santos
+ * @since 2021
+ */
 public class CadastroRecepcionistaController {
 
 	@FXML
@@ -34,12 +52,20 @@ public class CadastroRecepcionistaController {
 	@FXML
 	private Button btnVoltar;
 
+	/**
+	 * Metodo de fechar a tela
+	 * @param event
+	 */
 	@FXML
 	void closeScreen(ActionEvent event) {
 
 		ScreenManager.closeScreen(btnVoltar);
 	}
 
+	/**
+	 * Metodo para cadastrar recepcionista
+	 * @param event
+	 */
 	@FXML
 	void cadastrarRecepcionista(ActionEvent event) {
 
@@ -54,7 +80,7 @@ public class CadastroRecepcionistaController {
 
 			if (isCpfAlreadyRegistered()) {
 
-				txtMessageCPF_Cadastrado.setText("CPF JÃ¡ cadastrado.");
+				txtMessageCPF_Cadastrado.setText("CPF Já cadastrado.");
 			}
 
 			else {
@@ -69,6 +95,10 @@ public class CadastroRecepcionistaController {
 
 	}
 
+	/**
+	 * Metodo que verifica se possui algum campo em branco
+	 * @return boolean
+	 */
 	private boolean isAnyCampoEmBranco() {
 
 		boolean anyCampoEmBranco = false;
@@ -81,9 +111,14 @@ public class CadastroRecepcionistaController {
 		return anyCampoEmBranco;
 	}
 
+	/**
+	 * Metodo que verifica se um CPF já está registrado como recepcionista ou médico
+	 * @return boolean
+	 */
 	private boolean isCpfAlreadyRegistered() {
 
-		return RecepcionistaDAO.cpfAlreadyRegistered(txtCPF.getText());
+		return RecepcionistaDAO.cpfAlreadyRegistered(txtCPF.getText()) 
+				|| MedicoDAO.cpfAlreadyRegistered(txtCPF.getText());
 	}
 
 	private void closeScreen() {

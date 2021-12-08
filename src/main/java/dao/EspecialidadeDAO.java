@@ -1,3 +1,14 @@
+/*******************************************************************************
+Autor: Diego Cerqueira e Joanderson Santos
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package dao;
 
 import java.util.List;
@@ -7,6 +18,11 @@ import file.ConnectionFile;
 import model.Especialidade;
 import model.Medico;
 
+/**
+ * Classe DAO para persistência em arquivo de Especialidades
+ * @author Diego Cerqueira e Joanderson Santos
+ * @since 2021
+ */
 public class EspecialidadeDAO {
 
 	private static ConnectionFile<Especialidade> connectionFile = new ConnectionFile<>(Especialidade[].class,
@@ -15,6 +31,10 @@ public class EspecialidadeDAO {
 	private static ConnectionFile<Integer> conAmountSpecialtyAlreadyRegistered = new ConnectionFile<>(Integer[].class,
 			"Arquivos/AmountSpecialtyAlreadyRegistered.json");
 
+	/**
+	 * Retorna a lista de especialidades cadastradas
+	 * @return List<Especialidade>
+	 */
 	public static List<Especialidade> getSpecialties() {
 
 		List<Especialidade> specialties = connectionFile.readFile();
@@ -22,6 +42,11 @@ public class EspecialidadeDAO {
 		return specialties;
 	}
 
+	/**
+	 * Metodo de cadastro de especialidades
+	 * @param specialty
+	 * @return boolean
+	 */
 	public static boolean insertSpecialty(Especialidade specialty) {
 
 		try {
@@ -46,6 +71,10 @@ public class EspecialidadeDAO {
 
 	}
 
+	/**
+	 * Metodo que cria um ID para uma especialidade
+	 * @param specialty
+	 */
 	private static void setId(Especialidade specialty) {
 
 		int id = getId();
@@ -55,6 +84,10 @@ public class EspecialidadeDAO {
 		updateAmountSpecialtyAlreadyRegistered(id);
 	}
 
+	/**
+	 * Retorna o ID de uma especialidade
+	 * @return int
+	 */
 	private static int getId() {
 
 		int amountSpecialtyAlreadyRegistered = conAmountSpecialtyAlreadyRegistered.readFile().get(0);
@@ -62,11 +95,19 @@ public class EspecialidadeDAO {
 		return amountSpecialtyAlreadyRegistered + 1;
 	}
 
+	/**
+	 * @param lastIdRegistered
+	 */
 	private static void updateAmountSpecialtyAlreadyRegistered(int lastIdRegistered) {
 
 		conAmountSpecialtyAlreadyRegistered.reWriter(lastIdRegistered);
 	}
 
+	/**
+	 * Metodo para atualizar os dados de uma especialidade
+	 * @param newSpecialty
+	 * @return boolean
+	 */
 	public static boolean updateSpecialty(Especialidade newSpecialty) {
 
 		boolean isUpdated = false;
@@ -87,6 +128,12 @@ public class EspecialidadeDAO {
 		return isUpdated;
 	}
 
+	/**
+	 * Metodo para apagar uma especialidade
+	 * @param specialty
+	 * @return boolean
+	 * @throws Exception
+	 */
 	public static boolean deleteSpecialty(Especialidade specialty) throws Exception {
 
 		boolean isDeletada;
@@ -108,6 +155,11 @@ public class EspecialidadeDAO {
 		return isDeletada;
 	}
 
+	/**
+	 * Verifica se uma especialidade já está cadastrada
+	 * @param nome
+	 * @return boolean
+	 */
 	public static boolean specialtyAlreadyRegistered(String nome) {
 
 		boolean specialtyAlreadyRegistered = false;
@@ -123,6 +175,11 @@ public class EspecialidadeDAO {
 
 	}
 
+	/**
+	 * Busca uma especialidade pelo seu nome
+	 * @param name
+	 * @return Especialidade
+	 */
 	public static Especialidade findByName(String name) {
 
 		List<Especialidade> specialties = getSpecialties();
@@ -133,6 +190,11 @@ public class EspecialidadeDAO {
 		return specialtie.isPresent() ? specialtie.get() : null;
 	}
 
+	/**
+	 * Busca uma especialidade pelo seu ID
+	 * @param id
+	 * @return Especialidade
+	 */
 	public static Especialidade findById(int id) {
 
 		List<Especialidade> specialties = getSpecialties();

@@ -1,6 +1,7 @@
 package controller.medico;
 
 import dao.MedicoDAO;
+import dao.RecepcionistaDAO;
 import factory.UserFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -99,7 +100,8 @@ public class CadastroMedicoController {
 
 	private boolean isCpfAlreadyRegistered() {
 
-		return MedicoDAO.cpfAlreadyRegistered(txtCPF.getText());
+		return MedicoDAO.cpfAlreadyRegistered(txtCPF.getText()) 
+				|| RecepcionistaDAO.cpfAlreadyRegistered(txtCPF.getText());
 	}
 
 	private void createMedicoSemSubEspecialidade() {

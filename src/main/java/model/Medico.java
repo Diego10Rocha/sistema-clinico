@@ -1,3 +1,14 @@
+/*******************************************************************************
+Autor: Diego Cerqueira e Joanderson Santos
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package model;
 
 import java.util.ArrayList;
@@ -7,6 +18,10 @@ import dao.EspecialidadeDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
 
+/**
+ * @author Diego Cerqueira e Joanderson Santos
+ * @since 2021
+ */
 public class Medico extends Usuario {
 
 	private final String CRM;
@@ -15,6 +30,15 @@ public class Medico extends Usuario {
 	private final int MAX_QUANTIDADE_ID_ESPECIALIDADE = 2;
 	private int[] IDs_Especialidade;// indice 0 - Especialidade principal; indice 1 - subespecialidade;
 
+	/**
+	 * Construtor da classe
+	 * @param nome
+	 * @param senha
+	 * @param CPF
+	 * @param CRM
+	 * @param ID_EspecialidadePrincipal
+	 * @param horaDisponivelConsulta
+	 */
 	public Medico(String nome, String senha, String CPF, String CRM, int ID_EspecialidadePrincipal,
 			String horaDisponivelConsulta) {
 
@@ -29,6 +53,16 @@ public class Medico extends Usuario {
 		MedicoDAO.insertDoctor(this);
 	}
 
+	/**
+	 * Construtor da classe
+	 * @param nome
+	 * @param senha
+	 * @param CPF
+	 * @param CRM
+	 * @param ID_EspecialidadePrincipal
+	 * @param ID_SubEspecialidade
+	 * @param horaDisponivelConsulta
+	 */
 	public Medico(String nome, String senha, String CPF, String CRM, int ID_EspecialidadePrincipal,
 			int ID_SubEspecialidade, String horaDisponivelConsulta) {
 
@@ -44,6 +78,10 @@ public class Medico extends Usuario {
 		MedicoDAO.insertDoctor(this);
 	}
 
+	/**
+	 * Retorna a lista de pacientes do médico
+	 * @return List<Paciente>
+	 */
 	public List<Paciente> getPacientes() {
 
 		List<Paciente> pacientes = new ArrayList<>();
@@ -98,12 +136,10 @@ public class Medico extends Usuario {
 		this.horaDisponivelConsulta = horaDisponivelConsulta;
 	}
 
-	@Override
-	public Usuario login(String cpf, String senha) {
-
-		return MedicoDAO.login(cpf, senha);
-	}
-
+	/**
+	 * Retorna dados de um objeto da classe em uma String
+	 * @return String
+	 */
 	@Override
 	public String toString() {
 

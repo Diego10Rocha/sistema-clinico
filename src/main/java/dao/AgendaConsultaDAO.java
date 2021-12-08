@@ -1,3 +1,14 @@
+/*******************************************************************************
+Autor: Diego Cerqueira e Joanderson Santos
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package dao;
 
 import java.util.ArrayList;
@@ -7,11 +18,20 @@ import java.util.Optional;
 import file.ConnectionFile;
 import model.AgendaConsulta;
 
+/**
+ * Classe DAO para persistência em arquivo de Agendas de consultas
+ * @author Diego Cerqueira e Joanderson Santos
+ * @since 2021
+ */
 public class AgendaConsultaDAO {
 
 	private static ConnectionFile<AgendaConsulta> connectionFile = new ConnectionFile<>(AgendaConsulta[].class,
 			"Arquivos/AgendaConsulta.json");
 
+	/**
+	 * Retorna uma lista com as agendas de consultas
+	 * @return List<AgendaConsulta>
+	 */
 	public static List<AgendaConsulta> getAgendasConsulta() {
 
 		List<AgendaConsulta> agendasConsulta = connectionFile.readFile();
@@ -19,6 +39,11 @@ public class AgendaConsultaDAO {
 		return agendasConsulta;
 	}
 
+	/**
+	 * Metodo que cadastra uma agenda de consulta
+	 * @param agendaConsulta
+	 * @return boolean
+	 */
 	public static boolean insertAgendaConsulta(AgendaConsulta agendaConsulta) {
 
 		try {
@@ -41,6 +66,12 @@ public class AgendaConsultaDAO {
 
 	}
 
+	/**
+	 * Metodo que atualiza uma agenda de consulta
+	 * @param oldAgendaConsulta
+	 * @param newAgenda
+	 * @return boolean
+	 */
 	public static boolean updateAgenda(AgendaConsulta oldAgendaConsulta, AgendaConsulta newAgenda) {
 
 		boolean isNewAlreadyRegistered = agendaConsultaAlreadyRegistered(newAgenda);
@@ -70,6 +101,12 @@ public class AgendaConsultaDAO {
 		}
 	}
 
+	
+	/**
+	 * Metodo que Busca as consultas de um determinado médico
+	 * @param CPF_medico
+	 * @return List<AgendaConsulta>
+	 */
 	public static List<AgendaConsulta> findByCPF_Medico(String CPF_medico) {
 
 		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
@@ -80,6 +117,11 @@ public class AgendaConsultaDAO {
 		return agendas;
 	}
 
+	/**
+	 * Metodo que verifica se um cpf já está registrado como médico
+	 * @param CPF_Medico_Target
+	 * @return boolean
+	 */
 	private static boolean isCPF_MedicoAgendaAlreadyRegistered(String CPF_Medico_Target) {
 
 		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();
@@ -89,6 +131,12 @@ public class AgendaConsultaDAO {
 
 	}
 
+	/**
+	 * Metodo para apagar uma agenda
+	 * @param agendaConsulta
+	 * @return boolean
+	 * @throws Exception
+	 */
 	public static boolean deleteAgendaConsulta(AgendaConsulta agendaConsulta) throws Exception {
 
 		boolean isDeletada;
@@ -102,6 +150,11 @@ public class AgendaConsultaDAO {
 		return isDeletada;
 	}
 
+	/**
+	 * Metodo que verifica se uma agenda já está registrada
+	 * @param agendaConsulta
+	 * @return boolean
+	 */
 	public static boolean agendaConsultaAlreadyRegistered(AgendaConsulta agendaConsulta) {
 
 		boolean agendaAlreadyRegistered = false;
@@ -117,6 +170,11 @@ public class AgendaConsultaDAO {
 
 	}
 
+	/**
+	 * Busca uma agenda
+	 * @param agendaTarget
+	 * @return Optional<AgendaConsulta>
+	 */
 	private static Optional<AgendaConsulta> findAgenda(AgendaConsulta agendaTarget) {
 
 		List<AgendaConsulta> agendasConsulta = getAgendasConsulta();

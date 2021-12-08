@@ -1,3 +1,14 @@
+/*******************************************************************************
+Autor: Diego Cerqueira e Joanderson Santos
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package file;
 
 import java.io.BufferedReader;
@@ -10,12 +21,21 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+/**
+ * @author Diego Cerqueira e Joanderson Santos
+ * @since 2021
+ */
 public class ConnectionFile<T> {
 
 	private Gson gson = new Gson();
 	private final String PATH;
 	private final Class<T[]> type;
 
+	/**
+	 * Construtor da classe
+	 * @param type
+	 * @param PATH
+	 */
 	public ConnectionFile(Class<T[]> type, String PATH) {
 
 		this.type = type;
@@ -23,6 +43,11 @@ public class ConnectionFile<T> {
 
 	}
 
+	/**
+	 * Metodo pra ecrever um objeto em um arquivo
+	 * @param obj
+	 * @return boolean
+	 */
 	public boolean writer(T obj) {
 
 		String json;
@@ -46,6 +71,11 @@ public class ConnectionFile<T> {
 
 	}
 
+	/**
+	 * Metodo para atualizar os dados de um arquivo
+	 * @param objs
+	 * @return boolean
+	 */
 	public boolean reWriter(List<T> objs) {
 
 		String json;
@@ -65,6 +95,11 @@ public class ConnectionFile<T> {
 
 	}
 
+	/**
+	 * Metodo para atualizar os dados de um arquivo
+	 * @param objs
+	 * @return boolean
+	 */
 	public boolean reWriter(T obj) {
 
 		String json;
@@ -88,6 +123,11 @@ public class ConnectionFile<T> {
 
 	}
 
+	/**
+	 * Metodo para ler os dados de um arquivo
+	 * @param objs
+	 * @return boolean
+	 */
 	public List<T> readFile() {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {

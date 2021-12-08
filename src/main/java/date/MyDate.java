@@ -1,12 +1,12 @@
 /*******************************************************************************
 Autor: Diego Cerqueira e Joanderson Santos
-Componente Curricular: MI Programa��o
-Concluido em: 18/10/2021
-Declaro que este c�digo foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e n�o cont�m nenhum
-trecho de c�digo de outro colega ou de outro autor, tais como provindos de livros e
-apostilas, e p�ginas ou documentos eletr�nicos da Internet. Qualquer trecho de c�digo
-de outra autoria que n�o a minha est� destacado com uma cita��o para o autor e a fonte
-do c�digo, e estou ciente que estes trechos n�o ser�o considerados para fins de avalia��o.
+Componente Curricular: MI Programação
+Concluido em: 07/12/2021
+Declaro que este código foi elaborado por Diego Cerqueira e Joanderson Santos em dupla e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
 ******************************************************************************************/
 
 package date;
@@ -16,9 +16,9 @@ import java.time.LocalDate;
 import java.util.Date;
 
 /**
- * A Classe <b>MyDate</b> permite atrav�s de uma inst�ncia a obten��o da <b>data<b> atual do Sistema de 
- * forma simples. Al�m de prover m�todos para compara��o de <b>datas</b>. 
- * referente � GUI do <b>Gerenciador de Tarefas</b>.
+ * A Classe <b>MyDate</b> permite através de uma inst�ncia a obtenção da <b>data<b> atual do Sistema de 
+ * forma simples. Além de prover métodos para comparação de <b>datas</b>. 
+ * referente à GUI do <b>Gerenciador de Tarefas</b>.
  * @since 2021
  * @author Joanderson Santos e Diego Cerqueira
  */
@@ -29,7 +29,7 @@ public class MyDate {
 	private SimpleDateFormat dateFormat;
 	
 	/**
-	 * Construtor padr�o da classe <b>MyDate</b>.<br>
+	 * Construtor padrão da classe <b>MyDate</b>.<br>
      * 
 	 */
 	
@@ -40,7 +40,7 @@ public class MyDate {
 	}
 	
 	/**
-	 * Obt�m a <b>data</b> atual do Sistema.
+	 * Obtém a <b>data</b> atual do Sistema.
 	 * @return <b>data</b> atual do Sistema no formato:<b>dd/MM/yyyy<b>
 	 */
 	
@@ -50,7 +50,7 @@ public class MyDate {
 	}
 	
 	/**
-	 * Obt�m o <b>dia</b> atual do Sistema.
+	 * Obtém o <b>dia</b> atual do Sistema.
 	 * @return <b>dia</b> atual do Sistema.
 	 */
 	
@@ -63,8 +63,8 @@ public class MyDate {
 	}
 	
 	/**
-	 * Obt�m o <b>m�s</b> atual do Sistema.
-	 * @return <b>m�s</b> atual do Sistema.
+	 * Obtém o <b>mês</b> atual do Sistema.
+	 * @return <b>mês</b> atual do Sistema.
 	 */
 	
 	
@@ -76,7 +76,7 @@ public class MyDate {
 	}
 	
 	/**
-	 * Obt�m o <b>ano</b> atual do Sistema.
+	 * Obtém o <b>ano</b> atual do Sistema.
 	 * @return <b>ano</b> atual do Sistema.
 	 */
 	
@@ -91,8 +91,8 @@ public class MyDate {
 	 * Compara duas <b>datas<b>.
 	 * @param date1 primeira data a ser comparada.
 	 * @param date2 segunda data a ser comparada
-	 * @return inteiro positivo se a primeira <b>data</b> � <b>maior<b> que a segunda, inteiro negativo
-	 * se a primeira <b>data</b> � <b>menor</b> que a primeira, ou zero se as duas <b>datas<b> forem <b>iguais</b>.
+	 * @return inteiro positivo se a primeira <b>data</b> é <b>maior<b> que a segunda, inteiro negativo
+	 * se a primeira <b>data</b>é<b>menor</b> que a primeira, ou zero se as duas <b>datas<b> forem <b>iguais</b>.
 	 */
 	
 	public int compareTo(String date1, String date2) {
@@ -108,8 +108,8 @@ public class MyDate {
 	}
 	
 	/**
-	 * Obt�m um objeto do tipo <b>LocalDate</b> dada uma <b>data<b> do tipo String, no formato:<b>dd/MM/yyyy<b>.
-	 * @param date data utilizada como refer�ncia.
+	 * Obtém um objeto do tipo <b>LocalDate</b> dada uma <b>data<b> do tipo String, no formato:<b>dd/MM/yyyy<b>.
+	 * @param date data utilizada como referência.
 	 * @return objeto do tipo <b>LocalDate</b>.
 	 */
 	
