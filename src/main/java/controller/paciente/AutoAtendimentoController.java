@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.consulta.RequestCPFController;
-import dao.AgendaConsultaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import message.MessageAlert;
 import model.AgendaConsulta;
+import model.GerenciadorConsulta;
 import screenManager.ScreenManager;
 
 /**
@@ -59,6 +59,7 @@ public class AutoAtendimentoController implements Initializable {
 
 	/**
 	 * Evento que fecha a tela de auto atendimento
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -70,6 +71,7 @@ public class AutoAtendimentoController implements Initializable {
 
 	/**
 	 * Evento que abre tela de marcação de consulta
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -103,10 +105,11 @@ public class AutoAtendimentoController implements Initializable {
 		requestCpfController = (RequestCPFController) currentController;
 
 		setConsultaSelecionadaToRequestCPFController();
+		setCallerToRequestCPFController();
 
 	}
 
-	
+
 	/**
 	 * Metodo que guarda a referência da consulta que será marcada
 	 */
@@ -114,17 +117,25 @@ public class AutoAtendimentoController implements Initializable {
 
 		requestCpfController.setConsultaSelecionada(consultaSelecionada);
 	}
+	
+	/**
+	 * Método que seta a referência do controlador que fez a chamada do RequestCPF.
+	 */
+	private void setCallerToRequestCPFController() {
+
+		requestCpfController.setAutoAtendimentoController(this);
+	}
 
 	/**
 	 * Evento que carrega as consultas na tela
 	 */
-	private void loadConsultas() {
+	public void loadConsultas() {
 
-		List<AgendaConsulta> agendasConsultaCadastradas = AgendaConsultaDAO.getAgendasConsulta();
+		List<AgendaConsulta> agendasConsultaNaoMarcadas = GerenciadorConsulta.getAgendasConsultaNaoMarcadas();
 
-		Collections.sort(agendasConsultaCadastradas);
+		Collections.sort(agendasConsultaNaoMarcadas);
 
-		obsConsultas = FXCollections.observableArrayList(agendasConsultaCadastradas);
+		obsConsultas = FXCollections.observableArrayList(agendasConsultaNaoMarcadas);
 
 		lvConsultas.setItems(obsConsultas);
 
@@ -142,6 +153,7 @@ public class AutoAtendimentoController implements Initializable {
 
 	/**
 	 * Metodo que retorna a consulta selecionada para o agendamento
+	 * 
 	 * @return AgendaConsulta
 	 */
 	public static AgendaConsulta getConsultaSelecionada() {

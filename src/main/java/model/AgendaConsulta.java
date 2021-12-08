@@ -77,7 +77,8 @@ public class AgendaConsulta implements Comparable<AgendaConsulta> {
 
 			if (agendaConsultaASerComparada.getData().equals(this.getData())
 					&& agendaConsultaASerComparada.getHora().equals(this.getHora())
-					&& agendaConsultaASerComparada.getCPF_medico().equals(this.getCPF_medico())) {
+					&& agendaConsultaASerComparada.getCPF_medico().equals(this.getCPF_medico())
+					&& agendaConsultaASerComparada.isMarcada() == this.isMarcada()) {
 				objIsEqual = true;
 			}
 

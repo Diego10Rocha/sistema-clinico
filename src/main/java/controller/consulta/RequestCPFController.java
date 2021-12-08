@@ -1,5 +1,7 @@
 package controller.consulta;
 
+import controller.paciente.AutoAtendimentoController;
+import dao.AgendaConsultaDAO;
 import dao.ConsultaDAO;
 import dao.PacienteDAO;
 import javafx.event.ActionEvent;
@@ -20,6 +22,8 @@ public class RequestCPFController {
 	@FXML
 	private Button btnMarcarConsulta;
 	private AgendaConsulta consultaSelecionada;
+	private AutoAtendimentoController autoAtendimentoController;
+	private ConsultaRecepcionistaController consultaRecepcionistaController;
 
 	private MessageAlert msg = new MessageAlert();
 
@@ -28,7 +32,7 @@ public class RequestCPFController {
 
 	@FXML
 	void closeScreen(ActionEvent event) {
-		
+
 		ScreenManager.closeScreen(btnVoltar);
 	}
 
@@ -44,14 +48,16 @@ public class RequestCPFController {
 			Consulta newConsulta = createNewConsulta();
 
 			boolean ConsultaAlreadyMarcada = ConsultaDAO.consultaAlreadyRegistered(newConsulta);
-			
+
 			if (ConsultaAlreadyMarcada)
 
 				msg.showMessage("A consulta já foi marcada.", AlertType.WARNING);
 
 			else {
-				
+
 				ConsultaDAO.insertConsulta(newConsulta);
+				setAgendaComoMarcada();
+				updateScreenCaller();
 
 				msg.showMessage("Consulta marcada com Sucesso", AlertType.INFORMATION);
 			}
@@ -68,13 +74,35 @@ public class RequestCPFController {
 
 	}
 
+	private void updateScreenCaller() {
+
+		if (this.autoAtendimentoController != null) {
+
+			this.autoAtendimentoController.loadConsultas();
+		}
+
+		else if (this.consultaRecepcionistaController != null)
+
+			this.consultaRecepcionistaController.loadConsultas();
+	}
+
+	private void setAgendaComoMarcada() {
+
+		AgendaConsulta newAgendaMarcada = new AgendaConsulta(consultaSelecionada.getData(),
+				consultaSelecionada.getHora(), consultaSelecionada.getCPF_medico());
+
+		newAgendaMarcada.setMarcada(true);
+
+		AgendaConsultaDAO.updateAgenda(consultaSelecionada, newAgendaMarcada);
+
+	}
+
 	private Consulta createNewConsulta() {
-		
+
 		String CPF_Medico = consultaSelecionada.getCPF_medico();
 		String horaConsulta = consultaSelecionada.getHora();
 		String dataConsulta = consultaSelecionada.getData();
 		String CPF_Paciente = txtCPF.getText();
-		
 
 		return new Consulta(dataConsulta, horaConsulta, CPF_Medico, CPF_Paciente);
 
@@ -92,6 +120,24 @@ public class RequestCPFController {
 
 	public void setConsultaSelecionada(AgendaConsulta consultaSelecionada) {
 		this.consultaSelecionada = consultaSelecionada;
+	}
+
+	public AutoAtendimentoController getAutoAtendimentoController() {
+		return autoAtendimentoController;
+	}
+
+	public void setAutoAtendimentoController(AutoAtendimentoController autoAtendimentoController) {
+
+		this.autoAtendimentoController = autoAtendimentoController;
+
+	}
+
+	public ConsultaRecepcionistaController getConsultaRecepcionistaController() {
+		return consultaRecepcionistaController;
+	}
+
+	public void setConsultaRecepcionistaController(ConsultaRecepcionistaController consultaRecepcionistaController) {
+		this.consultaRecepcionistaController = consultaRecepcionistaController;
 	}
 
 }
