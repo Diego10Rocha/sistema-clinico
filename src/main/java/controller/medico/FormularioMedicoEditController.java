@@ -88,6 +88,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 	/**
 	 * Verifica se possui um campo obrigatório em branco
+	 * 
 	 * @return boolean
 	 */
 	private boolean isAnyObrigatorioCampoEmBranco() {
@@ -119,6 +120,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 		medicoSelecionado.setNome(name);
 		medicoSelecionado.setID_EspecialidadePrincipal(idEspecialidadePrincipal);
+		medicoSelecionado.setID_SubEspecialidade(0);
 		medicoSelecionado.setHoraDisponivelConsulta(horaDisponivelConsulta);
 
 		MedicoDAO.updateDoctor(medicoSelecionado);
@@ -158,6 +160,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 	/**
 	 * Adiciona eventos aos botões: btnSalvar e btnCancelar
+	 * 
 	 * @param listener
 	 */
 	public void addButtonsListener(EventHandler<ActionEvent> listener) {
@@ -209,6 +212,7 @@ public class FormularioMedicoEditController implements Initializable {
 
 	/**
 	 * Verifica se um medico possui subespecialidade
+	 * 
 	 * @return boolean
 	 */
 	private boolean hasSubEspecialidade() {
